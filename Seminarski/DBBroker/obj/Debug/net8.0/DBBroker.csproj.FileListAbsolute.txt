@@ -1,0 +1,15 @@
+C:\Users\PC\source\repos\Seminarski\DBBroker\bin\Debug\net8.0\DBBroker.deps.json
+C:\Users\PC\source\repos\Seminarski\DBBroker\bin\Debug\net8.0\DBBroker.dll
+C:\Users\PC\source\repos\Seminarski\DBBroker\bin\Debug\net8.0\DBBroker.pdb
+C:\Users\PC\source\repos\Seminarski\DBBroker\bin\Debug\net8.0\Domen.dll
+C:\Users\PC\source\repos\Seminarski\DBBroker\bin\Debug\net8.0\Domen.pdb
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.AssemblyInfoInputs.cache
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.AssemblyInfo.cs
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.csproj.Up2Date
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.dll
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\refint\DBBroker.dll
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\DBBroker.pdb
+C:\Users\PC\source\repos\Seminarski\DBBroker\obj\Debug\net8.0\ref\DBBroker.dll

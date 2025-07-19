@@ -1,0 +1,11 @@
+C:\Users\PC\source\repos\Seminarski\Komunikacija\bin\Debug\net8.0\Komunikacija.deps.json
+C:\Users\PC\source\repos\Seminarski\Komunikacija\bin\Debug\net8.0\Komunikacija.dll
+C:\Users\PC\source\repos\Seminarski\Komunikacija\bin\Debug\net8.0\Komunikacija.pdb
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\Komunikacija.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\Komunikacija.AssemblyInfoInputs.cache
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\Komunikacija.AssemblyInfo.cs
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\Komunikacija.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\Komunikacija.dll
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\refint\Komunikacija.dll
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\Komunikacija.pdb
+C:\Users\PC\source\repos\Seminarski\Komunikacija\obj\Debug\net8.0\ref\Komunikacija.dll
