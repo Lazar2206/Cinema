@@ -53,5 +53,15 @@ namespace Logika
         {
             return broker.PromeniGledaoca(gledalac);
         }
+
+        public bool ObrišiGledalac(Gledalac gledalac)
+        {
+            return broker.ObrišiGledalac(gledalac);
+        }
+
+        public bool KreirajGledalac(Gledalac gledalac)
+        {
+            return broker.KreirajGledalac(gledalac);
+        }
     }
 }

@@ -3,48 +3,72 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\Seminarski\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmra\u010Dun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmra\u010Dun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmmesto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmmesto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmfilm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmfilm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmdistributer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmdistributer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmglavna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmglavna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D9C1DEC5-E25A-4B6D-9C6F-180F8F374F1D}|Logika\\Logika.csproj|c:\\users\\pc\\source\\repos\\seminarski\\logika\\kontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9C1DEC5-E25A-4B6D-9C6F-180F8F374F1D}|Logika\\Logika.csproj|solutionrelative:logika\\kontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmglavna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmglavna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E6F7CF7-5A56-4893-A057-42E71306C1DA}|ServerskaStrana\\ServerskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\serverskastrana\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1E6F7CF7-5A56-4893-A057-42E71306C1DA}|ServerskaStrana\\ServerskaStrana.csproj|solutionrelative:serverskastrana\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90D05FA5-B2B3-43D7-962B-DDE4B40F3EDE}|DBBroker\\DBBroker.csproj|c:\\users\\pc\\source\\repos\\seminarski\\dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90D05FA5-B2B3-43D7-962B-DDE4B40F3EDE}|DBBroker\\DBBroker.csproj|solutionrelative:dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmloginbioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmloginbioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|C:\\Users\\PC\\source\\repos\\Seminarski\\klijentskastrana\\frmglavna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmglavna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|C:\\Users\\PC\\source\\repos\\Seminarski\\klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|c:\\users\\pc\\source\\repos\\seminarski\\domen\\mesto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|solutionrelative:domen\\mesto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D9C1DEC5-E25A-4B6D-9C6F-180F8F374F1D}|Logika\\Logika.csproj|c:\\users\\pc\\source\\repos\\seminarski\\logika\\kontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9C1DEC5-E25A-4B6D-9C6F-180F8F374F1D}|Logika\\Logika.csproj|solutionrelative:logika\\kontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|c:\\users\\pc\\source\\repos\\seminarski\\domen\\gledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|solutionrelative:domen\\gledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmloginbioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmloginbioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|C:\\Users\\PC\\source\\repos\\Seminarski\\klijentskastrana\\frmloginbioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmloginbioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmglavna.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\frmglavna.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|C:\\Users\\PC\\source\\repos\\Seminarski\\klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\ucgledalac.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90D05FA5-B2B3-43D7-962B-DDE4B40F3EDE}|DBBroker\\DBBroker.csproj|c:\\users\\pc\\source\\repos\\seminarski\\dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90D05FA5-B2B3-43D7-962B-DDE4B40F3EDE}|DBBroker\\DBBroker.csproj|solutionrelative:dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1E6F7CF7-5A56-4893-A057-42E71306C1DA}|ServerskaStrana\\ServerskaStrana.csproj|C:\\Users\\PC\\source\\repos\\Seminarski\\serverskastrana\\frmserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -53,14 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\klijent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|solutionrelative:klijentskastrana\\klijent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{462B3294-C363-4713-AB9F-3DAB78732F30}|Repozitorijumi\\Repozitorijumi.csproj|c:\\users\\pc\\source\\repos\\seminarski\\repozitorijumi\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{462B3294-C363-4713-AB9F-3DAB78732F30}|Repozitorijumi\\Repozitorijumi.csproj|solutionrelative:repozitorijumi\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|c:\\users\\pc\\source\\repos\\seminarski\\domen\\bioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|solutionrelative:domen\\bioskop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D470B49F-CF03-4F32-8D22-5062B54639B1}|KlijentskaStrana\\KlijentskaStrana.csproj|c:\\users\\pc\\source\\repos\\seminarski\\klijentskastrana\\frmpo\u010Detna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -118,159 +134,232 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "FrmRa\u010Dun.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmRa\u010Dun.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmRa\u010Dun.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmRa\u010Dun.cs [Design]",
+              "RelativeToolTip": "KlijentskaStrana\\FrmRa\u010Dun.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:47:36.358Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FrmMesto.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmMesto.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmMesto.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmMesto.cs [Design]",
+              "RelativeToolTip": "KlijentskaStrana\\FrmMesto.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:47:15.169Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FrmFilm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmFilm.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmFilm.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmFilm.cs [Design]",
+              "RelativeToolTip": "KlijentskaStrana\\FrmFilm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:46:52.769Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FrmDistributer.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmDistributer.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmDistributer.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmDistributer.cs [Design]",
+              "RelativeToolTip": "KlijentskaStrana\\FrmDistributer.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:46:28.052Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FrmGledalac.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGledalac.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmGledalac.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGledalac.cs [Design]",
+              "RelativeToolTip": "KlijentskaStrana\\FrmGledalac.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:08:23.313Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "FrmGlavna.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGlavna.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\FrmGlavna.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGlavna.cs [Design]",
               "RelativeToolTip": "KlijentskaStrana\\FrmGlavna.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T23:29:00.547Z"
+              "WhenOpened": "2025-07-20T01:45:02.202Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
+              "Title": "Gledalac.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Gledalac.cs",
+              "RelativeDocumentMoniker": "Domen\\Gledalac.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Gledalac.cs",
+              "RelativeToolTip": "Domen\\Gledalac.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T01:27:25.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "FrmGlavna.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGlavna.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\FrmGlavna.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGlavna.cs",
               "RelativeToolTip": "KlijentskaStrana\\FrmGlavna.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAFMAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T23:29:33.767Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FrmLoginBioskop.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs",
-              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmLoginBioskop.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs",
-              "RelativeToolTip": "KlijentskaStrana\\FrmLoginBioskop.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAADcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T23:21:20.279Z",
+              "WhenOpened": "2025-07-18T23:29:33.767Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "UcGledalac.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\UcGledalac.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\UcGledalac.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\UcGledalac.cs",
               "RelativeToolTip": "KlijentskaStrana\\UcGledalac.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAgwBYAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAIIAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-19T01:03:47.979Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Broker.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
-              "RelativeDocumentMoniker": "DBBroker\\Broker.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
-              "RelativeToolTip": "DBBroker\\Broker.cs",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAowMIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:51:46.047Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "Kontroler.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Logika\\Kontroler.cs",
               "RelativeDocumentMoniker": "Logika\\Kontroler.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Logika\\Kontroler.cs",
               "RelativeToolTip": "Logika\\Kontroler.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAYwDUAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAswDgAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:49:00.994Z"
+              "WhenOpened": "2025-07-17T00:49:00.994Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "ClientHandler.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\ServerskaStrana\\ClientHandler.cs",
               "RelativeDocumentMoniker": "ServerskaStrana\\ClientHandler.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\ServerskaStrana\\ClientHandler.cs",
               "RelativeToolTip": "ServerskaStrana\\ClientHandler.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAEwAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAF4AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T23:10:44.747Z"
+              "WhenOpened": "2025-07-17T23:10:44.747Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Gledalac.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Gledalac.cs",
-              "RelativeDocumentMoniker": "Domen\\Gledalac.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Gledalac.cs",
-              "RelativeToolTip": "Domen\\Gledalac.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "FrmGledalac.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGledalac.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmGledalac.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGledalac.cs",
+              "RelativeToolTip": "KlijentskaStrana\\FrmGledalac.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAAIIAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T23:17:57.727Z"
+              "WhenOpened": "2025-07-20T02:10:38.803Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
+              "Title": "FrmLoginBioskop.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmLoginBioskop.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs [Design]",
+              "RelativeToolTip": "KlijentskaStrana\\FrmLoginBioskop.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T23:20:43.531Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "FrmLoginBioskop.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmLoginBioskop.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs",
+              "RelativeToolTip": "KlijentskaStrana\\FrmLoginBioskop.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:21:37.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FrmGlavna.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGlavna.Designer.cs",
+              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmGlavna.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmGlavna.Designer.cs",
+              "RelativeToolTip": "KlijentskaStrana\\FrmGlavna.Designer.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T02:13:06.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "UcGledalac.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\UcGledalac.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\UcGledalac.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\UcGledalac.cs [Design]",
               "RelativeToolTip": "KlijentskaStrana\\UcGledalac.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-19T00:48:37.071Z"
+              "WhenOpened": "2025-07-19T00:48:37.071Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Mesto.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Mesto.cs",
-              "RelativeDocumentMoniker": "Domen\\Mesto.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Mesto.cs",
-              "RelativeToolTip": "Domen\\Mesto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 16,
+              "Title": "Broker.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
+              "RelativeDocumentMoniker": "DBBroker\\Broker.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
+              "RelativeToolTip": "DBBroker\\Broker.cs",
+              "ViewState": "AgIAAPUAAAAAAAAAAAAAAPwAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:49:12.647Z"
+              "WhenOpened": "2025-07-17T00:51:46.047Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Repozitorijumi\\Class1.cs",
-              "RelativeDocumentMoniker": "Repozitorijumi\\Class1.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Repozitorijumi\\Class1.cs",
-              "RelativeToolTip": "Repozitorijumi\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T00:57:16.38Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Bioskop.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Bioskop.cs",
-              "RelativeDocumentMoniker": "Domen\\Bioskop.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Bioskop.cs",
-              "RelativeToolTip": "Domen\\Bioskop.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T23:29:03.402Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "FrmServer.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\ServerskaStrana\\FrmServer.cs",
               "RelativeDocumentMoniker": "ServerskaStrana\\FrmServer.cs",
@@ -281,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Klijent.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\Klijent.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\Klijent.cs",
@@ -293,18 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FrmLoginBioskop.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs",
-              "RelativeDocumentMoniker": "KlijentskaStrana\\FrmLoginBioskop.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginBioskop.cs [Design]",
-              "RelativeToolTip": "KlijentskaStrana\\FrmLoginBioskop.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-18T23:20:43.531Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "FrmPo\u010Detna.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmPo\u010Detna.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\FrmPo\u010Detna.cs",
@@ -317,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "FrmPo\u010Detna.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmPo\u010Detna.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\FrmPo\u010Detna.cs",
@@ -328,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "FrmLoginGledalac.cs [Design]",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\KlijentskaStrana\\FrmLoginGledalac.cs",
               "RelativeDocumentMoniker": "KlijentskaStrana\\FrmLoginGledalac.cs",
@@ -339,7 +417,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "Server.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\ServerskaStrana\\Server.cs",
               "RelativeDocumentMoniker": "ServerskaStrana\\Server.cs",
@@ -350,12 +428,8 @@
               "WhenOpened": "2025-07-17T23:10:35.768Z"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "StavkaRacuna.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\StavkaRacuna.cs",
               "RelativeDocumentMoniker": "Domen\\StavkaRacuna.cs",
@@ -367,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "Racun.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Racun.cs",
               "RelativeDocumentMoniker": "Domen\\Racun.cs",
@@ -379,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "TabelaProjekcija.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\TabelaProjekcija.cs",
               "RelativeDocumentMoniker": "Domen\\TabelaProjekcija.cs",
@@ -391,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "Distributer.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Distributer.cs",
               "RelativeDocumentMoniker": "Domen\\Distributer.cs",
@@ -403,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "Film.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Film.cs",
               "RelativeDocumentMoniker": "Domen\\Film.cs",
@@ -415,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "JsnNetworkSerializer.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Komunikacija\\JsnNetworkSerializer.cs",
               "RelativeDocumentMoniker": "Komunikacija\\JsnNetworkSerializer.cs",
@@ -427,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "Poruka.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Komunikacija\\Poruka.cs",
               "RelativeDocumentMoniker": "Komunikacija\\Poruka.cs",
@@ -439,7 +513,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\Class1.cs",
               "RelativeDocumentMoniker": "SistemskeOperacije\\Class1.cs",

@@ -74,3 +74,4 @@ C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Lo
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Logika.pdb
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\DBBroker.pdb
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcGledalac.resources
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmGledalac.resources

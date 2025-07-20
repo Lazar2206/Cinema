@@ -37,6 +37,8 @@
             label4 = new Label();
             btnUredi = new Button();
             cmbGledalac = new ComboBox();
+            btnObriši = new Button();
+            btnZapamti = new Button();
             SuspendLayout();
             // 
             // txtIme
@@ -49,7 +51,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(50, 59);
+            label1.Location = new Point(62, 69);
             label1.Name = "label1";
             label1.Size = new Size(34, 20);
             label1.TabIndex = 4;
@@ -58,7 +60,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(235, 69);
+            label2.Location = new Point(221, 70);
             label2.Name = "label2";
             label2.Size = new Size(62, 20);
             label2.TabIndex = 6;
@@ -66,7 +68,7 @@
             // 
             // txtPrezime
             // 
-            txtPrezime.Location = new Point(205, 92);
+            txtPrezime.Location = new Point(191, 93);
             txtPrezime.Name = "txtPrezime";
             txtPrezime.Size = new Size(125, 27);
             txtPrezime.TabIndex = 5;
@@ -74,11 +76,11 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(50, 139);
+            label3.Location = new Point(62, 138);
             label3.Name = "label3";
-            label3.Size = new Size(67, 20);
+            label3.Size = new Size(38, 20);
             label3.TabIndex = 8;
-            label3.Text = "Gledalac";
+            label3.Text = "Mejl";
             // 
             // txtMejl
             // 
@@ -90,7 +92,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(245, 138);
+            label4.Location = new Point(231, 138);
             label4.Name = "label4";
             label4.Size = new Size(41, 20);
             label4.TabIndex = 10;
@@ -98,26 +100,48 @@
             // 
             // btnUredi
             // 
-            btnUredi.Location = new Point(383, 90);
+            btnUredi.Location = new Point(354, 127);
             btnUredi.Name = "btnUredi";
             btnUredi.Size = new Size(94, 29);
             btnUredi.TabIndex = 11;
-            btnUredi.Text = "Uredi";
+            btnUredi.Text = "Ažuriraj";
             btnUredi.UseVisualStyleBackColor = true;
             btnUredi.Click += btnUredi_Click;
             // 
             // cmbGledalac
             // 
             cmbGledalac.FormattingEnabled = true;
-            cmbGledalac.Location = new Point(205, 161);
+            cmbGledalac.Location = new Point(191, 161);
             cmbGledalac.Name = "cmbGledalac";
             cmbGledalac.Size = new Size(125, 28);
             cmbGledalac.TabIndex = 13;
+            // 
+            // btnObriši
+            // 
+            btnObriši.Location = new Point(354, 162);
+            btnObriši.Name = "btnObriši";
+            btnObriši.Size = new Size(94, 31);
+            btnObriši.TabIndex = 14;
+            btnObriši.Text = "Obriši";
+            btnObriši.UseVisualStyleBackColor = true;
+            btnObriši.Click += btnObriši_Click;
+            // 
+            // btnZapamti
+            // 
+            btnZapamti.Location = new Point(354, 92);
+            btnZapamti.Name = "btnZapamti";
+            btnZapamti.Size = new Size(94, 29);
+            btnZapamti.TabIndex = 15;
+            btnZapamti.Text = "Zapamti";
+            btnZapamti.UseVisualStyleBackColor = true;
+            btnZapamti.Click += btnZapamti_Click;
             // 
             // UcGledalac
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnZapamti);
+            Controls.Add(btnObriši);
             Controls.Add(cmbGledalac);
             Controls.Add(btnUredi);
             Controls.Add(label4);
@@ -143,5 +167,7 @@
         private Label label4;
         private Button btnUredi;
         private ComboBox cmbGledalac;
+        private Button btnObriši;
+        private Button btnZapamti;
     }
 }

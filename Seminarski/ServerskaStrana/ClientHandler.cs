@@ -16,6 +16,7 @@ namespace ServerskaStrana
         private Socket klijent;
 
         private JsnNetworkSerializer json;
+        private Gledalac gledalac;
         private bool kraj;
         public Bioskop prijavljeniBioskop { get; set; }
         public ClientHandler(Socket klijent)
@@ -62,11 +63,11 @@ namespace ServerskaStrana
                             {
                                 odgovor.Operacija = Operacija.Neuspešno;
                             }
-                            //slanje odgovora
+                            
                             PošaljiPoruku(odgovor);
                             break;
                         case Operacija.PromeniGledaoca:
-                            Gledalac gledalac = json.ReadType<Gledalac>(zahtev.Object);
+                            gledalac = json.ReadType<Gledalac>(zahtev.Object);
                             if(Kontroler.Instance.PromeniGledaoca(gledalac))
                             {
                                 odgovor.Operacija = Operacija.Uspešno;
@@ -75,9 +76,34 @@ namespace ServerskaStrana
                             {
                                 odgovor.Operacija = Operacija.Neuspešno;
                             }
-                            //slanje odgovora
                             PošaljiPoruku(odgovor);
                             break;
+                        case Operacija.KreirajGledalac:
+                            gledalac = json.ReadType<Gledalac>(zahtev.Object);
+                            if (Kontroler.Instance.KreirajGledalac(gledalac))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.ObrišiGledalac:
+                            gledalac = json.ReadType<Gledalac>(zahtev.Object);
+                            if (Kontroler.Instance.ObrišiGledalac(gledalac))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                            
+
                             //case Operacija.Register:
                             //    Korisnik korisnik2 = json.ReadType<Korisnik>(zahtev.Object);
                             //    Kontroler.Instance.DodajKorisnika(korisnik2);

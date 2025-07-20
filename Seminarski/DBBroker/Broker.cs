@@ -63,7 +63,7 @@ namespace DBBroker
                         AdresaBioskopa = (string)reader["adresaBioskopa"],
                         KorisnickoIme = (string)reader["korisnickoIme"],
                         Sifra = (string)reader["sifra"],
-                       
+                        
                     };
                     bioskopi.Add(p);
                 }
@@ -156,8 +156,7 @@ namespace DBBroker
                         IdMesto = (int)reader["idMesto"],
                         Ime = (string)reader["ime"],
                         Prezime = (string)reader["prezime"],
-                        KorisničkoIme = (string)reader["korisnickoIme"],
-                        Šifra = (string)reader["sifra"],
+                        Mejl=(string)reader["mejl"]
                     };
 
                     gledaoci.Add(g);
@@ -180,9 +179,8 @@ namespace DBBroker
             string upit = @"UPDATE Gledalac SET 
                         ime = @ime,
                         prezime = @prezime,
-                        korisnickoIme = @korisnickoIme,
-                        sifra = @sifra,
-                        idMesto = @idMesto
+                        idMesto = @idMesto,
+                        mejl = @mejl
                     WHERE idGledalac = @idGledalac";
 
             try
@@ -192,10 +190,9 @@ namespace DBBroker
                 SqlCommand cmd = new SqlCommand(upit, con);
                 cmd.Parameters.AddWithValue("@ime", g.Ime);
                 cmd.Parameters.AddWithValue("@prezime", g.Prezime);
-                cmd.Parameters.AddWithValue("@korisnickoIme", g.KorisničkoIme);
-                cmd.Parameters.AddWithValue("@sifra", g.Šifra);
                 cmd.Parameters.AddWithValue("@idMesto", g.IdMesto);
                 cmd.Parameters.AddWithValue("@idGledalac", g.IdGledalac);
+                cmd.Parameters.AddWithValue("@mejl", g.Mejl);
 
                 int uspesno = cmd.ExecuteNonQuery();
                 return uspesno == 1;
@@ -203,6 +200,83 @@ namespace DBBroker
             catch (Exception ex)
             {
                 Debug.WriteLine(">>> Greška u azuriranju gledaoca: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+
+        public bool ObrišiGledalac(Gledalac gledalac)
+        {
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                // 1. Obriši stavke svih računa gledaoce
+                SqlCommand cmd0 = con.CreateCommand();
+                cmd0.Transaction = tran;
+                cmd0.CommandText = $@"
+            DELETE FROM StavkaRacuna 
+            WHERE idRacun IN (SELECT idRacun FROM Racun WHERE idGledalac = {gledalac.IdGledalac})";
+                cmd0.ExecuteNonQuery();
+
+                // 2. Obriši sve račune gledaoce
+                SqlCommand cmd1 = con.CreateCommand();
+                cmd1.Transaction = tran;
+                cmd1.CommandText = $"DELETE FROM Racun WHERE idGledalac = {gledalac.IdGledalac}";
+                cmd1.ExecuteNonQuery();
+
+                // 3. Obriši samog gledaoca
+                SqlCommand cmd2 = con.CreateCommand();
+                cmd2.Transaction = tran;
+                cmd2.CommandText = $"DELETE FROM Gledalac WHERE idGledalac = {gledalac.IdGledalac}";
+                int uspešno = cmd2.ExecuteNonQuery();
+
+                Commit();
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>>Greska u brokeru: " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+
+        public bool KreirajGledalac(Gledalac gledalac)
+        {
+            string upit = "INSERT INTO Gledalac (ime, prezime, mejl, idMesto) " +
+                          "VALUES (@ime, @prezime, @mejl, @idMesto)";
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@ime", gledalac.Ime);
+                cmd.Parameters.AddWithValue("@prezime", gledalac.Prezime);
+                cmd.Parameters.AddWithValue("@mejl", gledalac.Mejl);
+                cmd.Parameters.AddWithValue("@idMesto", gledalac.IdMesto);
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajGledaoca): " + ex.Message);
+                Rollback();
                 return false;
             }
             finally

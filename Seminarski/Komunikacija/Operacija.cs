@@ -4,5 +4,7 @@
     {
         Login, Logout, Uspešno, Neuspešno,
         PromeniGledaoca,
+        KreirajGledalac,
+        ObrišiGledalac,
     }
 }
