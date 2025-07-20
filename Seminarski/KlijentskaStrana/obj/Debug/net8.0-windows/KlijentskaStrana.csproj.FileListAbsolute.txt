@@ -75,3 +75,7 @@ C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Lo
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\DBBroker.pdb
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcGledalac.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmGledalac.resources
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmDistributer.resources
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmFilm.resources
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmMesto.resources
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmRačun.resources

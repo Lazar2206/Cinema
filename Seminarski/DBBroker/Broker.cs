@@ -284,5 +284,38 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
+
+        public bool KreirajMesto(Mesto mesto)
+        {
+            string upit = "INSERT INTO Mesto (nazivMesta) " +
+                          "VALUES (@nazivMesta)";
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@nazivMesta", mesto.NazivMesta);
+               
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajMesto): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
     }
 }

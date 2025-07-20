@@ -28,12 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmMesto";
+            btnDodaj = new Button();
+            btnGlavna = new Button();
+            txtNazivMesta = new TextBox();
+            dgvMesta = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvMesta).BeginInit();
+            SuspendLayout();
+            // 
+            // btnDodaj
+            // 
+            btnDodaj.Location = new Point(264, 50);
+            btnDodaj.Name = "btnDodaj";
+            btnDodaj.Size = new Size(94, 29);
+            btnDodaj.TabIndex = 0;
+            btnDodaj.Text = "Dodaj";
+            btnDodaj.UseVisualStyleBackColor = true;
+            btnDodaj.Click += btnDodaj_Click;
+            // 
+            // btnGlavna
+            // 
+            btnGlavna.Location = new Point(658, 399);
+            btnGlavna.Name = "btnGlavna";
+            btnGlavna.Size = new Size(94, 29);
+            btnGlavna.TabIndex = 2;
+            btnGlavna.Text = "Glavna";
+            btnGlavna.UseVisualStyleBackColor = true;
+            btnGlavna.Click += btnGlavna_Click;
+            // 
+            // txtNazivMesta
+            // 
+            txtNazivMesta.Location = new Point(90, 52);
+            txtNazivMesta.Name = "txtNazivMesta";
+            txtNazivMesta.Size = new Size(125, 27);
+            txtNazivMesta.TabIndex = 3;
+            // 
+            // dgvMesta
+            // 
+            dgvMesta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMesta.Location = new Point(90, 102);
+            dgvMesta.Name = "dgvMesta";
+            dgvMesta.RowHeadersWidth = 51;
+            dgvMesta.Size = new Size(468, 274);
+            dgvMesta.TabIndex = 4;
+            // 
+            // FrmMesto
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(dgvMesta);
+            Controls.Add(txtNazivMesta);
+            Controls.Add(btnGlavna);
+            Controls.Add(btnDodaj);
+            Name = "FrmMesto";
+            Text = "FrmMesto";
+            ((System.ComponentModel.ISupportInitialize)dgvMesta).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button btnDodaj;
+        private Button btnGlavna;
+        private TextBox txtNazivMesta;
+        private DataGridView dgvMesta;
     }
 }

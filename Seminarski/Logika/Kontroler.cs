@@ -35,6 +35,10 @@ namespace Logika
             }
             return false;
         }
+        public List<Mesto> VratiMesta(Gledalac kriterijum)
+        {
+            return broker.VratiMesta();
+        }
         public List<Mesto> VratiMesta()
         {
             return broker.VratiMesta();
@@ -62,6 +66,11 @@ namespace Logika
         public bool KreirajGledalac(Gledalac gledalac)
         {
             return broker.KreirajGledalac(gledalac);
+        }
+
+        public bool KreirajMesto(Mesto mesto)
+        {
+           return broker.KreirajMesto(mesto);
         }
     }
 }

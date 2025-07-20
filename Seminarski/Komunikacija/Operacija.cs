@@ -6,5 +6,6 @@
         PromeniGledaoca,
         KreirajGledalac,
         ObrišiGledalac,
+        KreirajMesto,
     }
 }

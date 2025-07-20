@@ -112,6 +112,7 @@
             mestoToolStripMenuItem.Name = "mestoToolStripMenuItem";
             mestoToolStripMenuItem.Size = new Size(224, 26);
             mestoToolStripMenuItem.Text = "Mesto";
+            mestoToolStripMenuItem.Click += mestoToolStripMenuItem_Click;
             // 
             // filmToolStripMenuItem
             // 

@@ -42,5 +42,11 @@ namespace KlijentskaStrana
         {
 
         }
+
+        private void mestoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMesto frm = new FrmMesto(klijent);
+            frm.ShowDialog();
+        }
     }
 }
