@@ -18,6 +18,7 @@ namespace ServerskaStrana
         private JsnNetworkSerializer json;
         private Gledalac gledalac;
         private Mesto mesto;
+        private Film film;
         private bool kraj;
         public Bioskop prijavljeniBioskop { get; set; }
         public ClientHandler(Socket klijent)
@@ -115,7 +116,19 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
-                            
+                        case Operacija.KreirajFilm:
+                            film = json.ReadType<Film>(zahtev.Object);
+                            if (Kontroler.Instance.KreirajFilm(film))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+
 
                             //case Operacija.Register:
                             //    Korisnik korisnik2 = json.ReadType<Korisnik>(zahtev.Object);

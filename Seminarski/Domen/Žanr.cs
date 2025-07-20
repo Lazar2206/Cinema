@@ -8,9 +8,11 @@
         Drama,
         Komedija,
         Horor,
-        NaučnaFikcija,
+        NaucnaFikcija,
         Romansa,
-        Triler
+        Triler,
+        Istorijski,
+        Mjuzikl
     }
 
 }

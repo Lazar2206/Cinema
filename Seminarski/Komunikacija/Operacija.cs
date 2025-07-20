@@ -7,5 +7,6 @@
         KreirajGledalac,
         ObrišiGledalac,
         KreirajMesto,
+        KreirajFilm,
     }
 }

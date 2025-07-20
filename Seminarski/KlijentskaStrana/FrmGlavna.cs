@@ -48,5 +48,11 @@ namespace KlijentskaStrana
             FrmMesto frm = new FrmMesto(klijent);
             frm.ShowDialog();
         }
+
+        private void filmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmFilm frm = new FrmFilm(klijent,bioskop);
+            frm.ShowDialog();
+        }
     }
 }

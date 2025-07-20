@@ -317,5 +317,81 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
+
+        public List<Film> VratiFilmove()
+        {
+            List<Film> filmovi = new List<Film>();
+            string upit = "SELECT * FROM Film";
+
+            try
+            {
+                PoveziSe();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = upit;
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Film f = new Film()
+                    {
+                        IdFilm = (int)reader["idFilm"],
+                        Naslov = (string)reader["naslov"],
+                        Zanr = Enum.Parse<Žanr>(reader["zanr"].ToString()),
+                        Pocetak = (TimeSpan)reader["pocetak"],
+                        Kraj = (TimeSpan)reader["kraj"],
+                        TrajanjeMinuti = (int)reader["trajanjeMinuti"]
+                    };
+
+                    filmovi.Add(f);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>Greška u brokeru: " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return filmovi;
+        }
+
+        public bool KreirajFilm(Film film)
+        {
+            string upit = "INSERT INTO Film (naslov, zanr, pocetak, kraj, trajanjeMinuti) " +
+                          "VALUES (@naslov, @zanr, @pocetak, @kraj, @trajanjeMinuti)";
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@naslov", film.Naslov);
+                cmd.Parameters.AddWithValue("@zanr", film.Zanr.ToString()); 
+                cmd.Parameters.AddWithValue("@pocetak", film.Pocetak);
+                cmd.Parameters.AddWithValue("@kraj", film.Kraj);
+                cmd.Parameters.AddWithValue("@trajanjeMinuti", film.TrajanjeMinuti);
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajFilm): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
     }
 }

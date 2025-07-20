@@ -72,5 +72,15 @@ namespace Logika
         {
            return broker.KreirajMesto(mesto);
         }
+
+        public List<Film> VratiFilmove()
+        {
+            return broker.VratiFilmove();
+        }
+
+        public bool KreirajFilm(Film film)
+        {
+            return broker.KreirajFilm(film);
+        }
     }
 }

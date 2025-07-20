@@ -119,6 +119,7 @@
             filmToolStripMenuItem.Name = "filmToolStripMenuItem";
             filmToolStripMenuItem.Size = new Size(224, 26);
             filmToolStripMenuItem.Text = "Film";
+            filmToolStripMenuItem.Click += filmToolStripMenuItem_Click;
             // 
             // sqlCommand1
             // 
