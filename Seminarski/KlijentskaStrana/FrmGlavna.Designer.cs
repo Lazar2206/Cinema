@@ -63,8 +63,9 @@
             // računToolStripMenuItem
             // 
             računToolStripMenuItem.Name = "računToolStripMenuItem";
-            računToolStripMenuItem.Size = new Size(132, 26);
+            računToolStripMenuItem.Size = new Size(224, 26);
             računToolStripMenuItem.Text = "Račun";
+            računToolStripMenuItem.Click += računToolStripMenuItem_Click;
             // 
             // pružalacUslugeToolStripMenuItem
             // 
@@ -103,21 +104,21 @@
             // distributerToolStripMenuItem
             // 
             distributerToolStripMenuItem.Name = "distributerToolStripMenuItem";
-            distributerToolStripMenuItem.Size = new Size(224, 26);
+            distributerToolStripMenuItem.Size = new Size(162, 26);
             distributerToolStripMenuItem.Text = "Distributer";
             distributerToolStripMenuItem.Click += distributerToolStripMenuItem_Click;
             // 
             // mestoToolStripMenuItem
             // 
             mestoToolStripMenuItem.Name = "mestoToolStripMenuItem";
-            mestoToolStripMenuItem.Size = new Size(224, 26);
+            mestoToolStripMenuItem.Size = new Size(162, 26);
             mestoToolStripMenuItem.Text = "Mesto";
             mestoToolStripMenuItem.Click += mestoToolStripMenuItem_Click;
             // 
             // filmToolStripMenuItem
             // 
             filmToolStripMenuItem.Name = "filmToolStripMenuItem";
-            filmToolStripMenuItem.Size = new Size(224, 26);
+            filmToolStripMenuItem.Size = new Size(162, 26);
             filmToolStripMenuItem.Text = "Film";
             filmToolStripMenuItem.Click += filmToolStripMenuItem_Click;
             // 

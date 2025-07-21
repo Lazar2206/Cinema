@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Domen.DTO;
 using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 
@@ -59,6 +60,7 @@ namespace DBBroker
                 {
                     Bioskop p = new Bioskop()
                     {
+                        IdBioskop = (int)reader["idBioskop"],
                         NazivBioskopa = (string)reader["nazivBioskopa"],
                         AdresaBioskopa = (string)reader["adresaBioskopa"],
                         KorisnickoIme = (string)reader["korisnickoIme"],
@@ -538,6 +540,292 @@ namespace DBBroker
             {
                 ZatvoriKonekciju();
             }
+        }
+
+        public List<Gledalac> VratiGledaoce()
+        {
+            List<Gledalac> gledaoci = new List<Gledalac>();
+            List<string> uslovi = new List<string>();
+            SqlCommand cmd = new SqlCommand();
+
+            
+
+
+            string upit = "SELECT * FROM Gledalac";
+
+            try
+            {
+                PoveziSe();
+                cmd.Connection = con;
+                cmd.CommandText = upit;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Gledalac g = new Gledalac()
+                    {
+                        IdGledalac = (int)reader["idGledalac"],
+                        IdMesto = (int)reader["idMesto"],
+                        Ime = (string)reader["ime"],
+                        Prezime = (string)reader["prezime"],
+                        Mejl = (string)reader["mejl"]
+                    };
+
+                    gledaoci.Add(g);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>Greška u brokeru: " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return gledaoci;
+        }
+
+        public bool DodajStavkuRacuna(StavkaRacuna stavka)
+        {
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                int noviRb = VratiSledeciRB(stavka.IdRacun, con, tran); // koristi postojeću konekciju i transakciju
+
+                string upit = "INSERT INTO StavkaRacuna (idRacun, rb, cena, opis, idFilm) " +
+                              "VALUES (@idRacun, @rb, @cena, @opis, @idFilm)";
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@idRacun", stavka.IdRacun);
+                cmd.Parameters.AddWithValue("@rb", noviRb);
+                cmd.Parameters.AddWithValue("@cena", stavka.Cena);
+                cmd.Parameters.AddWithValue("@opis", stavka.Opis);
+                cmd.Parameters.AddWithValue("@idFilm", stavka.IdFilm);
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (DodajStavkuRacuna): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+        private int VratiSledeciRB(int idRacun, SqlConnection con, SqlTransaction tran)
+        {
+            int id = 0;
+            string upit = $"select max(rb) from StavkaRacuna where idRacun = @idRacun";
+
+            SqlCommand cmd = new SqlCommand(upit, con, tran);
+            cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+            object result = cmd.ExecuteScalar();
+            if (result != DBNull.Value)
+            {
+                id = (int)result;
+            }
+
+            return ++id;
+        }
+
+
+
+        public List<PrikazStavkeRacuna> VratiStavkeRacuna(int idRacun)
+        {
+            List<PrikazStavkeRacuna> stavke = new List<PrikazStavkeRacuna>();
+
+            string upit = @"
+    SELECT sr.rb, sr.opis, sr.cena, f.naslov
+    FROM StavkaRacuna sr
+    JOIN Film f ON sr.idFilm = f.idFilm
+    WHERE sr.idRacun = @idRacun";
+
+            try
+            {
+                PoveziSe();
+                SqlCommand cmd = new SqlCommand(upit, con);
+                cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var stavka = new PrikazStavkeRacuna
+                    {
+                        Rb = (int)reader["rb"],
+                        Opis = reader["opis"].ToString(),
+                        Cena = (double)reader["cena"],
+                        NaslovFilma = reader["naslov"].ToString()
+                    };
+                    stavke.Add(stavka);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">> Greška: " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return stavke;
+        }
+        public bool KreirajRacun(Racun racun)
+        {
+            string upit = @"INSERT INTO Racun (datum, ukupnaCena, idBioskop, idGledalac)
+                    VALUES (@datum, @ukupnaCena, @idBioskop, @idGledalac)";
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@datum", racun.Datum);
+                cmd.Parameters.AddWithValue("@ukupnaCena", racun.UkupnaCena);
+                cmd.Parameters.AddWithValue("@idBioskop", racun.IdBioskop);
+                cmd.Parameters.AddWithValue("@idGledalac", racun.IdGledalac);
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>> Greška u brokeru (KreirajRacun): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+        public int VratiIdNajnovijegRacuna()
+        {
+            int id = 0;
+            string upit = "SELECT MAX(idRacun) FROM Racun";
+            try
+            {
+                PoveziSe();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = upit;
+                object result = cmd.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    id = (int)result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>> Greška u brokeru (VratiIdNajnovijegRacuna): " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return id;
+        }
+        public bool AzurirajUkupnuCenu(int idRacun, double novaCena)
+        {
+            string upit = "UPDATE Racun SET ukupnaCena = @ukupnaCena WHERE idRacun = @idRacun";
+            try
+            {
+                PoveziSe();
+                SqlCommand cmd = con.CreateCommand();
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@ukupnaCena", novaCena);
+                cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+                int uspesno = cmd.ExecuteNonQuery();
+                return uspesno == 1;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>> Greška u brokeru (AzurirajUkupnuCenu): " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+
+        public List<Racun> VratiRacune(Racun kriterijum)
+        {
+            List<Racun> racuni = new List<Racun>();
+            List<string> uslovi = new List<string>();
+            SqlCommand cmd = new SqlCommand();
+
+            if (kriterijum.IdGledalac > 0)
+            {
+                uslovi.Add("idGledalac = @idGledalac");
+                cmd.Parameters.AddWithValue("@idGledalac", kriterijum.IdGledalac);
+            }
+
+            if (kriterijum.IdBioskop > 0)
+            {
+                uslovi.Add("idBioskop = @idBioskop");
+                cmd.Parameters.AddWithValue("@idBioskop", kriterijum.IdBioskop);
+            }
+
+            if (kriterijum.Datum != DateTime.MinValue)
+            {
+                uslovi.Add("CAST(datum AS DATE) = @datum");
+                cmd.Parameters.AddWithValue("@datum", kriterijum.Datum.Date);
+            }
+
+            string where = uslovi.Count > 0 ? " WHERE " + string.Join(" AND ", uslovi) : "";
+
+            string upit = "SELECT * FROM Racun" + where;
+
+            try
+            {
+                PoveziSe();
+                cmd.Connection = con;
+                cmd.CommandText = upit;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Racun r = new Racun
+                    {
+                        IdRacun = (int)reader["idRacun"],
+                        Datum = (DateTime)reader["datum"],
+                        UkupnaCena = Convert.ToDouble(reader["ukupnaCena"]),
+                        IdGledalac = (int)reader["idGledalac"],
+                        IdBioskop = (int)reader["idBioskop"]
+                    };
+                    racuni.Add(r);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Greška: " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return racuni;
         }
     }
 }

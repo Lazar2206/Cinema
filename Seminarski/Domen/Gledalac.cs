@@ -14,6 +14,8 @@ namespace Domen
         public string Ime { get; set; }
         public string Prezime { get; set; }
    
-        public string Mejl { get; set; }    
+        public string Mejl { get; set; }
+        public string Prikaz => $"{Ime} {Prezime}";
     }
+
 }

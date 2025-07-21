@@ -15,6 +15,7 @@ namespace KlijentskaStrana
     public partial class FrmLoginBioskop : Form
     {
         private Klijent klijent;
+        Bioskop prijavljeniBioskop;
         public FrmLoginBioskop()
         {
             InitializeComponent();
@@ -58,8 +59,14 @@ namespace KlijentskaStrana
             Poruka odgovor = klijent.PrimiPoruku();
             if (odgovor.Operacija.Equals(Operacija.Uspešno))
             {
-                MessageBox.Show("Dobrodošli");
-                FrmGlavna frm = new FrmGlavna(bioskop, klijent);
+                prijavljeniBioskop = klijent.ReadType<Bioskop>(odgovor.Object);
+                bioskop.IdBioskop=prijavljeniBioskop.IdBioskop; 
+                bioskop.NazivBioskopa = prijavljeniBioskop.NazivBioskopa;
+                bioskop.KorisnickoIme = prijavljeniBioskop.KorisnickoIme;
+
+                MessageBox.Show("Dobrodošli, " + prijavljeniBioskop.NazivBioskopa + "!");
+
+                FrmGlavna frm = new FrmGlavna(bioskop, klijent); 
                 this.Visible = false;
                 frm.ShowDialog();
             }

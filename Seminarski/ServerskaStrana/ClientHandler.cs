@@ -20,6 +20,7 @@ namespace ServerskaStrana
         private Mesto mesto;
         private Film film;
         private Distributer distributer;
+        private Racun racun;
         private bool kraj;
         public Bioskop prijavljeniBioskop { get; set; }
         public ClientHandler(Socket klijent)
@@ -57,16 +58,14 @@ namespace ServerskaStrana
                     {
                         case Operacija.Login:
                             Bioskop bioskop1 = json.ReadType<Bioskop>(zahtev.Object);
-                            if (Kontroler.Instance.Login(bioskop1))
+                            Bioskop prijavljeni = Kontroler.Instance.Login(bioskop1);
+                            if (prijavljeni != null)
                             {
                                 odgovor.Operacija = Operacija.Uspešno;
-                                prijavljeniBioskop = bioskop1;
+                                odgovor.Object = prijavljeni; 
+                                prijavljeniBioskop = prijavljeni;
                             }
-                            else
-                            {
-                                odgovor.Operacija = Operacija.Neuspešno;
-                            }
-                            
+
                             PošaljiPoruku(odgovor);
                             break;
                         case Operacija.PromeniGledaoca:
@@ -165,7 +164,42 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
-                        
+                        case Operacija.DodajStavkuRacuna:
+                            StavkaRacuna stavka = json.ReadType<StavkaRacuna>(zahtev.Object);
+                            if (Kontroler.Instance.DodajStavkuRacuna(stavka))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.PretražiRacun:
+                            racun = json.ReadType<Racun>(zahtev.Object);
+                            if (Kontroler.Instance.KreirajRacun(racun))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.AzurirajUkupnuCenu:
+                            var podaci = json.ReadType<Tuple<int, double>>(zahtev.Object);
+                            if (Kontroler.Instance.AzurirajUkupnuCenu(podaci.Item1, podaci.Item2))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
 
 
 

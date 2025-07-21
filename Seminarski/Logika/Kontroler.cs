@@ -2,6 +2,7 @@
 
 using DBBroker;
 using Domen;
+using Domen.DTO;
 using System.ComponentModel;
 
 namespace Logika
@@ -23,17 +24,17 @@ namespace Logika
             }
         }
 
-        public bool Login(Bioskop bioskop)
+        public Bioskop Login(Bioskop bioskop)
         {
             foreach (Bioskop k in broker.VratiSveBioskope())
             {
                 if (k.KorisnickoIme == bioskop.KorisnickoIme && k.Sifra == bioskop.Sifra)
                 {
                     prijavljeniBioskopi.Add(k);
-                    return true;
+                    return k; 
                 }
             }
-            return false;
+            return null;
         }
         public List<Mesto> VratiMesta(Gledalac kriterijum)
         {
@@ -103,6 +104,41 @@ namespace Logika
         public bool PromeniDistributer(Distributer distributer)
         {
             return broker.PromeniDistributera(distributer);
+        }
+
+        public List<Gledalac> VratiGledaoce()
+        {
+            return broker.VratiGledaoce();
+        }
+
+        public bool DodajStavkuRacuna(StavkaRacuna stavka)
+        {
+            return broker.DodajStavkuRacuna(stavka);
+        }
+
+        public int VratiIdNajnovijegRacuna()
+        {
+            return broker.VratiIdNajnovijegRacuna();
+        }
+
+        public List<PrikazStavkeRacuna> VratiStavkeRacuna(int idRacun)
+        {
+            return broker.VratiStavkeRacuna( idRacun);
+        }
+
+        public bool KreirajRacun(Racun racun)
+        {
+            return broker.KreirajRacun(racun);
+        }
+
+        public bool AzurirajUkupnuCenu(int item1, double item2)
+        {
+            return broker.AzurirajUkupnuCenu(item1, item2);
+        }
+
+        public List<Racun> VratiRacun(Racun racun)
+        {
+            return broker.VratiRacune(racun);
         }
     }
 }

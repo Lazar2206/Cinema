@@ -11,5 +11,8 @@
         PromeniDistributera,
         ObrišiDistributer,
         KreirajDistributer,
+        DodajStavkuRacuna,
+        PretražiRacun,
+        AzurirajUkupnuCenu,
     }
 }

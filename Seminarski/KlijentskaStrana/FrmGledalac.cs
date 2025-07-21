@@ -110,8 +110,7 @@ namespace KlijentskaStrana
                 uc.Klijent = klijent;
                 uc.PopuniPolja();
 
-                // PRVO poveži događaj
-                uc.GledalacAzuriran += (s, e2) => OsveziGledaoce();
+                
 
                 // ONDA ubaci u panel
                 pnlGledalac.Controls.Clear();

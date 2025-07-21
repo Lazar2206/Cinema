@@ -28,12 +28,224 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmRačun";
+            label1 = new Label();
+            cmbGledalac = new ComboBox();
+            label2 = new Label();
+            label3 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            txtUkupnaCena = new TextBox();
+            label4 = new Label();
+            dgvRacunStavke = new DataGridView();
+            button2 = new Button();
+            btnKreirajRačun = new Button();
+            btnIzmeni = new Button();
+            btnObriši = new Button();
+            txtBioskop = new TextBox();
+            pnlStavka = new Panel();
+            btnGlavna = new Button();
+            dgvRacuni = new DataGridView();
+            btnPretraži = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvRacunStavke).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRacuni).BeginInit();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Gledalac";
+            // 
+            // cmbGledalac
+            // 
+            cmbGledalac.FormattingEnabled = true;
+            cmbGledalac.Location = new Point(103, 24);
+            cmbGledalac.Name = "cmbGledalac";
+            cmbGledalac.Size = new Size(274, 28);
+            cmbGledalac.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 78);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 20);
+            label2.TabIndex = 2;
+            label2.Text = "Bioskop";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 125);
+            label3.Name = "label3";
+            label3.Size = new Size(54, 20);
+            label3.TabIndex = 4;
+            label3.Text = "Datum";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(103, 120);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(274, 27);
+            dateTimePicker1.TabIndex = 5;
+            // 
+            // txtUkupnaCena
+            // 
+            txtUkupnaCena.Location = new Point(103, 165);
+            txtUkupnaCena.Name = "txtUkupnaCena";
+            txtUkupnaCena.Size = new Size(274, 27);
+            txtUkupnaCena.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 168);
+            label4.Name = "label4";
+            label4.Size = new Size(94, 20);
+            label4.TabIndex = 7;
+            label4.Text = "Ukupna cena";
+            // 
+            // dgvRacunStavke
+            // 
+            dgvRacunStavke.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRacunStavke.Location = new Point(3, 198);
+            dgvRacunStavke.Name = "dgvRacunStavke";
+            dgvRacunStavke.RowHeadersWidth = 51;
+            dgvRacunStavke.Size = new Size(366, 138);
+            dgvRacunStavke.TabIndex = 8;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(950, 118);
+            button2.Name = "button2";
+            button2.Size = new Size(111, 29);
+            button2.TabIndex = 11;
+            button2.Text = "Pretraži";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // btnKreirajRačun
+            // 
+            btnKreirajRačun.Location = new Point(950, 73);
+            btnKreirajRačun.Name = "btnKreirajRačun";
+            btnKreirajRačun.Size = new Size(111, 29);
+            btnKreirajRačun.TabIndex = 14;
+            btnKreirajRačun.Text = "Kreiraj račun";
+            btnKreirajRačun.UseVisualStyleBackColor = true;
+            btnKreirajRačun.Click += btnKreirajRačun_Click;
+            // 
+            // btnIzmeni
+            // 
+            btnIzmeni.Location = new Point(950, 164);
+            btnIzmeni.Name = "btnIzmeni";
+            btnIzmeni.Size = new Size(111, 29);
+            btnIzmeni.TabIndex = 15;
+            btnIzmeni.Text = "Izmeni račun";
+            btnIzmeni.UseVisualStyleBackColor = true;
+            btnIzmeni.Click += btnIzmeni_Click;
+            // 
+            // btnObriši
+            // 
+            btnObriši.Location = new Point(950, 215);
+            btnObriši.Name = "btnObriši";
+            btnObriši.Size = new Size(111, 29);
+            btnObriši.TabIndex = 16;
+            btnObriši.Text = "Obriši račun";
+            btnObriši.UseVisualStyleBackColor = true;
+            // 
+            // txtBioskop
+            // 
+            txtBioskop.Location = new Point(103, 75);
+            txtBioskop.Name = "txtBioskop";
+            txtBioskop.Size = new Size(274, 27);
+            txtBioskop.TabIndex = 17;
+            // 
+            // pnlStavka
+            // 
+            pnlStavka.BorderStyle = BorderStyle.FixedSingle;
+            pnlStavka.Location = new Point(3, 356);
+            pnlStavka.Name = "pnlStavka";
+            pnlStavka.Size = new Size(638, 179);
+            pnlStavka.TabIndex = 0;
+            // 
+            // btnGlavna
+            // 
+            btnGlavna.Location = new Point(1407, 495);
+            btnGlavna.Name = "btnGlavna";
+            btnGlavna.Size = new Size(94, 29);
+            btnGlavna.TabIndex = 18;
+            btnGlavna.Text = "Glavna";
+            btnGlavna.UseVisualStyleBackColor = true;
+            btnGlavna.Click += btnGlavna_Click;
+            // 
+            // dgvRacuni
+            // 
+            dgvRacuni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRacuni.Location = new Point(611, 24);
+            dgvRacuni.Name = "dgvRacuni";
+            dgvRacuni.RowHeadersWidth = 51;
+            dgvRacuni.Size = new Size(300, 312);
+            dgvRacuni.TabIndex = 19;
+            // 
+            // btnPretraži
+            // 
+            btnPretraži.Location = new Point(950, 27);
+            btnPretraži.Name = "btnPretraži";
+            btnPretraži.Size = new Size(111, 29);
+            btnPretraži.TabIndex = 20;
+            btnPretraži.Text = "Pretraži";
+            btnPretraži.UseVisualStyleBackColor = true;
+            btnPretraži.Click += btnPretraži_Click;
+            // 
+            // FrmRačun
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1557, 536);
+            Controls.Add(btnPretraži);
+            Controls.Add(dgvRacuni);
+            Controls.Add(btnGlavna);
+            Controls.Add(pnlStavka);
+            Controls.Add(txtBioskop);
+            Controls.Add(btnObriši);
+            Controls.Add(btnIzmeni);
+            Controls.Add(btnKreirajRačun);
+            Controls.Add(button2);
+            Controls.Add(dgvRacunStavke);
+            Controls.Add(label4);
+            Controls.Add(txtUkupnaCena);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(cmbGledalac);
+            Controls.Add(label1);
+            Name = "FrmRačun";
+            Text = "FrmRačun";
+            ((System.ComponentModel.ISupportInitialize)dgvRacunStavke).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvRacuni).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label1;
+        private ComboBox cmbGledalac;
+        private Label label2;
+        private Label label3;
+        private DateTimePicker dateTimePicker1;
+        private TextBox txtUkupnaCena;
+        private Label label4;
+        private DataGridView dgvRacunStavke;
+        private Button button2;
+        private Button btnKreirajRačun;
+        private Button btnIzmeni;
+        private Button btnObriši;
+        private TextBox txtBioskop;
+        private Panel pnlStavka;
+        private Button btnGlavna;
+        private DataGridView dgvRacuni;
+        private Button btnPretraži;
     }
 }

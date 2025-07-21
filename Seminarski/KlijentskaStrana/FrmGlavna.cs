@@ -40,7 +40,7 @@ namespace KlijentskaStrana
 
         private void distributerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmDistributer frm = new FrmDistributer(klijent,bioskop);
+            FrmDistributer frm = new FrmDistributer(klijent, bioskop);
             frm.ShowDialog();
         }
 
@@ -52,7 +52,13 @@ namespace KlijentskaStrana
 
         private void filmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmFilm frm = new FrmFilm(klijent,bioskop);
+            FrmFilm frm = new FrmFilm(klijent, bioskop);
+            frm.ShowDialog();
+        }
+
+        private void računToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmRačun frm = new FrmRačun(klijent, bioskop);
             frm.ShowDialog();
         }
     }
