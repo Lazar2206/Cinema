@@ -200,7 +200,30 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
-
+                        case Operacija.IzmeniStavkuRacuna:
+                            StavkaRacuna izmenjenaStavka = json.ReadType<StavkaRacuna>(zahtev.Object);
+                            if (Kontroler.Instance.IzmeniStavkuRacuna(izmenjenaStavka))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.IzmeniRacun:
+                            Racun izmenjenRacun = json.ReadType<Racun>(zahtev.Object);
+                            if (Kontroler.Instance.IzmeniRacun(izmenjenRacun))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
 
 
 

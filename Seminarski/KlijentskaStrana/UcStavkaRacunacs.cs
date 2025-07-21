@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Domen.DTO;
 using Komunikacija;
 using Logika;
 using System;
@@ -19,14 +20,15 @@ namespace KlijentskaStrana
         public Klijent Klijent { get; set; }
         public int IdRacun { get; set; }
         public event Action<double> StavkaDodata;
+        private int selektovaniRb;
 
         public UcStavkaRacunacs()
         {
             InitializeComponent();
-          
-            
+
+
         }
-       
+
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
@@ -66,7 +68,7 @@ namespace KlijentskaStrana
                 txtOpis.Clear();
                 txtCena.Clear();
                 StavkaDodata?.Invoke(cena);
-               
+
             }
             else
             {
@@ -79,6 +81,49 @@ namespace KlijentskaStrana
             cmbFilm.DataSource = filmovi;
             cmbFilm.DisplayMember = "Naslov";
             cmbFilm.ValueMember = "IdFilm";
+        }
+        public void PostaviStavku(PrikazStavkeRacuna stavka)
+        {
+            txtOpis.Text = stavka.Opis;
+            txtCena.Text = stavka.Cena.ToString("F2");
+            cmbFilm.SelectedIndex = cmbFilm.FindStringExact(stavka.NaslovFilma);
+            selektovaniRb = stavka.Rb; 
+        }
+
+        private void btnIzmeniStavku_Click(object sender, EventArgs e)
+        {
+            if (!double.TryParse(txtCena.Text, out double novaCena)) return;
+            if (cmbFilm.SelectedItem == null) return;
+
+            Film izabraniFilm = (Film)cmbFilm.SelectedItem;
+
+            StavkaRacuna stavka = new StavkaRacuna
+            {
+                IdRacun = IdRacun,
+                Opis = txtOpis.Text,
+                Cena = novaCena,
+                IdFilm = izabraniFilm.IdFilm,
+                Rb = selektovaniRb // moraš da čuvaš koji je `rb` selektovan
+            };
+
+            Poruka zahtev = new Poruka
+            {
+                Operacija = Operacija.IzmeniStavkuRacuna,
+                Object = stavka
+            };
+
+            Klijent.PošaljiPoruku(zahtev);
+            Poruka odgovor = Klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Stavka uspešno izmenjena.");
+                StavkaDodata?.Invoke(novaCena); // ponovo preračunaj ukupnu cenu
+            }
+            else
+            {
+                MessageBox.Show("Greška prilikom izmene stavke.");
+            }
         }
     }
 }

@@ -11,7 +11,6 @@ C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\Kl
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmGlavna.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmLoginBioskop.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmLoginGledalac.resources
-C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmPočetna.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.csproj.GenerateResource.cache
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.AssemblyInfoInputs.cache

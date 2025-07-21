@@ -1,6 +1,7 @@
 ﻿using Domen;
 using Domen.DTO;
 using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Diagnostics;
 
 namespace DBBroker
@@ -65,7 +66,7 @@ namespace DBBroker
                         AdresaBioskopa = (string)reader["adresaBioskopa"],
                         KorisnickoIme = (string)reader["korisnickoIme"],
                         Sifra = (string)reader["sifra"],
-                        
+
                     };
                     bioskopi.Add(p);
                 }
@@ -93,7 +94,7 @@ namespace DBBroker
                 PoveziSe();
                 SqlCommand cmd = con.CreateCommand();
                 cmd.CommandText = upit;
-                
+
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -158,7 +159,7 @@ namespace DBBroker
                         IdMesto = (int)reader["idMesto"],
                         Ime = (string)reader["ime"],
                         Prezime = (string)reader["prezime"],
-                        Mejl=(string)reader["mejl"]
+                        Mejl = (string)reader["mejl"]
                     };
 
                     gledaoci.Add(g);
@@ -301,7 +302,7 @@ namespace DBBroker
                 cmd.CommandText = upit;
 
                 cmd.Parameters.AddWithValue("@nazivMesta", mesto.NazivMesta);
-               
+
 
                 int uspešno = cmd.ExecuteNonQuery();
                 Commit();
@@ -374,7 +375,7 @@ namespace DBBroker
                 cmd.CommandText = upit;
 
                 cmd.Parameters.AddWithValue("@naslov", film.Naslov);
-                cmd.Parameters.AddWithValue("@zanr", film.Zanr.ToString()); 
+                cmd.Parameters.AddWithValue("@zanr", film.Zanr.ToString());
                 cmd.Parameters.AddWithValue("@pocetak", film.Pocetak);
                 cmd.Parameters.AddWithValue("@kraj", film.Kraj);
                 cmd.Parameters.AddWithValue("@trajanjeMinuti", film.TrajanjeMinuti);
@@ -409,7 +410,7 @@ namespace DBBroker
                 cmd.Parameters.AddWithValue("@nazivDistributera", "%" + kriterijum.NazivDistributera + "%");
             }
 
-          
+
 
             string where = uslovi.Count > 0 ? " WHERE " + string.Join(" AND ", uslovi) : "";
 
@@ -428,7 +429,7 @@ namespace DBBroker
                     {
                         IdDistributer = (int)reader["idDistributer"],
                         NazivDistributera = (string)reader["nazivDistributera"],
-                       
+
                     };
 
                     distributeri.Add(d);
@@ -491,7 +492,7 @@ namespace DBBroker
                 cmd1.Parameters.AddWithValue("@idDistributer", distributer.IdDistributer);
                 cmd1.ExecuteNonQuery();
 
-             
+
                 SqlCommand cmd2 = con.CreateCommand();
                 cmd2.Transaction = tran;
                 cmd2.CommandText = "DELETE FROM Distributer WHERE idDistributer = @idDistributer";
@@ -548,7 +549,7 @@ namespace DBBroker
             List<string> uslovi = new List<string>();
             SqlCommand cmd = new SqlCommand();
 
-            
+
 
 
             string upit = "SELECT * FROM Gledalac";
@@ -826,6 +827,114 @@ namespace DBBroker
             }
 
             return racuni;
+        }
+        public bool IzmeniStavkuRacuna(StavkaRacuna sr)
+        {
+            try
+            {
+                PoveziSe(); // otvori konekciju
+
+                using (SqlCommand command = new SqlCommand(@"
+            UPDATE StavkaRacuna 
+            SET Opis = @Opis, 
+                Cena = @Cena, 
+                IdFilm = @IdFilm
+            WHERE IdRacun = @IdRacun AND Rb = @Rb", con))
+                {
+                    command.Parameters.Add("@Opis", SqlDbType.NVarChar).Value = sr.Opis;
+                    command.Parameters.Add("@Cena", SqlDbType.Float).Value = sr.Cena;
+                    command.Parameters.Add("@IdFilm", SqlDbType.Int).Value = sr.IdFilm;
+                    command.Parameters.Add("@IdRacun", SqlDbType.Int).Value = sr.IdRacun;
+                    command.Parameters.Add("@Rb", SqlDbType.Int).Value = sr.Rb;
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">> Greška pri izmeni stavke računa: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju(); // obavezno zatvori konekciju
+            }
+        }
+        public bool AzurirajUkupnuCenuRacuna(int idRacun)
+        {
+            try
+            {
+                PoveziSe();
+
+                decimal ukupno = 0;
+
+                using (SqlCommand cmd = new SqlCommand(@"
+            SELECT SUM(Cena)
+            FROM StavkaRacuna
+            WHERE IdRacun = @IdRacun", con))
+                {
+                    cmd.Parameters.AddWithValue("@IdRacun", idRacun);
+
+                    object result = cmd.ExecuteScalar();
+                    ukupno = (result != DBNull.Value) ? Convert.ToDecimal(result) : 0;
+                }
+
+                using (SqlCommand cmd2 = new SqlCommand(@"
+            UPDATE Racun
+            SET UkupnaCena = @UkupnaCena
+            WHERE IdRacun = @IdRacun", con))
+                {
+                    cmd2.Parameters.AddWithValue("@UkupnaCena", ukupno);
+                    cmd2.Parameters.AddWithValue("@IdRacun", idRacun);
+
+                    return cmd2.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Greška pri ažuriranju ukupne cene: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+        public bool IzmeniRacun(Racun r)
+        {
+            try
+            {
+                PoveziSe(); // ← dodaj ovo ako koristiš metodu za otvaranje konekcije
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = con;
+                    command.CommandText = @"UPDATE Racun 
+                                    SET Datum = @Datum, 
+                                        IdGledalac = @IdGledalac, 
+                                        IdBioskop = @IdBioskop, 
+                                        UkupnaCena = @UkupnaCena
+                                    WHERE IdRacun = @IdRacun";
+
+                    command.Parameters.AddWithValue("@Datum", r.Datum);
+                    command.Parameters.AddWithValue("@IdGledalac", r.IdGledalac);
+                    command.Parameters.AddWithValue("@IdBioskop", r.IdBioskop);
+                    command.Parameters.AddWithValue("@UkupnaCena", r.UkupnaCena);
+                    command.Parameters.AddWithValue("@IdRacun", r.IdRacun);
+
+                    return command.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Greška pri izmeni računa: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju(); // ← i zatvaranje
+            }
         }
     }
 }

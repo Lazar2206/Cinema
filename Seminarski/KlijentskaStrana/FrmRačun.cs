@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Domen.DTO;
 using Komunikacija;
 using Logika;
 using System;
@@ -19,6 +20,7 @@ namespace KlijentskaStrana
         private Bioskop bioskop;
         private double ukupnaCena = 0;
         private int idRacun = 0;
+        private Racun selektovaniRacun;
         public double UkupnaCena
         {
             get => ukupnaCena;
@@ -160,15 +162,79 @@ namespace KlijentskaStrana
 
         private void btnIzmeni_Click(object sender, EventArgs e)
         {
-            if (dgvRacuni.SelectedRows.Count > 0)
+            Racun r = new Racun
             {
-                
-                MessageBox.Show("Sistem je našao gledaoca.");
+                IdRacun = selektovaniRacun.IdRacun,
+                Datum = dateTimePicker1.Value,
+                IdGledalac = (int)cmbGledalac.SelectedValue,
+                IdBioskop = bioskop.IdBioskop,
+                UkupnaCena = txtUkupnaCena.Text != "" ? double.Parse(txtUkupnaCena.Text) : 0
+            };
+
+            Poruka zahtev = new Poruka
+            {
+                Operacija = Operacija.IzmeniRacun,
+                Object = r
+            };
+
+            klijent.PošaljiPoruku(zahtev);
+            Poruka odgovor = klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Račun uspešno izmenjen.");
             }
             else
             {
-                MessageBox.Show("Sistem ne može da nađe gledaoca");
+                MessageBox.Show("Greška pri izmeni računa.");
             }
+        }
+
+        private void btnDetalji_Click(object sender, EventArgs e)
+        {
+            if (dgvRacuni.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selektujte račun iz tabele.");
+                return;
+            }
+
+            selektovaniRacun = (Racun)dgvRacuni.SelectedRows[0].DataBoundItem;
+
+            // Pronađi gledaoca u listi ComboBox-a i selektuj
+            foreach (var item in cmbGledalac.Items)
+            {
+                Gledalac g = (Gledalac)item;
+                if (g.IdGledalac == selektovaniRacun.IdGledalac)
+                {
+                    cmbGledalac.SelectedItem = g;
+                    break;
+                }
+            }
+
+            // Postavi datum
+            dateTimePicker1.Value = selektovaniRacun.Datum;
+            txtUkupnaCena.Text = selektovaniRacun.UkupnaCena.ToString("F2");
+
+            // Postavi naziv bioskopa (ako koristiš bioskop iz forme)
+            txtBioskop.Text = bioskop.NazivBioskopa;
+
+            // Eventualno prikaži stavke za taj račun
+            idRacun = selektovaniRacun.IdRacun;
+
+
+            if (dgvRacunStavke.SelectedRows.Count > 0)
+            {
+                var stavka = (PrikazStavkeRacuna)dgvRacunStavke.SelectedRows[0].DataBoundItem;
+                UcStavkaRacunacs uc = new UcStavkaRacunacs();
+                uc.Klijent = klijent;
+                uc.Bioskop = bioskop;
+                uc.IdRacun = selektovaniRacun.IdRacun; // moraš da znaš koji je račun trenutno selektovan
+                uc.UcitajFilmove();
+                uc.PostaviStavku(stavka); // metoda koju treba da napraviš u UserControl-u
+                pnlStavka.Controls.Clear();
+                pnlStavka.Controls.Add(uc);
+            }
+            OsvežiDGV();
         }
     }
 }

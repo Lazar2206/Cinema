@@ -14,5 +14,7 @@
         DodajStavkuRacuna,
         PretražiRacun,
         AzurirajUkupnuCenu,
+        IzmeniStavkuRacuna,
+        IzmeniRacun,
     }
 }

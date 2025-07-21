@@ -36,7 +36,7 @@
             txtUkupnaCena = new TextBox();
             label4 = new Label();
             dgvRacunStavke = new DataGridView();
-            button2 = new Button();
+            btnDetalji = new Button();
             btnKreirajRačun = new Button();
             btnIzmeni = new Button();
             btnObriši = new Button();
@@ -116,14 +116,15 @@
             dgvRacunStavke.Size = new Size(366, 138);
             dgvRacunStavke.TabIndex = 8;
             // 
-            // button2
+            // btnDetalji
             // 
-            button2.Location = new Point(950, 118);
-            button2.Name = "button2";
-            button2.Size = new Size(111, 29);
-            button2.TabIndex = 11;
-            button2.Text = "Pretraži";
-            button2.UseVisualStyleBackColor = true;
+            btnDetalji.Location = new Point(950, 118);
+            btnDetalji.Name = "btnDetalji";
+            btnDetalji.Size = new Size(111, 29);
+            btnDetalji.TabIndex = 11;
+            btnDetalji.Text = "Detalji";
+            btnDetalji.UseVisualStyleBackColor = true;
+            btnDetalji.Click += btnDetalji_Click;
             // 
             // btnKreirajRačun
             // 
@@ -211,7 +212,7 @@
             Controls.Add(btnObriši);
             Controls.Add(btnIzmeni);
             Controls.Add(btnKreirajRačun);
-            Controls.Add(button2);
+            Controls.Add(btnDetalji);
             Controls.Add(dgvRacunStavke);
             Controls.Add(label4);
             Controls.Add(txtUkupnaCena);
@@ -238,7 +239,7 @@
         private TextBox txtUkupnaCena;
         private Label label4;
         private DataGridView dgvRacunStavke;
-        private Button button2;
+        private Button btnDetalji;
         private Button btnKreirajRačun;
         private Button btnIzmeni;
         private Button btnObriši;

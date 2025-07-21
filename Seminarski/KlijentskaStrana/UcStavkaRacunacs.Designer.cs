@@ -36,6 +36,7 @@
             label5 = new Label();
             btnDodaj = new Button();
             button1 = new Button();
+            btnIzmeniStavku = new Button();
             SuspendLayout();
             // 
             // cmbFilm
@@ -106,10 +107,21 @@
             button1.Text = "Obriši stavku";
             button1.UseVisualStyleBackColor = true;
             // 
+            // btnIzmeniStavku
+            // 
+            btnIzmeniStavku.Location = new Point(379, 135);
+            btnIzmeniStavku.Name = "btnIzmeniStavku";
+            btnIzmeniStavku.Size = new Size(128, 29);
+            btnIzmeniStavku.TabIndex = 31;
+            btnIzmeniStavku.Text = "Izmeni Stavku";
+            btnIzmeniStavku.UseVisualStyleBackColor = true;
+            btnIzmeniStavku.Click += btnIzmeniStavku_Click;
+            // 
             // UcStavkaRacunacs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnIzmeniStavku);
             Controls.Add(button1);
             Controls.Add(btnDodaj);
             Controls.Add(cmbFilm);
@@ -134,5 +146,6 @@
         private Label label5;
         private Button btnDodaj;
         private Button button1;
+        private Button btnIzmeniStavku;
     }
 }
