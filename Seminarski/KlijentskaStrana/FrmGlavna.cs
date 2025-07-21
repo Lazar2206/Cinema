@@ -40,7 +40,8 @@ namespace KlijentskaStrana
 
         private void distributerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FrmDistributer frm = new FrmDistributer(klijent,bioskop);
+            frm.ShowDialog();
         }
 
         private void mestoToolStripMenuItem_Click(object sender, EventArgs e)

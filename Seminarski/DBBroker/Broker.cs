@@ -393,5 +393,151 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
+
+        public List<Distributer> VratiDistributere(Distributer kriterijum)
+        {
+            List<Distributer> distributeri = new List<Distributer>();
+            List<string> uslovi = new List<string>();
+            SqlCommand cmd = new SqlCommand();
+
+            // Dinamičko dodavanje uslova
+            if (!string.IsNullOrWhiteSpace(kriterijum.NazivDistributera))
+            {
+                uslovi.Add("nazivDistributera LIKE @nazivDistributera");
+                cmd.Parameters.AddWithValue("@nazivDistributera", "%" + kriterijum.NazivDistributera + "%");
+            }
+
+          
+
+            string where = uslovi.Count > 0 ? " WHERE " + string.Join(" AND ", uslovi) : "";
+
+            string upit = "SELECT * FROM Distributer" + where;
+
+            try
+            {
+                PoveziSe();
+                cmd.Connection = con;
+                cmd.CommandText = upit;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Distributer d = new Distributer()
+                    {
+                        IdDistributer = (int)reader["idDistributer"],
+                        NazivDistributera = (string)reader["nazivDistributera"],
+                       
+                    };
+
+                    distributeri.Add(d);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>Greška u brokeru: " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return distributeri;
+        }
+
+        public bool KreirajDistributera(Distributer distributer)
+        {
+            string upit = "INSERT INTO Distributer (nazivDistributera) VALUES (@nazivDistributera)";
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@nazivDistributera", distributer.NazivDistributera);
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajDistributera): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+
+        public bool ObrisiDistributera(Distributer distributer)
+        {
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                // 1. Obriši sve projekcije koje koriste ovog distributera
+                SqlCommand cmd1 = con.CreateCommand();
+                cmd1.Transaction = tran;
+                cmd1.CommandText = "DELETE FROM TabelaProjekcija WHERE idDistributer = @idDistributer";
+                cmd1.Parameters.AddWithValue("@idDistributer", distributer.IdDistributer);
+                cmd1.ExecuteNonQuery();
+
+             
+                SqlCommand cmd2 = con.CreateCommand();
+                cmd2.Transaction = tran;
+                cmd2.CommandText = "DELETE FROM Distributer WHERE idDistributer = @idDistributer";
+                cmd2.Parameters.AddWithValue("@idDistributer", distributer.IdDistributer);
+                int uspesno = cmd2.ExecuteNonQuery();
+
+                Commit();
+                return uspesno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (ObrisiDistributera): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+
+
+        public bool PromeniDistributera(Distributer d)
+        {
+            string upit = @"UPDATE Distributer SET 
+                    nazivDistributera = @naziv
+                WHERE idDistributer = @id";
+
+            try
+            {
+                PoveziSe();
+
+                SqlCommand cmd = new SqlCommand(upit, con);
+                cmd.Parameters.AddWithValue("@naziv", d.NazivDistributera);
+                cmd.Parameters.AddWithValue("@id", d.IdDistributer);
+
+                int uspesno = cmd.ExecuteNonQuery();
+                return uspesno == 1;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>> Greška u ažuriranju distributera: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
     }
 }

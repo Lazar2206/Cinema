@@ -82,5 +82,27 @@ namespace Logika
         {
             return broker.KreirajFilm(film);
         }
+
+        public List<Distributer> VratiDistributere(Distributer kriterijum)
+        {
+          return broker.VratiDistributere(kriterijum);
+        }
+
+        public bool KreirajDistributer(Distributer distributer)
+        {
+            return broker.KreirajDistributera(distributer);
+        }
+
+        public bool ObrišiDistributer(Distributer distributer)
+        {
+            return broker.ObrisiDistributera(distributer);
+        }
+
+      
+
+        public bool PromeniDistributer(Distributer distributer)
+        {
+            return broker.PromeniDistributera(distributer);
+        }
     }
 }

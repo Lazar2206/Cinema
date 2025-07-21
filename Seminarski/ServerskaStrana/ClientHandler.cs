@@ -19,6 +19,7 @@ namespace ServerskaStrana
         private Gledalac gledalac;
         private Mesto mesto;
         private Film film;
+        private Distributer distributer;
         private bool kraj;
         public Bioskop prijavljeniBioskop { get; set; }
         public ClientHandler(Socket klijent)
@@ -128,39 +129,45 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
+                        case Operacija.PromeniDistributera:
+                            distributer = json.ReadType<Distributer>(zahtev.Object);
+                            if (Kontroler.Instance.PromeniDistributer(distributer))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.KreirajDistributer:
+                            distributer = json.ReadType<Distributer>(zahtev.Object);
+                            if (Kontroler.Instance.KreirajDistributer(distributer))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.ObrišiDistributer:
+                            distributer = json.ReadType<Distributer>(zahtev.Object);
+                            if (Kontroler.Instance.ObrišiDistributer(distributer))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        
 
 
-                            //case Operacija.Register:
-                            //    Korisnik korisnik2 = json.ReadType<Korisnik>(zahtev.Object);
-                            //    Kontroler.Instance.DodajKorisnika(korisnik2);
-                            //    odgovor.Operacija = Operacija.Uspesno;
-                            //    //slanje odgovora
-                            //    PošaljiPoruku(odgovor);
-                            //    break;
-                            //case Operacija.ScheduleTrip:
-                            //    PrijavljenaPutovanja prijava1 = json.ReadType<PrijavljenaPutovanja>(zahtev.Object);
-                            //    Kontroler.Instance.PrijaviPutovanje(prijava1);
-                            //    odgovor.Operacija = Operacija.Uspesno;
-                            //    //slanje odgovora
-                            //    PošaljiPoruku(odgovor);
-                            //    break;
-                            //case Operacija.DeleteTrip:
-                            //    PrijavljenaPutovanja prijava2 = json.ReadType<PrijavljenaPutovanja>(zahtev.Object);
-                            //    Kontroler.Instance.DeleteTrip(prijava2);
-                            //    odgovor.Operacija = Operacija.Uspesno;
-                            //    //slanje odgovora
-                            //    PošaljiPoruku(odgovor);
-                            //    break;
-                            //case Operacija.ChangeTrip:
-                            //    PrijavljenaPutovanja prijava3 = json.ReadType<PrijavljenaPutovanja>(zahtev.Object);
-                            //    Kontroler.Instance.AzurirajPutovanje(prijava3);
-                            //    odgovor.Operacija = Operacija.Uspesno;
-                            //    //slanje odgovora
-                            //    PošaljiPoruku(odgovor);
-                            //    break;
-                            //case Operacija.Logout:
-                            //    Logout();
-                            //    break;
 
 
 
@@ -172,13 +179,7 @@ namespace ServerskaStrana
 
                 Debug.WriteLine(">>>CH je prestao sa radom: " + ex.Message);
             }
-            //primanje zahteva
-
-
-            //obrada zahteva
-
-            //slanje odgovora
-            //
+         
         }
 
         internal void Logout()

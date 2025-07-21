@@ -8,5 +8,8 @@
         ObrišiGledalac,
         KreirajMesto,
         KreirajFilm,
+        PromeniDistributera,
+        ObrišiDistributer,
+        KreirajDistributer,
     }
 }
