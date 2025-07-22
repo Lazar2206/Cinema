@@ -176,5 +176,24 @@ namespace Logika
                 return false;
             }
         }
+
+        public bool DodajBioskop(Bioskop noviBioskop)
+        {
+            foreach (Bioskop k in broker.VratiSveBioskope())
+            {
+                if (k.KorisnickoIme == noviBioskop.KorisnickoIme || k.AdresaBioskopa == noviBioskop.AdresaBioskopa || k.NazivBioskopa==noviBioskop.NazivBioskopa)
+                {
+                    
+                    return false;
+                }
+            }
+            
+            return broker.DodajBioskop(noviBioskop);
+        }
+
+        public List<Bioskop> VratiSveBioskope()
+        {
+            return broker.VratiSveBioskope();
+        }
     }
 }

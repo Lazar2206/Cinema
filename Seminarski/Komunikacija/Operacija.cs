@@ -18,5 +18,7 @@
         ObrisiRacun,
         IzmeniRacun,
         ObrisiStavkuRacuna,
+        DodajBioskop,
+        VratiBioskope,
     }
 }

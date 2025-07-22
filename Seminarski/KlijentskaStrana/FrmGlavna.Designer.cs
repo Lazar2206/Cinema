@@ -63,7 +63,7 @@
             // računToolStripMenuItem
             // 
             računToolStripMenuItem.Name = "računToolStripMenuItem";
-            računToolStripMenuItem.Size = new Size(224, 26);
+            računToolStripMenuItem.Size = new Size(132, 26);
             računToolStripMenuItem.Text = "Račun";
             računToolStripMenuItem.Click += računToolStripMenuItem_Click;
             // 
@@ -77,8 +77,9 @@
             // bioskopToolStripMenuItem
             // 
             bioskopToolStripMenuItem.Name = "bioskopToolStripMenuItem";
-            bioskopToolStripMenuItem.Size = new Size(145, 26);
+            bioskopToolStripMenuItem.Size = new Size(224, 26);
             bioskopToolStripMenuItem.Text = "Bioskop";
+            bioskopToolStripMenuItem.Click += bioskopToolStripMenuItem_Click;
             // 
             // primalacUslugeToolStripMenuItem
             // 

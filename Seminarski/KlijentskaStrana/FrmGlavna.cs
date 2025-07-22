@@ -61,5 +61,11 @@ namespace KlijentskaStrana
             FrmRačun frm = new FrmRačun(klijent, bioskop);
             frm.ShowDialog();
         }
+
+        private void bioskopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBioskop frm = new FrmBioskop(klijent, bioskop);
+            frm.ShowDialog();
+        }
     }
 }

@@ -248,6 +248,18 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
+                        case Operacija.DodajBioskop:
+                            Bioskop noviBioskop = json.ReadType<Bioskop>(zahtev.Object);
+                            if (Kontroler.Instance.DodajBioskop(noviBioskop))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
 
 
 

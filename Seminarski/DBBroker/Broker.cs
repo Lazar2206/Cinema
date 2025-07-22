@@ -996,5 +996,43 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
+
+      
+
+        public bool DodajBioskop(Bioskop noviBioskop)
+        {
+            string upit = "INSERT INTO Bioskop (nazivBioskopa, adresaBioskopa, korisnickoIme, sifra) " +
+                          "VALUES (@nazivBioskopa, @adresaBioskopa, @korisnickoIme, @sifra)";
+            try
+            {
+                PoveziSe();
+                BeginTranscation();
+
+                SqlCommand cmd = con.CreateCommand();
+                cmd.Transaction = tran;
+                cmd.CommandText = upit;
+
+                cmd.Parameters.AddWithValue("@nazivBioskopa", noviBioskop.NazivBioskopa);
+                cmd.Parameters.AddWithValue("@adresaBioskopa", noviBioskop.AdresaBioskopa);
+                cmd.Parameters.AddWithValue("@korisnickoIme", noviBioskop.KorisnickoIme);
+                cmd.Parameters.AddWithValue("@sifra", noviBioskop.Sifra);
+               
+
+                int uspešno = cmd.ExecuteNonQuery();
+                Commit();
+
+                return uspešno > 0;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajFilm): " + ex.Message);
+                Rollback();
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
     }
 }

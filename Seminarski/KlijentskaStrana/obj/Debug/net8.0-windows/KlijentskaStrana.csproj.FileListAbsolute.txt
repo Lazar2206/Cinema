@@ -80,3 +80,4 @@ C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\Kl
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmRačun.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcDistributer.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcStavkaRacunacs.resources
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmBioskop.resources
