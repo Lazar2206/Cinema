@@ -154,6 +154,7 @@
             btnObriši.TabIndex = 16;
             btnObriši.Text = "Obriši račun";
             btnObriši.UseVisualStyleBackColor = true;
+            btnObriši.Click += btnObriši_Click;
             // 
             // txtBioskop
             // 

@@ -15,6 +15,8 @@
         PretražiRacun,
         AzurirajUkupnuCenu,
         IzmeniStavkuRacuna,
+        ObrisiRacun,
         IzmeniRacun,
+        ObrisiStavkuRacuna,
     }
 }

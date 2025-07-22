@@ -64,7 +64,7 @@ namespace KlijentskaStrana
         {
             dgvRacunStavke.DataSource = null;
             var stavke = Kontroler.Instance.VratiStavkeRacuna(idRacun);
-            MessageBox.Show("Broj stavki: " + stavke.Count);
+
             dgvRacunStavke.DataSource = stavke;
 
         }
@@ -235,6 +235,46 @@ namespace KlijentskaStrana
                 pnlStavka.Controls.Add(uc);
             }
             OsvežiDGV();
+        }
+
+        private void btnObriši_Click(object sender, EventArgs e)
+        {
+            if (dgvRacuni.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selektujte račun koji želite da obrišete.");
+                return;
+            }
+
+            selektovaniRacun = (Racun)dgvRacuni.SelectedRows[0].DataBoundItem;
+
+            Poruka zahtev = new Poruka
+            {
+                Operacija = Operacija.ObrisiRacun,
+                Object = new Racun { IdRacun = selektovaniRacun.IdRacun } // samo ID je dovoljan
+            };
+
+            klijent.PošaljiPoruku(zahtev);
+            Poruka odgovor = klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Račun uspešno obrisan.");
+
+                // Osveži tabelu sa računima
+                dgvRacuni.DataSource = null;
+                dgvRacuni.DataSource = Kontroler.Instance.VratiRacun(new Racun() { IdBioskop = bioskop.IdBioskop });
+
+                // Očisti detalje i stavke
+                txtUkupnaCena.Clear();
+                dateTimePicker1.Value = DateTime.Today;
+                cmbGledalac.SelectedIndex = -1;
+                dgvRacunStavke.DataSource = null;
+                pnlStavka.Controls.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Greška pri brisanju računa.");
+            }
         }
     }
 }

@@ -936,5 +936,65 @@ namespace DBBroker
                 ZatvoriKonekciju(); // ← i zatvaranje
             }
         }
+        public bool ObrisiRacun(int idRacun)
+        {
+            try
+            {
+                PoveziSe();
+
+                using (SqlTransaction transakcija = con.BeginTransaction())
+                {
+                    
+                    using (SqlCommand cmdStavke = new SqlCommand("DELETE FROM StavkaRacuna WHERE IdRacun = @IdRacun", con, transakcija))
+                    {
+                        cmdStavke.Parameters.AddWithValue("@IdRacun", idRacun);
+                        cmdStavke.ExecuteNonQuery();
+                    }
+
+                
+                    using (SqlCommand cmdRacun = new SqlCommand("DELETE FROM Racun WHERE IdRacun = @IdRacun", con, transakcija))
+                    {
+                        cmdRacun.Parameters.AddWithValue("@IdRacun", idRacun);
+                        int uspesno = cmdRacun.ExecuteNonQuery();
+
+                        transakcija.Commit();
+                        return uspesno > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Greška pri brisanju računa: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
+        public bool ObrisiStavkuRacuna(int idRacun, int rb)
+        {
+            try
+            {
+                PoveziSe();
+
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM StavkaRacuna WHERE IdRacun = @IdRacun AND Rb = @Rb", con))
+                {
+                    cmd.Parameters.AddWithValue("@IdRacun", idRacun);
+                    cmd.Parameters.AddWithValue("@Rb", rb);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Greška pri brisanju stavke računa: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+        }
     }
 }

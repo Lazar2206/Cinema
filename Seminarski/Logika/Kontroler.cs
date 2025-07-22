@@ -158,5 +158,23 @@ namespace Logika
         {
             return broker.IzmeniRacun(izmenjenRacun);
         }
+
+        public bool ObrisiRacun(Racun obrisanRacun)
+        {
+            return broker.ObrisiRacun(obrisanRacun.IdRacun);
+        }
+
+        public bool ObrisiStavkuRacuna(StavkaRacuna obrisanaStavka)
+        {
+            if (broker.ObrisiStavkuRacuna(obrisanaStavka.IdRacun,obrisanaStavka.Rb))
+            {
+                broker.AzurirajUkupnuCenuRacuna(obrisanaStavka.IdRacun);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

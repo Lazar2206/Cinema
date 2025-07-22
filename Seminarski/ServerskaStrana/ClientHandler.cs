@@ -224,6 +224,30 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
+                        case Operacija.ObrisiRacun:
+                            Racun obrisanRacun = json.ReadType<Racun>(zahtev.Object);
+                            if (Kontroler.Instance.ObrisiRacun(obrisanRacun))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
+                        case Operacija.ObrisiStavkuRacuna:
+                            StavkaRacuna obrisanaStavka = json.ReadType<StavkaRacuna>(zahtev.Object);
+                            if (Kontroler.Instance.ObrisiStavkuRacuna(obrisanaStavka))
+                            {
+                                odgovor.Operacija = Operacija.Uspešno;
+                            }
+                            else
+                            {
+                                odgovor.Operacija = Operacija.Neuspešno;
+                            }
+                            PošaljiPoruku(odgovor);
+                            break;
 
 
 

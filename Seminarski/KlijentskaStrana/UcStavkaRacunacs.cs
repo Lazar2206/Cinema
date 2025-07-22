@@ -57,7 +57,7 @@ namespace KlijentskaStrana
                 Operacija = Operacija.DodajStavkuRacuna,
                 Object = stavka
             };
-            MessageBox.Show($"Dodajem stavku za RacunId={stavka.IdRacun}, FilmId={stavka.IdFilm}, Cena={stavka.Cena}");
+
 
             Klijent.PošaljiPoruku(zahtev);
             Poruka odgovor = Klijent.PrimiPoruku();
@@ -87,7 +87,7 @@ namespace KlijentskaStrana
             txtOpis.Text = stavka.Opis;
             txtCena.Text = stavka.Cena.ToString("F2");
             cmbFilm.SelectedIndex = cmbFilm.FindStringExact(stavka.NaslovFilma);
-            selektovaniRb = stavka.Rb; 
+            selektovaniRb = stavka.Rb;
         }
 
         private void btnIzmeniStavku_Click(object sender, EventArgs e)
@@ -123,6 +123,43 @@ namespace KlijentskaStrana
             else
             {
                 MessageBox.Show("Greška prilikom izmene stavke.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!double.TryParse(txtCena.Text, out double novaCena)) return;
+            if (cmbFilm.SelectedItem == null) return;
+
+            Film izabraniFilm = (Film)cmbFilm.SelectedItem;
+
+            
+            StavkaRacuna stavka = new StavkaRacuna
+            {
+                IdRacun = IdRacun,
+                Opis = txtOpis.Text,
+                Cena = novaCena,
+                IdFilm = izabraniFilm.IdFilm,
+                Rb = selektovaniRb 
+            };
+
+            Poruka zahtev = new Poruka
+            {
+                Operacija = Operacija.ObrisiStavkuRacuna,
+                Object = stavka
+            };
+
+            Klijent.PošaljiPoruku(zahtev);
+            Poruka odgovor = Klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Stavka uspešno obrisana.");
+                StavkaDodata?.Invoke(novaCena); 
+            }
+            else
+            {
+                MessageBox.Show("Greška prilikom brisanja stavke.");
             }
         }
     }
