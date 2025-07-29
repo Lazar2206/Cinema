@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             btnPokreni = new Button();
-            btnZaustavi = new Button();
             SuspendLayout();
             // 
             // btnPokreni
@@ -42,22 +41,11 @@
             btnPokreni.UseVisualStyleBackColor = true;
             btnPokreni.Click += btnPokreni_Click;
             // 
-            // btnZaustavi
-            // 
-            btnZaustavi.Location = new Point(204, 74);
-            btnZaustavi.Name = "btnZaustavi";
-            btnZaustavi.Size = new Size(94, 29);
-            btnZaustavi.TabIndex = 1;
-            btnZaustavi.Text = "Zaustavi";
-            btnZaustavi.UseVisualStyleBackColor = true;
-            btnZaustavi.Click += btnZaustavi_Click;
-            // 
             // FrmServer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnZaustavi);
             Controls.Add(btnPokreni);
             Name = "FrmServer";
             Text = "FrmServer";
@@ -67,6 +55,5 @@
         #endregion
 
         private Button btnPokreni;
-        private Button btnZaustavi;
     }
 }

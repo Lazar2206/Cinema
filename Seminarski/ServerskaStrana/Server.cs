@@ -11,10 +11,10 @@ namespace ServerskaStrana
 {
     public class Server
     {
-        private Socket socket; //osluškujući socket
+        private Socket socket; 
         private List<ClientHandler> clientHandlers = new List<ClientHandler>();
         private bool kraj;
-
+        private List<ClientHandler> korisnici = new List<ClientHandler>();
         public void start()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -34,7 +34,7 @@ namespace ServerskaStrana
                     Debug.WriteLine("Uspešno povezivanje sa klijetom");
                     //obrada zahteva 
 
-                    ClientHandler ch = new ClientHandler(klijent);
+                    ClientHandler ch = new ClientHandler(klijent,korisnici);
                     clientHandlers.Add(ch);
                     Thread nit = new Thread(ch.HandleClient);
                     nit.Start();
@@ -48,16 +48,6 @@ namespace ServerskaStrana
             }
         }
 
-        public void Stop()
-        {
-            foreach (ClientHandler ch in clientHandlers)
-            {
-                ch.Logout();
-            }
-            clientHandlers = new List<ClientHandler>();
-            //zaustavljanje servera
-            kraj = true;
-            socket.Close();
-        }
+    
     }
 }

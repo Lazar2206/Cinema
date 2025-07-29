@@ -67,5 +67,7 @@ namespace KlijentskaStrana
             FrmBioskop frm = new FrmBioskop(klijent, bioskop);
             frm.ShowDialog();
         }
+
+      
     }
 }

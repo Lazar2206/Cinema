@@ -39,6 +39,8 @@
             distributerToolStripMenuItem = new ToolStripMenuItem();
             mestoToolStripMenuItem = new ToolStripMenuItem();
             filmToolStripMenuItem = new ToolStripMenuItem();
+            podešavanjaSoftverskogSistemaToolStripMenuItem = new ToolStripMenuItem();
+            oProgramuToolStripMenuItem = new ToolStripMenuItem();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -46,7 +48,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dokumentiToolStripMenuItem, pružalacUslugeToolStripMenuItem, primalacUslugeToolStripMenuItem, šToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { dokumentiToolStripMenuItem, pružalacUslugeToolStripMenuItem, primalacUslugeToolStripMenuItem, šToolStripMenuItem, podešavanjaSoftverskogSistemaToolStripMenuItem, oProgramuToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1461, 28);
@@ -77,7 +79,7 @@
             // bioskopToolStripMenuItem
             // 
             bioskopToolStripMenuItem.Name = "bioskopToolStripMenuItem";
-            bioskopToolStripMenuItem.Size = new Size(224, 26);
+            bioskopToolStripMenuItem.Size = new Size(145, 26);
             bioskopToolStripMenuItem.Text = "Bioskop";
             bioskopToolStripMenuItem.Click += bioskopToolStripMenuItem_Click;
             // 
@@ -123,6 +125,18 @@
             filmToolStripMenuItem.Text = "Film";
             filmToolStripMenuItem.Click += filmToolStripMenuItem_Click;
             // 
+            // podešavanjaSoftverskogSistemaToolStripMenuItem
+            // 
+            podešavanjaSoftverskogSistemaToolStripMenuItem.Name = "podešavanjaSoftverskogSistemaToolStripMenuItem";
+            podešavanjaSoftverskogSistemaToolStripMenuItem.Size = new Size(239, 24);
+            podešavanjaSoftverskogSistemaToolStripMenuItem.Text = "Podešavanja softverskog sistema";
+            // 
+            // oProgramuToolStripMenuItem
+            // 
+            oProgramuToolStripMenuItem.Name = "oProgramuToolStripMenuItem";
+            oProgramuToolStripMenuItem.Size = new Size(104, 24);
+            oProgramuToolStripMenuItem.Text = "O programu";
+            // 
             // sqlCommand1
             // 
             sqlCommand1.CommandTimeout = 30;
@@ -157,5 +171,7 @@
         private ToolStripMenuItem distributerToolStripMenuItem;
         private ToolStripMenuItem mestoToolStripMenuItem;
         private ToolStripMenuItem filmToolStripMenuItem;
+        private ToolStripMenuItem podešavanjaSoftverskogSistemaToolStripMenuItem;
+        private ToolStripMenuItem oProgramuToolStripMenuItem;
     }
 }

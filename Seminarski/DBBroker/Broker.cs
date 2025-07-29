@@ -127,7 +127,7 @@ namespace DBBroker
             List<string> uslovi = new List<string>();
             SqlCommand cmd = new SqlCommand();
 
-            // Dinamičko dodavanje uslova
+            
             if (!string.IsNullOrWhiteSpace(kriterijum.Ime))
             {
                 uslovi.Add("ime LIKE @ime");
@@ -218,7 +218,7 @@ namespace DBBroker
                 PoveziSe();
                 BeginTranscation();
 
-                // 1. Obriši stavke svih računa gledaoce
+               
                 SqlCommand cmd0 = con.CreateCommand();
                 cmd0.Transaction = tran;
                 cmd0.CommandText = $@"
@@ -226,13 +226,13 @@ namespace DBBroker
             WHERE idRacun IN (SELECT idRacun FROM Racun WHERE idGledalac = {gledalac.IdGledalac})";
                 cmd0.ExecuteNonQuery();
 
-                // 2. Obriši sve račune gledaoce
+                
                 SqlCommand cmd1 = con.CreateCommand();
                 cmd1.Transaction = tran;
                 cmd1.CommandText = $"DELETE FROM Racun WHERE idGledalac = {gledalac.IdGledalac}";
                 cmd1.ExecuteNonQuery();
 
-                // 3. Obriši samog gledaoca
+            
                 SqlCommand cmd2 = con.CreateCommand();
                 cmd2.Transaction = tran;
                 cmd2.CommandText = $"DELETE FROM Gledalac WHERE idGledalac = {gledalac.IdGledalac}";
@@ -403,7 +403,7 @@ namespace DBBroker
             List<string> uslovi = new List<string>();
             SqlCommand cmd = new SqlCommand();
 
-            // Dinamičko dodavanje uslova
+           
             if (!string.IsNullOrWhiteSpace(kriterijum.NazivDistributera))
             {
                 uslovi.Add("nazivDistributera LIKE @nazivDistributera");
@@ -485,7 +485,7 @@ namespace DBBroker
                 PoveziSe();
                 BeginTranscation();
 
-                // 1. Obriši sve projekcije koje koriste ovog distributera
+               
                 SqlCommand cmd1 = con.CreateCommand();
                 cmd1.Transaction = tran;
                 cmd1.CommandText = "DELETE FROM TabelaProjekcija WHERE idDistributer = @idDistributer";
@@ -594,7 +594,7 @@ namespace DBBroker
                 PoveziSe();
                 BeginTranscation();
 
-                int noviRb = VratiSledeciRB(stavka.IdRacun, con, tran); // koristi postojeću konekciju i transakciju
+                int noviRb = VratiSledeciRB(stavka.IdRacun, con, tran); 
 
                 string upit = "INSERT INTO StavkaRacuna (idRacun, rb, cena, opis, idFilm) " +
                               "VALUES (@idRacun, @rb, @cena, @opis, @idFilm)";
@@ -769,33 +769,36 @@ namespace DBBroker
             }
         }
 
-        public List<Racun> VratiRacune(Racun kriterijum)
+        public List<PrikazRacuna> VratiRacune(Racun kriterijum)
         {
-            List<Racun> racuni = new List<Racun>();
+            List<PrikazRacuna> racuni = new List<PrikazRacuna>();
             List<string> uslovi = new List<string>();
             SqlCommand cmd = new SqlCommand();
 
             if (kriterijum.IdGledalac > 0)
             {
-                uslovi.Add("idGledalac = @idGledalac");
+                uslovi.Add("r.idGledalac = @idGledalac");
                 cmd.Parameters.AddWithValue("@idGledalac", kriterijum.IdGledalac);
             }
 
             if (kriterijum.IdBioskop > 0)
             {
-                uslovi.Add("idBioskop = @idBioskop");
+                uslovi.Add("r.idBioskop = @idBioskop");
                 cmd.Parameters.AddWithValue("@idBioskop", kriterijum.IdBioskop);
             }
 
             if (kriterijum.Datum != DateTime.MinValue)
             {
-                uslovi.Add("CAST(datum AS DATE) = @datum");
+                uslovi.Add("CAST(r.datum AS DATE) = @datum");
                 cmd.Parameters.AddWithValue("@datum", kriterijum.Datum.Date);
             }
 
             string where = uslovi.Count > 0 ? " WHERE " + string.Join(" AND ", uslovi) : "";
 
-            string upit = "SELECT * FROM Racun" + where;
+            string upit = @" SELECT  r.idRacun, r.datum, r.ukupnaCena,  g.ime + ' ' + g.prezime AS ImeGledaoca, b.nazivBioskopa AS NazivBioskopa
+                             FROM Racun r
+                             JOIN Gledalac g ON r.idGledalac = g.idGledalac
+                             JOIN Bioskop b ON r.idBioskop = b.idBioskop  " + where;
 
             try
             {
@@ -806,13 +809,13 @@ namespace DBBroker
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Racun r = new Racun
+                    PrikazRacuna r = new PrikazRacuna
                     {
                         IdRacun = (int)reader["idRacun"],
                         Datum = (DateTime)reader["datum"],
                         UkupnaCena = Convert.ToDouble(reader["ukupnaCena"]),
-                        IdGledalac = (int)reader["idGledalac"],
-                        IdBioskop = (int)reader["idBioskop"]
+                        ImeGledaoca = reader["ImeGledaoca"].ToString(),
+                        NazivBioskopa = reader["NazivBioskopa"].ToString()
                     };
                     racuni.Add(r);
                 }
@@ -828,11 +831,12 @@ namespace DBBroker
 
             return racuni;
         }
+
         public bool IzmeniStavkuRacuna(StavkaRacuna sr)
         {
             try
             {
-                PoveziSe(); // otvori konekciju
+                PoveziSe(); 
 
                 using (SqlCommand command = new SqlCommand(@"
             UPDATE StavkaRacuna 
@@ -905,7 +909,7 @@ namespace DBBroker
         {
             try
             {
-                PoveziSe(); // ← dodaj ovo ako koristiš metodu za otvaranje konekcije
+                PoveziSe(); 
 
                 using (SqlCommand command = new SqlCommand())
                 {
@@ -933,7 +937,7 @@ namespace DBBroker
             }
             finally
             {
-                ZatvoriKonekciju(); // ← i zatvaranje
+                ZatvoriKonekciju(); 
             }
         }
         public bool ObrisiRacun(int idRacun)

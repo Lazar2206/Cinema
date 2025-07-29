@@ -26,17 +26,9 @@ namespace ServerskaStrana
             Thread nit = new Thread(server.Accept);
             nit.Start();
             btnPokreni.Enabled = false;
-            btnZaustavi.Enabled = true;
+           
         }
 
-        private void btnZaustavi_Click(object sender, EventArgs e)
-        {
-            kraj = true;
- 
-            server.Stop();
-            btnZaustavi.Enabled = false;
-            btnPokreni.Enabled = true;
-            server = null;
-        }
+     
     }
 }

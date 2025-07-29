@@ -64,9 +64,11 @@ namespace KlijentskaStrana
         {
             dgvRacunStavke.DataSource = null;
             var stavke = Kontroler.Instance.VratiStavkeRacuna(idRacun);
-
             dgvRacunStavke.DataSource = stavke;
 
+            
+            ukupnaCena = stavke.Sum(s => s.Cena);
+            txtUkupnaCena.Text = ukupnaCena.ToString("F2");
         }
 
         private void btnKreirajRačun_Click(object sender, EventArgs e)
@@ -111,23 +113,24 @@ namespace KlijentskaStrana
                     pnlStavka.Controls.Clear();
                     pnlStavka.Controls.Add(uc);
                     uc.UcitajFilmove();
-                    uc.StavkaDodata += (cena) =>
+                    uc.StavkaDodata += (razlikaUCeni) =>
                     {
-                        ukupnaCena += cena;
+                        ukupnaCena += razlikaUCeni;
                         txtUkupnaCena.Text = ukupnaCena.ToString("F2");
                         OsvežiDGV();
 
-                        // Ovo je jedino mesto gde treba ažurirati bazu
                         Poruka azuriraj = new Poruka
                         {
                             Operacija = Operacija.AzurirajUkupnuCenu,
                             Object = Tuple.Create(idRacun, ukupnaCena)
                         };
+
                         klijent.PošaljiPoruku(azuriraj);
                         Poruka odgovor = klijent.PrimiPoruku();
+
                         if (odgovor.Operacija != Operacija.Uspešno)
                         {
-                            MessageBox.Show("Račun nije ažuriran u bazi!");
+                            MessageBox.Show("Greška prilikom ažuriranja ukupne cene u bazi.");
                         }
                     };
                 }
@@ -158,6 +161,8 @@ namespace KlijentskaStrana
 
             dgvRacuni.DataSource = null;
             dgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
+            dgvRacuni.Columns["IdGledalac"].Visible = false;
+            dgvRacuni.Columns["IdBioskop"].Visible = false;
         }
 
         private void btnIzmeni_Click(object sender, EventArgs e)
@@ -198,9 +203,18 @@ namespace KlijentskaStrana
                 return;
             }
 
-            selektovaniRacun = (Racun)dgvRacuni.SelectedRows[0].DataBoundItem;
+            PrikazRacuna prikaz = (PrikazRacuna)dgvRacuni.SelectedRows[0].DataBoundItem;
 
-            // Pronađi gledaoca u listi ComboBox-a i selektuj
+            selektovaniRacun = new Racun
+            {
+                IdRacun = prikaz.IdRacun,
+                IdGledalac = prikaz.IdGledalac,
+                IdBioskop = prikaz.IdBioskop,
+                UkupnaCena = prikaz.UkupnaCena,
+                Datum = prikaz.Datum
+            };
+
+           
             foreach (var item in cmbGledalac.Items)
             {
                 Gledalac g = (Gledalac)item;
@@ -211,14 +225,14 @@ namespace KlijentskaStrana
                 }
             }
 
-            // Postavi datum
+            
             dateTimePicker1.Value = selektovaniRacun.Datum;
             txtUkupnaCena.Text = selektovaniRacun.UkupnaCena.ToString("F2");
 
-            // Postavi naziv bioskopa (ako koristiš bioskop iz forme)
+          
             txtBioskop.Text = bioskop.NazivBioskopa;
 
-            // Eventualno prikaži stavke za taj račun
+            
             idRacun = selektovaniRacun.IdRacun;
 
 
@@ -228,13 +242,38 @@ namespace KlijentskaStrana
                 UcStavkaRacunacs uc = new UcStavkaRacunacs();
                 uc.Klijent = klijent;
                 uc.Bioskop = bioskop;
-                uc.IdRacun = selektovaniRacun.IdRacun; // moraš da znaš koji je račun trenutno selektovan
+                uc.IdRacun = selektovaniRacun.IdRacun;
+                uc.StavkaDodata += (razlikaUCeni) =>
+                {
+                  
+
+                    OsvežiDGV(); 
+                    Poruka azuriraj = new Poruka
+                    {
+                        Operacija = Operacija.AzurirajUkupnuCenu,
+                        Object = Tuple.Create(idRacun, ukupnaCena)
+                    };
+
+                    klijent.PošaljiPoruku(azuriraj);
+                    Poruka odgovor = klijent.PrimiPoruku();
+
+                    if (odgovor.Operacija != Operacija.Uspešno)
+                    {
+                        MessageBox.Show("Greška prilikom ažuriranja ukupne cene u bazi.");
+                    }
+                };
+                uc.StavkaPromenjena += () =>
+                {
+                    OsvežiDGV();
+                    OsvežiTabeluRacuna();
+                };
                 uc.UcitajFilmove();
-                uc.PostaviStavku(stavka); // metoda koju treba da napraviš u UserControl-u
+                uc.PostaviStavku(stavka); 
                 pnlStavka.Controls.Clear();
                 pnlStavka.Controls.Add(uc);
             }
             OsvežiDGV();
+            
         }
 
         private void btnObriši_Click(object sender, EventArgs e)
@@ -250,7 +289,7 @@ namespace KlijentskaStrana
             Poruka zahtev = new Poruka
             {
                 Operacija = Operacija.ObrisiRacun,
-                Object = new Racun { IdRacun = selektovaniRacun.IdRacun } // samo ID je dovoljan
+                Object = new Racun { IdRacun = selektovaniRacun.IdRacun } 
             };
 
             klijent.PošaljiPoruku(zahtev);
@@ -260,11 +299,11 @@ namespace KlijentskaStrana
             {
                 MessageBox.Show("Račun uspešno obrisan.");
 
-                // Osveži tabelu sa računima
+                
                 dgvRacuni.DataSource = null;
                 dgvRacuni.DataSource = Kontroler.Instance.VratiRacun(new Racun() { IdBioskop = bioskop.IdBioskop });
 
-                // Očisti detalje i stavke
+                
                 txtUkupnaCena.Clear();
                 dateTimePicker1.Value = DateTime.Today;
                 cmbGledalac.SelectedIndex = -1;
@@ -275,6 +314,16 @@ namespace KlijentskaStrana
             {
                 MessageBox.Show("Greška pri brisanju računa.");
             }
+        }
+        private void OsvežiTabeluRacuna()
+        {
+            dgvRacuni.DataSource = null;
+            dgvRacuni.DataSource = Kontroler.Instance.VratiRacun(new Racun
+            {
+                IdBioskop = bioskop.IdBioskop
+            });
+            dgvRacuni.Columns["IdGledalac"].Visible = false;
+            dgvRacuni.Columns["IdBioskop"].Visible = false;
         }
     }
 }

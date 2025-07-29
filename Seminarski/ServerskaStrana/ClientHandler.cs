@@ -22,13 +22,14 @@ namespace ServerskaStrana
         private Distributer distributer;
         private Racun racun;
         private bool kraj;
+        private Socket socket;
         public Bioskop prijavljeniBioskop { get; set; }
-        public ClientHandler(Socket klijent)
+        private List<ClientHandler> prijavljeniKorisnici = new List<ClientHandler>();
+        public ClientHandler(Socket socket, List<ClientHandler> prijavljeniKorisnici)
         {
-            this.klijent = klijent;
-
-            json = new JsnNetworkSerializer(klijent);
-
+            this.socket = socket;
+            json = new JsnNetworkSerializer(socket);
+            this.prijavljeniKorisnici = prijavljeniKorisnici;
         }
         public void PošaljiPoruku(Poruka poruka)
         {
@@ -52,7 +53,7 @@ namespace ServerskaStrana
                     {
                         Object = new object(),
                     };
-                    //obrada zahteva
+                    
 
                     switch (zahtev.Operacija)
                     {
@@ -260,6 +261,7 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
+                       
 
 
 
@@ -275,11 +277,6 @@ namespace ServerskaStrana
          
         }
 
-        internal void Logout()
-        {
-            kraj = true;
-            Kontroler.Instance.Logout();
-            klijent.Close();
-        }
+     
     }
 }

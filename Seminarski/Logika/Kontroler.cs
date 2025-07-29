@@ -44,7 +44,7 @@ namespace Logika
         {
             return broker.VratiMesta();
         }
-        public void Logout()
+        public void Logout(Bioskop prijavljeniBioskop)
         {
             
         }
@@ -136,7 +136,7 @@ namespace Logika
             return broker.AzurirajUkupnuCenu(item1, item2);
         }
 
-        public List<Racun> VratiRacun(Racun racun)
+        public List<PrikazRacuna> VratiRacun(Racun racun)
         {
             return broker.VratiRacune(racun);
         }

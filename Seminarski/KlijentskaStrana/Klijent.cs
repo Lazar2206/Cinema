@@ -62,5 +62,11 @@ namespace KlijentskaStrana
         {
             return json.ReadType<T>(podaci);
         }
+
+        public void Logout()
+        {
+            socket.Close();
+            socket = null;
+        }
     }
 }

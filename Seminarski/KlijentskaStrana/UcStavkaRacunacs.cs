@@ -21,7 +21,9 @@ namespace KlijentskaStrana
         public int IdRacun { get; set; }
         public event Action<double> StavkaDodata;
         private int selektovaniRb;
+        public event Action StavkaPromenjena;
 
+        private double staraCena = 0;
         public UcStavkaRacunacs()
         {
             InitializeComponent();
@@ -87,8 +89,11 @@ namespace KlijentskaStrana
             txtOpis.Text = stavka.Opis;
             txtCena.Text = stavka.Cena.ToString("F2");
             cmbFilm.SelectedIndex = cmbFilm.FindStringExact(stavka.NaslovFilma);
+
+            staraCena = stavka.Cena;
             selektovaniRb = stavka.Rb;
         }
+
 
         private void btnIzmeniStavku_Click(object sender, EventArgs e)
         {
@@ -103,7 +108,7 @@ namespace KlijentskaStrana
                 Opis = txtOpis.Text,
                 Cena = novaCena,
                 IdFilm = izabraniFilm.IdFilm,
-                Rb = selektovaniRb // moraš da čuvaš koji je `rb` selektovan
+                Rb = selektovaniRb
             };
 
             Poruka zahtev = new Poruka
@@ -118,7 +123,12 @@ namespace KlijentskaStrana
             if (odgovor.Operacija == Operacija.Uspešno)
             {
                 MessageBox.Show("Stavka uspešno izmenjena.");
-                StavkaDodata?.Invoke(novaCena); // ponovo preračunaj ukupnu cenu
+
+                // Izračunaj razliku u ceni i prosledi događajem
+                double razlika = novaCena - staraCena;
+                StavkaDodata?.Invoke(razlika);
+                staraCena = novaCena;
+                StavkaPromenjena?.Invoke();
             }
             else
             {
@@ -155,7 +165,8 @@ namespace KlijentskaStrana
             if (odgovor.Operacija == Operacija.Uspešno)
             {
                 MessageBox.Show("Stavka uspešno obrisana.");
-                StavkaDodata?.Invoke(novaCena); 
+                StavkaDodata?.Invoke(-staraCena);
+                StavkaPromenjena?.Invoke();
             }
             else
             {
