@@ -251,7 +251,7 @@ namespace ServerskaStrana
                             break;
                         case Operacija.DodajBioskop:
                             Bioskop noviBioskop = json.ReadType<Bioskop>(zahtev.Object);
-                            if (Kontroler.Instance.DodajBioskop(noviBioskop))
+                            if (Kontroler.Instance.KreirajBioskop(noviBioskop))
                             {
                                 odgovor.Operacija = Operacija.Uspešno;
                             }
@@ -261,11 +261,6 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
-                       
-
-
-
-
                     }
                 }
             }

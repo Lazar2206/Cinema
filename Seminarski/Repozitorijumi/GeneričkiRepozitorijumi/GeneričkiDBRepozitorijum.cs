@@ -93,5 +93,21 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
             int rowsAffected = command.ExecuteNonQuery();
             return rowsAffected > 0;
         }
+        public List<DomenskiObjekat> VratiSveFilmove(DomenskiObjekat objekat)
+        {
+            List<DomenskiObjekat> lista = new List<DomenskiObjekat>();
+
+            SqlCommand command = broker.CreateCommand();
+            command.CommandText = $"SELECT * FROM {objekat.NazivTabele}";
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                lista.Add(objekat.ReadRow(reader));
+            }
+
+            reader.Close();
+            return lista;
+        }
     }
 }

@@ -19,9 +19,10 @@ namespace Domen
 
         string DomenskiObjekat.UslovZaSelect => "";
 
-        public string InsertKolone => "";
+        public string InsertKolone => "NazivBioskopa, KorisnickoIme, Sifra, AdresaBioskopa";
 
-        public string InsertVrednosti => "";
+        public string InsertVrednosti =>
+            $"'{NazivBioskopa}', '{KorisnickoIme}', '{Sifra}', '{AdresaBioskopa}'";
 
         public string UslovZaJednog()
         {

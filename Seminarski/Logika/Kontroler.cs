@@ -83,7 +83,10 @@ namespace Logika
 
         public List<Film> VratiFilmove()
         {
-            return broker.VratiFilmove();
+            SOVratiSveFilmove so = new SOVratiSveFilmove();
+            so.ExecuteTemplate();
+            List<Film> sviFilmovi = so.Rezultat;
+            return sviFilmovi;
         }
 
         public bool KreirajFilm(Film film)
@@ -187,23 +190,18 @@ namespace Logika
             }
         }
 
-        public bool DodajBioskop(Bioskop noviBioskop)
+        public bool KreirajBioskop(Bioskop bioskop)
         {
-            foreach (Bioskop k in broker.VratiSveBioskope())
-            {
-                if (k.KorisnickoIme == noviBioskop.KorisnickoIme || k.AdresaBioskopa == noviBioskop.AdresaBioskopa || k.NazivBioskopa==noviBioskop.NazivBioskopa)
-                {
-                    
-                    return false;
-                }
-            }
-            
-            return broker.DodajBioskop(noviBioskop);
+            var so = new SOKreirajBioskop(bioskop);
+            so.ExecuteTemplate(); 
+            return so.Uspeh;
         }
-
         public List<Bioskop> VratiSveBioskope()
         {
-            return broker.VratiSveBioskope();
+           var so = new SOVratiSveBioskope();
+            so.ExecuteTemplate();
+            List<Bioskop> bioskopi = so.Rezultat;
+            return bioskopi;
         }
 
         public int VratiSledeciRbZaRacun(int idRacun)

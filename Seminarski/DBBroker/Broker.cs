@@ -59,46 +59,7 @@ namespace DBBroker
         {
             tran.Rollback();
         }
-        public List<Bioskop> VratiSveBioskope()
-        {
-            List<Bioskop> bioskopi = new List<Bioskop>();
-            string upit = "select* from bioskop";
-            try
-            {
-                PoveziSe();
-                SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = upit;
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Bioskop p = new Bioskop()
-                    {
-                        IdBioskop = (int)reader["idBioskop"],
-                        NazivBioskopa = (string)reader["nazivBioskopa"],
-                        AdresaBioskopa = (string)reader["adresaBioskopa"],
-                        KorisnickoIme = (string)reader["korisnickoIme"],
-                        Sifra = (string)reader["sifra"],
-
-                    };
-                    bioskopi.Add(p);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Debug.WriteLine(">>>>>Greska u brokeru: " + ex.Message);
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-            return bioskopi;
-
-        }
-
         
-
         public List<Gledalac> VratiGledaoce(Gledalac kriterijum)
         {
             List<Gledalac> gledaoci = new List<Gledalac>();
@@ -274,50 +235,6 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
-
-        
-
-        public List<Film> VratiFilmove()
-        {
-            List<Film> filmovi = new List<Film>();
-            string upit = "SELECT * FROM Film";
-
-            try
-            {
-                PoveziSe();
-                SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = upit;
-
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Film f = new Film()
-                    {
-                        IdFilm = (int)reader["idFilm"],
-                        Naslov = (string)reader["naslov"],
-                        Zanr = Enum.Parse<Žanr>(reader["zanr"].ToString()),
-                        Pocetak = (TimeSpan)reader["pocetak"],
-                        Kraj = (TimeSpan)reader["kraj"],
-                        TrajanjeMinuti = (int)reader["trajanjeMinuti"]
-                    };
-
-                    filmovi.Add(f);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>>>Greška u brokeru: " + ex.Message);
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-
-            return filmovi;
-        }
-
-       
 
         public List<Distributer> VratiDistributere(Distributer kriterijum)
         {
@@ -938,43 +855,6 @@ namespace DBBroker
             }
         }
 
-      
-
-        public bool DodajBioskop(Bioskop noviBioskop)
-        {
-            string upit = "INSERT INTO Bioskop (nazivBioskopa, adresaBioskopa, korisnickoIme, sifra) " +
-                          "VALUES (@nazivBioskopa, @adresaBioskopa, @korisnickoIme, @sifra)";
-            try
-            {
-                PoveziSe();
-                BeginTranscation();
-
-                SqlCommand cmd = con.CreateCommand();
-                cmd.Transaction = tran;
-                cmd.CommandText = upit;
-
-                cmd.Parameters.AddWithValue("@nazivBioskopa", noviBioskop.NazivBioskopa);
-                cmd.Parameters.AddWithValue("@adresaBioskopa", noviBioskop.AdresaBioskopa);
-                cmd.Parameters.AddWithValue("@korisnickoIme", noviBioskop.KorisnickoIme);
-                cmd.Parameters.AddWithValue("@sifra", noviBioskop.Sifra);
-               
-
-                int uspešno = cmd.ExecuteNonQuery();
-                Commit();
-
-                return uspešno > 0;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajFilm): " + ex.Message);
-                Rollback();
-                return false;
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-        }
 
         public DomenskiObjekat SelectOne(DomenskiObjekat kriterijum)
         {
