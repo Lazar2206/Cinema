@@ -1,0 +1,17 @@
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\Repozitorijumi.deps.json
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\Repozitorijumi.dll
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\Repozitorijumi.pdb
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\DBBroker.dll
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\Domen.dll
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\DBBroker.pdb
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\bin\Debug\net8.0\Domen.pdb
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.AssemblyInfoInputs.cache
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.AssemblyInfo.cs
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozito.A672B755.Up2Date
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.dll
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\refint\Repozitorijumi.dll
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\Repozitorijumi.pdb
+C:\Users\PC\source\repos\Seminarski\Repozitorijumi\obj\Debug\net8.0\ref\Repozitorijumi.dll

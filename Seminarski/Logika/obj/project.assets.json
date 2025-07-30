@@ -660,11 +660,41 @@
       "Domen/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "6.0.2"
+        },
         "compile": {
           "bin/placeholder/Domen.dll": {}
         },
         "runtime": {
           "bin/placeholder/Domen.dll": {}
+        }
+      },
+      "Repozitorijumi/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DBBroker": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repozitorijumi.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repozitorijumi.dll": {}
+        }
+      },
+      "SistemskeOperacije/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DBBroker": "1.0.0",
+          "Repozitorijumi": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SistemskeOperacije.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SistemskeOperacije.dll": {}
         }
       }
     }
@@ -1692,12 +1722,23 @@
       "type": "project",
       "path": "../Domen/Domen.csproj",
       "msbuildProject": "../Domen/Domen.csproj"
+    },
+    "Repozitorijumi/1.0.0": {
+      "type": "project",
+      "path": "../Repozitorijumi/Repozitorijumi.csproj",
+      "msbuildProject": "../Repozitorijumi/Repozitorijumi.csproj"
+    },
+    "SistemskeOperacije/1.0.0": {
+      "type": "project",
+      "path": "../SistemskeOperacije/SistemskeOperacije.csproj",
+      "msbuildProject": "../SistemskeOperacije/SistemskeOperacije.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "DBBroker >= 1.0.0",
-      "Domen >= 1.0.0"
+      "Domen >= 1.0.0",
+      "SistemskeOperacije >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1737,6 +1778,9 @@
             },
             "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Domen.csproj": {
               "projectPath": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Domen.csproj"
+            },
+            "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SistemskeOperacije.csproj": {
+              "projectPath": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SistemskeOperacije.csproj"
             }
           }
         }

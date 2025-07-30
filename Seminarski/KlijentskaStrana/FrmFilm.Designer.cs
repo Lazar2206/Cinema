@@ -176,5 +176,17 @@
         private Label label2;
         private Label label3;
         private Label label4;
+
+        public DataGridView DgvFilmovi { get => dgvFilmovi; set => dgvFilmovi = value; }
+        public TextBox TxtNaslov { get => txtNaslov; set => txtNaslov = value; }
+        public Button BtnGlavna { get => btnGlavna; set => btnGlavna = value; }
+        public Button BtnDodaj { get => btnDodaj; set => btnDodaj = value; }
+        public ComboBox CmbŽanr { get => cmbŽanr; set => cmbŽanr = value; }
+        public DateTimePicker DateTimePickerPocetak { get => dateTimePickerPocetak; set => dateTimePickerPocetak = value; }
+        public DateTimePicker DateTimePickerKraj { get => dateTimePickerKraj; set => dateTimePickerKraj = value; }
+        public Label Label1 { get => label1; set => label1 = value; }
+        public Label Label2 { get => label2; set => label2 = value; }
+        public Label Label3 { get => label3; set => label3 = value; }
+        public Label Label4 { get => label4; set => label4 = value; }
     }
 }

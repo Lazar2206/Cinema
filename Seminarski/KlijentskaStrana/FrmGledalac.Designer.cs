@@ -208,5 +208,20 @@
         private ComboBox cmbMesta;
         private Panel pnlGledalac;
         private Button btnGlavna;
+
+        public Button BtnKreiraj { get => btnKreiraj; set => btnKreiraj = value; }
+        public Label Label2 { get => label2; set => label2 = value; }
+        public Label Label4 { get => label4; set => label4 = value; }
+        public TextBox TxtPrezime { get => txtPrezime; set => txtPrezime = value; }
+        public Label TxtKorisničkoIme { get => txtKorisničkoIme; set => txtKorisničkoIme = value; }
+        public TextBox TxtMejl { get => txtMejl; set => txtMejl = value; }
+        public Button BtnDetalji { get => btnDetalji; set => btnDetalji = value; }
+        public DataGridView DgvGledaoci { get => dgvGledaoci; set => dgvGledaoci = value; }
+        public Button BtnPretraži { get => btnPretraži; set => btnPretraži = value; }
+        public Label Label1 { get => label1; set => label1 = value; }
+        public TextBox TxtIme { get => txtIme; set => txtIme = value; }
+        public ComboBox CmbMesta { get => cmbMesta; set => cmbMesta = value; }
+        public Panel PnlGledalac { get => pnlGledalac; set => pnlGledalac = value; }
+        public Button BtnGlavna { get => btnGlavna; set => btnGlavna = value; }
     }
 }

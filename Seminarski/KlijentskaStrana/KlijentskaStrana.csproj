@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="17.14.8" />
     <PackageReference Include="microsoft.data.sqlclient" Version="6.0.2" />
   </ItemGroup>
 

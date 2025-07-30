@@ -9,7 +9,8 @@
       "Logika/1.0.0": {
         "dependencies": {
           "DBBroker": "1.0.0",
-          "Domen": "1.0.0"
+          "Domen": "1.0.0",
+          "SistemskeOperacije": "1.0.0"
         },
         "runtime": {
           "Logika.dll": {}
@@ -438,8 +439,34 @@
         }
       },
       "Domen/1.0.0": {
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "6.0.2"
+        },
         "runtime": {
           "Domen.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Repozitorijumi/1.0.0": {
+        "dependencies": {
+          "DBBroker": "1.0.0"
+        },
+        "runtime": {
+          "Repozitorijumi.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "SistemskeOperacije/1.0.0": {
+        "dependencies": {
+          "DBBroker": "1.0.0",
+          "Repozitorijumi": "1.0.0"
+        },
+        "runtime": {
+          "SistemskeOperacije.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -704,6 +731,16 @@
       "sha512": ""
     },
     "Domen/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Repozitorijumi/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemskeOperacije/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

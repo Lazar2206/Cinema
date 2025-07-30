@@ -1,4 +1,6 @@
-﻿namespace KlijentskaStrana
+﻿using Microsoft.Data.SqlClient;
+
+namespace KlijentskaStrana
 {
     partial class FrmGlavna
     {
@@ -173,5 +175,20 @@
         private ToolStripMenuItem filmToolStripMenuItem;
         private ToolStripMenuItem podešavanjaSoftverskogSistemaToolStripMenuItem;
         private ToolStripMenuItem oProgramuToolStripMenuItem;
+
+        public MenuStrip MenuStrip1 { get => menuStrip1; set => menuStrip1 = value; }
+        public SqlCommand SqlCommand1 { get => sqlCommand1; set => sqlCommand1 = value; }
+        public ToolStripMenuItem DokumentiToolStripMenuItem { get => dokumentiToolStripMenuItem; set => dokumentiToolStripMenuItem = value; }
+        public ToolStripMenuItem RačunToolStripMenuItem { get => računToolStripMenuItem; set => računToolStripMenuItem = value; }
+        public ToolStripMenuItem PružalacUslugeToolStripMenuItem { get => pružalacUslugeToolStripMenuItem; set => pružalacUslugeToolStripMenuItem = value; }
+        public ToolStripMenuItem BioskopToolStripMenuItem { get => bioskopToolStripMenuItem; set => bioskopToolStripMenuItem = value; }
+        public ToolStripMenuItem PrimalacUslugeToolStripMenuItem { get => primalacUslugeToolStripMenuItem; set => primalacUslugeToolStripMenuItem = value; }
+        public ToolStripMenuItem GledalacToolStripMenuItem { get => gledalacToolStripMenuItem; set => gledalacToolStripMenuItem = value; }
+        public ToolStripMenuItem ŠToolStripMenuItem { get => šToolStripMenuItem; set => šToolStripMenuItem = value; }
+        public ToolStripMenuItem DistributerToolStripMenuItem { get => distributerToolStripMenuItem; set => distributerToolStripMenuItem = value; }
+        public ToolStripMenuItem MestoToolStripMenuItem { get => mestoToolStripMenuItem; set => mestoToolStripMenuItem = value; }
+        public ToolStripMenuItem FilmToolStripMenuItem { get => filmToolStripMenuItem; set => filmToolStripMenuItem = value; }
+        public ToolStripMenuItem PodešavanjaSoftverskogSistemaToolStripMenuItem { get => podešavanjaSoftverskogSistemaToolStripMenuItem; set => podešavanjaSoftverskogSistemaToolStripMenuItem = value; }
+        public ToolStripMenuItem OProgramuToolStripMenuItem { get => oProgramuToolStripMenuItem; set => oProgramuToolStripMenuItem = value; }
     }
 }

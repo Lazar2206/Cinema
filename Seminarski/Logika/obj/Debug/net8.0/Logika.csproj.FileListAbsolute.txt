@@ -15,3 +15,7 @@ C:\Users\PC\source\repos\Seminarski\Logika\obj\Debug\net8.0\Logika.dll
 C:\Users\PC\source\repos\Seminarski\Logika\obj\Debug\net8.0\refint\Logika.dll
 C:\Users\PC\source\repos\Seminarski\Logika\obj\Debug\net8.0\Logika.pdb
 C:\Users\PC\source\repos\Seminarski\Logika\obj\Debug\net8.0\ref\Logika.dll
+C:\Users\PC\source\repos\Seminarski\Logika\bin\Debug\net8.0\SistemskeOperacije.dll
+C:\Users\PC\source\repos\Seminarski\Logika\bin\Debug\net8.0\SistemskeOperacije.pdb
+C:\Users\PC\source\repos\Seminarski\Logika\bin\Debug\net8.0\Repozitorijumi.dll
+C:\Users\PC\source\repos\Seminarski\Logika\bin\Debug\net8.0\Repozitorijumi.pdb

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domen
 {
-    public class Gledalac
+    public class Gledalac : DomenskiObjekat
     {
         public int IdGledalac { get; set; }
       
@@ -16,6 +17,28 @@ namespace Domen
    
         public string Mejl { get; set; }
         public string Prikaz => $"{Ime} {Prezime}";
+
+        public string NazivTabele => "Gledalac";
+
+        public string UslovZaSelect => $"";
+
+        public string InsertKolone => "";
+
+        public string InsertVrednosti => "";
+
+        public string UslovZaJednog() => $"{IdGledalac}, '{IdMesto}'," +
+            $"'{Ime}', {Prezime}, '{Mejl}'  ";
+
+        public DomenskiObjekat ReadRow(SqlDataReader reader)
+        {
+            Gledalac g = new Gledalac();
+            g.Ime=(string)reader["Ime"];
+            g.Prezime = (string)reader["Prezime"];
+            g.IdMesto = (int)reader["IdMesto"];
+            g.Mejl = (string)reader["Mejl"];
+            g.IdGledalac = (int)reader["IdGledalac"];
+            return g;
+        }
     }
 
 }

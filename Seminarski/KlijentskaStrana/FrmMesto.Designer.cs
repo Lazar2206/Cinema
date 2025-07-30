@@ -93,5 +93,10 @@
         private Button btnGlavna;
         private TextBox txtNazivMesta;
         private DataGridView dgvMesta;
+
+        public Button BtnDodaj { get => btnDodaj; set => btnDodaj = value; }
+        public Button BtnGlavna { get => btnGlavna; set => btnGlavna = value; }
+        public TextBox TxtNazivMesta { get => txtNazivMesta; set => txtNazivMesta = value; }
+        public DataGridView DgvMesta { get => dgvMesta; set => dgvMesta = value; }
     }
 }

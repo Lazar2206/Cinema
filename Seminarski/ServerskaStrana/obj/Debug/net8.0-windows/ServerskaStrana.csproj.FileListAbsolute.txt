@@ -70,3 +70,7 @@ C:\Users\PC\source\repos\Seminarski\ServerskaStrana\obj\Debug\net8.0-windows\ref
 C:\Users\PC\source\repos\Seminarski\ServerskaStrana\obj\Debug\net8.0-windows\ServerskaStrana.pdb
 C:\Users\PC\source\repos\Seminarski\ServerskaStrana\obj\Debug\net8.0-windows\ServerskaStrana.genruntimeconfig.cache
 C:\Users\PC\source\repos\Seminarski\ServerskaStrana\obj\Debug\net8.0-windows\ref\ServerskaStrana.dll
+C:\Users\PC\source\repos\Seminarski\ServerskaStrana\bin\Debug\net8.0-windows\SistemskeOperacije.dll
+C:\Users\PC\source\repos\Seminarski\ServerskaStrana\bin\Debug\net8.0-windows\SistemskeOperacije.pdb
+C:\Users\PC\source\repos\Seminarski\ServerskaStrana\bin\Debug\net8.0-windows\Repozitorijumi.dll
+C:\Users\PC\source\repos\Seminarski\ServerskaStrana\bin\Debug\net8.0-windows\Repozitorijumi.pdb

@@ -2,7 +2,9 @@
 using Domen.DTO;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
+using System.Transactions;
 
 namespace DBBroker
 {
@@ -11,6 +13,15 @@ namespace DBBroker
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-J9SCJBQ\\SQLEXPRESS;Initial Catalog=seminarski;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         SqlTransaction tran;
         private static Broker instance;
+        public SqlCommand CreateCommand()
+        {
+            var command = con.CreateCommand();
+            if (tran != null)
+            {
+                command.Transaction = tran;
+            }
+            return command;
+        }
 
         public static Broker Instance
         {
@@ -21,10 +32,12 @@ namespace DBBroker
                 return instance;
             }
         }
+       
         public void PoveziSe()
         {
             con.Open();
             Debug.WriteLine(">>>>Uspesno povezivanje sa bazom");
+            
         }
 
         public void ZatvoriKonekciju()
@@ -84,42 +97,7 @@ namespace DBBroker
 
         }
 
-        public List<Mesto> VratiMesta()
-        {
-            List<Mesto> mesta = new List<Mesto>();
-            string upit = "SELECT * FROM Mesto";
-
-            try
-            {
-                PoveziSe();
-                SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = upit;
-
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Mesto m = new Mesto()
-                    {
-                        IdMesto = (int)reader["idMesto"],
-                        NazivMesta = (string)reader["nazivMesta"],
-                    };
-
-                    mesta.Add(m);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>>>Greška u brokeru: " + ex.Message);
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-
-            return mesta;
-
-        }
+        
 
         public List<Gledalac> VratiGledaoce(Gledalac kriterijum)
         {
@@ -252,6 +230,15 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
+        public void Dodaj(DomenskiObjekat domenskiObjekat)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = con;
+            command.Transaction=tran;
+          command.CommandText=$"INSERT INTO {domenskiObjekat.NazivTabele} " +
+                          $"VALUES ({domenskiObjekat.UslovZaJednog()})";
+            command.ExecuteNonQuery();
+        }
 
         public bool KreirajGledalac(Gledalac gledalac)
         {
@@ -288,38 +275,7 @@ namespace DBBroker
             }
         }
 
-        public bool KreirajMesto(Mesto mesto)
-        {
-            string upit = "INSERT INTO Mesto (nazivMesta) " +
-                          "VALUES (@nazivMesta)";
-            try
-            {
-                PoveziSe();
-                BeginTranscation();
-
-                SqlCommand cmd = con.CreateCommand();
-                cmd.Transaction = tran;
-                cmd.CommandText = upit;
-
-                cmd.Parameters.AddWithValue("@nazivMesta", mesto.NazivMesta);
-
-
-                int uspešno = cmd.ExecuteNonQuery();
-                Commit();
-
-                return uspešno > 0;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajMesto): " + ex.Message);
-                Rollback();
-                return false;
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-        }
+        
 
         public List<Film> VratiFilmove()
         {
@@ -361,41 +317,7 @@ namespace DBBroker
             return filmovi;
         }
 
-        public bool KreirajFilm(Film film)
-        {
-            string upit = "INSERT INTO Film (naslov, zanr, pocetak, kraj, trajanjeMinuti) " +
-                          "VALUES (@naslov, @zanr, @pocetak, @kraj, @trajanjeMinuti)";
-            try
-            {
-                PoveziSe();
-                BeginTranscation();
-
-                SqlCommand cmd = con.CreateCommand();
-                cmd.Transaction = tran;
-                cmd.CommandText = upit;
-
-                cmd.Parameters.AddWithValue("@naslov", film.Naslov);
-                cmd.Parameters.AddWithValue("@zanr", film.Zanr.ToString());
-                cmd.Parameters.AddWithValue("@pocetak", film.Pocetak);
-                cmd.Parameters.AddWithValue("@kraj", film.Kraj);
-                cmd.Parameters.AddWithValue("@trajanjeMinuti", film.TrajanjeMinuti);
-
-                int uspešno = cmd.ExecuteNonQuery();
-                Commit();
-
-                return uspešno > 0;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>>>> Greška u brokeru (KreirajFilm): " + ex.Message);
-                Rollback();
-                return false;
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-        }
+       
 
         public List<Distributer> VratiDistributere(Distributer kriterijum)
         {
@@ -594,7 +516,7 @@ namespace DBBroker
                 PoveziSe();
                 BeginTranscation();
 
-                int noviRb = VratiSledeciRB(stavka.IdRacun, con, tran); 
+                int noviRb = VratiSledeciRB(stavka.IdRacun); 
 
                 string upit = "INSERT INTO StavkaRacuna (idRacun, rb, cena, opis, idFilm) " +
                               "VALUES (@idRacun, @rb, @cena, @opis, @idFilm)";
@@ -624,21 +546,36 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
-        private int VratiSledeciRB(int idRacun, SqlConnection con, SqlTransaction tran)
+        public int VratiSledeciRB(int idRacun)
         {
-            int id = 0;
-            string upit = $"select max(rb) from StavkaRacuna where idRacun = @idRacun";
+            int sledeciRb = 1; // podrazumevano ako nema nijedne stavke
 
-            SqlCommand cmd = new SqlCommand(upit, con, tran);
-            cmd.Parameters.AddWithValue("@idRacun", idRacun);
-
-            object result = cmd.ExecuteScalar();
-            if (result != DBNull.Value)
+            try
             {
-                id = (int)result;
+                
+                {
+                    con.Open();
+
+                    string upit = "SELECT MAX(Rb) FROM StavkaRacuna WHERE IdRacun = @idRacun";
+                    using (SqlCommand cmd = new SqlCommand(upit, con))
+                    {
+                        cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+                        object result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value && result != null)
+                        {
+                            sledeciRb = Convert.ToInt32(result) + 1;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Po želji možeš logovati grešku
+                throw new Exception("Greška prilikom određivanja sledećeg rednog broja stavke.", ex);
             }
 
-            return ++id;
+            return sledeciRb;
         }
 
 
@@ -1038,5 +975,24 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
+
+        public DomenskiObjekat SelectOne(DomenskiObjekat kriterijum)
+        {
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = $"SELECT * FROM {kriterijum.NazivTabele} WHERE {kriterijum.UslovZaJednog()}";
+
+            SqlDataReader reader = command.ExecuteReader();
+            DomenskiObjekat rezultat = null;
+
+            if (reader.Read())
+            {
+                rezultat = kriterijum.ReadRow(reader);
+            }
+
+            reader.Close(); 
+            return rezultat;
+        }
+
+
     }
 }

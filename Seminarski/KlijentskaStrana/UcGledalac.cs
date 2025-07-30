@@ -1,4 +1,5 @@
 ﻿using Domen;
+using KlijentskaStrana.GUIKontroler;
 using Komunikacija;
 using Logika;
 using System;
@@ -16,119 +17,115 @@ namespace KlijentskaStrana
     public partial class UcGledalac : UserControl
     {
         public event EventHandler GledalacAzuriran;
-        public Gledalac Gledalac { get; set; }
-        public Klijent Klijent { get; set; }
+        public Klijent klijent { get; set; }
+        public GledalacKontroler kontrolerGledalac { get; set; }
+        private Gledalac gledalac;
+
         public UcGledalac()
         {
             InitializeComponent();
+            
         }
-        private void btnPretraži_Click(object sender, EventArgs e)
-        {
-        }
+
         public void PopuniPolja()
         {
-            if (Gledalac != null)
-            {
-                txtIme.Text = Gledalac.Ime;
-                txtPrezime.Text = Gledalac.Prezime;
-                txtMejl.Text = Gledalac.Mejl;
+            cmbGledalac.DataSource = kontrolerGledalac.VratiMesta();
+            cmbGledalac.DisplayMember = "NazivMesta";
+            cmbGledalac.ValueMember = "IdMesto";
 
-                cmbGledalac.DataSource = Kontroler.Instance.VratiMesta();
-                cmbGledalac.DisplayMember = "NazivMesta";
-                cmbGledalac.ValueMember = "IdMesto";
-                cmbGledalac.SelectedValue = Gledalac.IdMesto;
-            }
+            txtIme.Text = "";
+            txtPrezime.Text = "";
+            txtMejl.Text = "";
+            cmbGledalac.SelectedIndex = -1;
+            gledalac = null;
         }
-        private void btnUredi_Click(object sender, EventArgs e)
-        {
 
-            Gledalac g = new Gledalac
+        public void PopuniPoljaIzObjekta(object o) 
+        {
+            cmbGledalac.DataSource = kontrolerGledalac.VratiMesta();
+            cmbGledalac.DisplayMember = "NazivMesta";
+            cmbGledalac.ValueMember = "IdMesto";
+
+            gledalac = o as Gledalac;
+            if (gledalac == null) return;
+
+            txtIme.Text = gledalac.Ime;
+            txtPrezime.Text = gledalac.Prezime;
+            txtMejl.Text = gledalac.Mejl;
+            cmbGledalac.SelectedValue = gledalac.IdMesto;
+        }
+
+        private void btnZapamti_Click(object sender, EventArgs e)
+        {
+            Gledalac novi = new Gledalac
             {
-                IdGledalac = Gledalac.IdGledalac,
                 Ime = txtIme.Text,
                 Prezime = txtPrezime.Text,
                 Mejl = txtMejl.Text,
-                IdMesto = (int)cmbGledalac.SelectedValue,
+                IdMesto = (int)cmbGledalac.SelectedValue
             };
-            Poruka zahtev = new Poruka
+
+            bool uspeh = kontrolerGledalac.ZapamtiGledaoca(novi);
+            if (uspeh)
             {
-                Object = g,
-                Operacija = Operacija.PromeniGledaoca,
-            };
-            Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Klijent.PrimiPoruku();
-            if (odgovor.Operacija == Operacija.Uspešno)
-            {
-                MessageBox.Show("Sistem je zapamtio gledaoca");
+                MessageBox.Show("Sistem je zapamtio gledaoca.");
                 GledalacAzuriran?.Invoke(this, EventArgs.Empty);
-                txtIme.Text = string.Empty;
-                txtPrezime.Text = string.Empty;
-                txtMejl.Text = string.Empty;
-                cmbGledalac.SelectedIndex = -1;
+                PopuniPolja();
             }
             else
             {
-                MessageBox.Show("Sistem ne može da zapamti gledaoca");
-                
+                MessageBox.Show("Sistem ne može da zapamti gledaoca.");
+            }
+        }
+
+        private void btnUredi_Click(object sender, EventArgs e)
+        {
+            if (gledalac == null)
+            {
+                MessageBox.Show("Gledalac nije učitan.");
+                return;
             }
 
+            gledalac.Ime = txtIme.Text;
+            gledalac.Prezime = txtPrezime.Text;
+            gledalac.Mejl = txtMejl.Text;
+            gledalac.IdMesto = (int)cmbGledalac.SelectedValue;
+
+            kontrolerGledalac.PostaviGledaoca(gledalac);
+            bool uspeh = kontrolerGledalac.IzmeniGledaoca();
+
+            if (uspeh)
+            {
+                MessageBox.Show("Sistem je izmenio gledaoca.");
+                GledalacAzuriran?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                MessageBox.Show("Sistem ne može da izmeni gledaoca.");
+            }
         }
 
         private void btnObriši_Click(object sender, EventArgs e)
         {
 
-            Poruka zahtev = new Poruka
+            if (gledalac == null)
             {
-                Object = Gledalac,
-                Operacija = Operacija.ObrišiGledalac,
-            };
-            Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Klijent.PrimiPoruku();
-            if (odgovor.Operacija == Operacija.Uspešno)
-            {
-                MessageBox.Show("Sistem je obrisao gledaoca");
-                GledalacAzuriran?.Invoke(this, EventArgs.Empty);
-                txtIme.Text = string.Empty;
-                txtPrezime.Text = string.Empty;
-                txtMejl.Text = string.Empty;
-                cmbGledalac.SelectedIndex = -1;
+                MessageBox.Show("Gledalac nije učitan.");
+                return;
             }
-            else
-            {
-                GledalacAzuriran?.Invoke(this, EventArgs.Empty);
-                MessageBox.Show("Sistem ne može da obriše gledaoca");
-            }
-        }
 
-        private void btnZapamti_Click(object sender, EventArgs e)
-        {
-            Gledalac g = new Gledalac
+            kontrolerGledalac.PostaviGledaoca(gledalac);
+            bool uspesno = kontrolerGledalac.ObrisiGledaoca();
+
+            if (uspesno)
             {
-              
-                Ime = txtIme.Text,
-                Prezime = txtPrezime.Text,
-                Mejl = txtMejl.Text,
-                IdMesto = (int)cmbGledalac.SelectedValue,
-            };
-            Poruka zahtev = new Poruka
-            {
-                Object = g,
-                Operacija = Operacija.KreirajGledalac,
-            };
-            Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Klijent.PrimiPoruku();
-            if (odgovor.Operacija == Operacija.Uspešno)
-            {
-                MessageBox.Show("Sistem je zapamtio gledaoca");
-                txtIme.Text = string.Empty;
-                txtPrezime.Text = string.Empty;
-                txtMejl.Text = string.Empty;
-                cmbGledalac.SelectedIndex = -1;
+                MessageBox.Show("Sistem je obrisao gledaoca.");
                 GledalacAzuriran?.Invoke(this, EventArgs.Empty);
+                PopuniPolja();
             }
             else
             {
-                MessageBox.Show("Sistem ne može da zapamti gledaoca");
+                MessageBox.Show("Sistem ne može da obriše gledaoca.");
             }
         }
     }

@@ -426,6 +426,9 @@
       "System.Text.Json/4.7.2": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "Domen/1.0.0": {
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "6.0.2"
+        },
         "runtime": {
           "Domen.dll": {
             "assemblyVersion": "1.0.0",

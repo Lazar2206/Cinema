@@ -1,5 +1,6 @@
 ﻿using Domen;
 using Domen.DTO;
+using KlijentskaStrana.GUIKontroler;
 using Komunikacija;
 using Logika;
 using System;
@@ -16,123 +17,100 @@ namespace KlijentskaStrana
 {
     public partial class UcStavkaRacunacs : UserControl
     {
-        public Bioskop Bioskop { get; set; }
-        public Klijent Klijent { get; set; }
-        public int IdRacun { get; set; }
+        public Klijent klijent;
+        public Bioskop bioskop;
         public event Action<double> StavkaDodata;
-        private int selektovaniRb;
         public event Action StavkaPromenjena;
 
-        private double staraCena = 0;
+        private RacunKontroler racunKontroler;
+        public int IdRacun { get; set; }
+        public int selektovaniRb { get; set; }
+        private double staraCena; // Postaviš pri izmeni stavke
+        public Klijent Klijent;
+        public Bioskop Bioskop;
         public UcStavkaRacunacs()
         {
             InitializeComponent();
-
+            
 
         }
 
-
+        public void PoveziSaKontrolerom(RacunKontroler kontroler)
+        {
+            this.racunKontroler = kontroler;
+            UcitajFilmove(); 
+        }
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            if (!double.TryParse(txtCena.Text, out double cena) || cena < 0)
+            double cena;
+            if (!double.TryParse(txtCena.Text, out cena))
             {
-                MessageBox.Show("Unesite validnu cenu!");
+                MessageBox.Show("Cena nije validna.");
                 return;
             }
 
-            if (cmbFilm.SelectedItem == null)
+            var stavka = new StavkaRacuna
             {
-                MessageBox.Show("Izaberite film!");
-                return;
-            }
-
-            StavkaRacuna stavka = new StavkaRacuna
-            {
-                IdRacun = IdRacun,
                 Opis = txtOpis.Text,
                 Cena = cena,
-                IdFilm = ((Film)cmbFilm.SelectedItem).IdFilm
+                IdFilm = (int)cmbFilm.SelectedValue
             };
 
-            Poruka zahtev = new Poruka
+            bool uspesno = racunKontroler.DodajStavku(stavka);
+            if (uspesno)
             {
-                Operacija = Operacija.DodajStavkuRacuna,
-                Object = stavka
-            };
-
-
-            Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Klijent.PrimiPoruku();
-
-            if (odgovor.Operacija == Operacija.Uspešno)
-            {
-                MessageBox.Show("Stavka uspešno dodata!");
-                txtOpis.Clear();
-                txtCena.Clear();
                 StavkaDodata?.Invoke(cena);
-
+                MessageBox.Show("Stavka dodata.");
             }
             else
             {
-                MessageBox.Show("Sistem ne može da doda stavku.");
+                MessageBox.Show("Greška pri dodavanju stavke.");
             }
         }
         public void UcitajFilmove()
         {
-            List<Film> filmovi = Kontroler.Instance.VratiFilmove();
-            cmbFilm.DataSource = filmovi;
+            cmbFilm.DataSource = racunKontroler.VratiFilmove();
             cmbFilm.DisplayMember = "Naslov";
             cmbFilm.ValueMember = "IdFilm";
+            cmbFilm.SelectedIndex = -1;
         }
         public void PostaviStavku(PrikazStavkeRacuna stavka)
         {
             txtOpis.Text = stavka.Opis;
             txtCena.Text = stavka.Cena.ToString("F2");
-            cmbFilm.SelectedIndex = cmbFilm.FindStringExact(stavka.NaslovFilma);
+            cmbFilm.SelectedValue = stavka.NaslovFilma;
 
-            staraCena = stavka.Cena;
+         
             selektovaniRb = stavka.Rb;
+            staraCena = stavka.Cena;
         }
 
 
         private void btnIzmeniStavku_Click(object sender, EventArgs e)
         {
-            if (!double.TryParse(txtCena.Text, out double novaCena)) return;
-            if (cmbFilm.SelectedItem == null) return;
-
-            Film izabraniFilm = (Film)cmbFilm.SelectedItem;
-
-            StavkaRacuna stavka = new StavkaRacuna
+            double cena;
+            if (!double.TryParse(txtCena.Text, out cena))
             {
-                IdRacun = IdRacun,
+                MessageBox.Show("Cena nije validna.");
+                return;
+            }
+
+            var stavka = new StavkaRacuna
+            {
                 Opis = txtOpis.Text,
-                Cena = novaCena,
-                IdFilm = izabraniFilm.IdFilm,
-                Rb = selektovaniRb
+                Cena = cena,
+                IdFilm = (int)cmbFilm.SelectedValue
             };
 
-            Poruka zahtev = new Poruka
+            bool uspesno = racunKontroler.IzmeniStavku(stavka);
+            if (uspesno)
             {
-                Operacija = Operacija.IzmeniStavkuRacuna,
-                Object = stavka
-            };
-
-            Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Klijent.PrimiPoruku();
-
-            if (odgovor.Operacija == Operacija.Uspešno)
-            {
-                MessageBox.Show("Stavka uspešno izmenjena.");
-
-                // Izračunaj razliku u ceni i prosledi događajem
-                double razlika = novaCena - staraCena;
-                StavkaDodata?.Invoke(razlika);
-                staraCena = novaCena;
                 StavkaPromenjena?.Invoke();
+                MessageBox.Show("Stavka izmenjena.");
             }
             else
             {
-                MessageBox.Show("Greška prilikom izmene stavke.");
+                MessageBox.Show("Greška pri izmeni stavke.");
             }
         }
 

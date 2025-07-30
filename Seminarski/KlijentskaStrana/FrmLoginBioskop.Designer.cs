@@ -64,6 +64,7 @@
             // 
             txtLozinka.Location = new Point(207, 95);
             txtLozinka.Name = "txtLozinka";
+            txtLozinka.PasswordChar = '*';
             txtLozinka.Size = new Size(125, 27);
             txtLozinka.TabIndex = 3;
             // 
@@ -100,5 +101,11 @@
         private TextBox txtKorisničkoIme;
         private TextBox txtLozinka;
         private Button btnLogin;
+
+        public Label Label1 { get => label1; set => label1 = value; }
+        public Label Label2 { get => label2; set => label2 = value; }
+        public TextBox TxtKorisničkoIme { get => txtKorisničkoIme; set => txtKorisničkoIme = value; }
+        public TextBox TxtLozinka { get => txtLozinka; set => txtLozinka = value; }
+        public Button BtnLogin { get => btnLogin; set => btnLogin = value; }
     }
 }

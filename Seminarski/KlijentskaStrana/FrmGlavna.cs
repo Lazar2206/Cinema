@@ -1,4 +1,5 @@
 ﻿using Domen;
+using KlijentskaStrana.GUIKontroler;
 using Komunikacija;
 using Logika;
 using System;
@@ -19,16 +20,16 @@ namespace KlijentskaStrana
         private Bioskop bioskop;
         private Klijent klijent;
 
-        public FrmGlavna(Bioskop bioskop, Klijent klijent)
+        public FrmGlavna()
         {
             InitializeComponent();
-            this.bioskop = bioskop;
-            this.klijent = klijent;
+            
+
         }
 
         private void gledalacToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            FrmGledalac frm = new FrmGledalac(bioskop, klijent);
+            FrmGledalac frm = new FrmGledalac();
             frm.ShowDialog();
 
         }
@@ -40,31 +41,31 @@ namespace KlijentskaStrana
 
         private void distributerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmDistributer frm = new FrmDistributer(klijent, bioskop);
+            FrmDistributer frm = new FrmDistributer(klijent);
             frm.ShowDialog();
         }
 
         private void mestoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmMesto frm = new FrmMesto(klijent);
+            FrmMesto frm = new FrmMesto();
             frm.ShowDialog();
         }
 
         private void filmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmFilm frm = new FrmFilm(klijent, bioskop);
+            FrmFilm frm = new FrmFilm();
             frm.ShowDialog();
         }
 
         private void računToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRačun frm = new FrmRačun(klijent, bioskop);
+            FrmRačun frm = new FrmRačun();
             frm.ShowDialog();
         }
 
         private void bioskopToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmBioskop frm = new FrmBioskop(klijent, bioskop);
+            FrmBioskop frm = new FrmBioskop();
             frm.ShowDialog();
         }
 

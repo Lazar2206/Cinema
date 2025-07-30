@@ -3,6 +3,7 @@
 using DBBroker;
 using Domen;
 using Domen.DTO;
+using SistemskeOperacije;
 using System.ComponentModel;
 
 namespace Logika
@@ -26,23 +27,24 @@ namespace Logika
 
         public Bioskop Login(Bioskop bioskop)
         {
-            foreach (Bioskop k in broker.VratiSveBioskope())
-            {
-                if (k.KorisnickoIme == bioskop.KorisnickoIme && k.Sifra == bioskop.Sifra)
-                {
-                    prijavljeniBioskopi.Add(k);
-                    return k; 
-                }
-            }
-            return null;
+            SOBase operacija = new SOLogin(bioskop.KorisnickoIme, bioskop.Sifra);
+            operacija.ExecuteTemplate();
+            return ((SOLogin)operacija).Result;
+         
         }
         public List<Mesto> VratiMesta(Gledalac kriterijum)
         {
-            return broker.VratiMesta();
+            SOVratiSvaMesta so = new SOVratiSvaMesta();
+            so.ExecuteTemplate();
+            List<Mesto> svaMesta = so.Rezultat;
+            return svaMesta;
         }
         public List<Mesto> VratiMesta()
         {
-            return broker.VratiMesta();
+            SOVratiSvaMesta so = new SOVratiSvaMesta();
+            so.ExecuteTemplate();
+            List<Mesto> svaMesta = so.Rezultat;
+            return svaMesta;
         }
         public void Logout(Bioskop prijavljeniBioskop)
         {
@@ -66,12 +68,17 @@ namespace Logika
 
         public bool KreirajGledalac(Gledalac gledalac)
         {
-            return broker.KreirajGledalac(gledalac);
+            SOBase operacija= new SOKreirajGledalac(gledalac);
+            operacija.ExecuteTemplate();
+            return true;
         }
 
         public bool KreirajMesto(Mesto mesto)
         {
-           return broker.KreirajMesto(mesto);
+            var so = new SOKreirajMesto(mesto);
+            so.ExecuteTemplate();
+
+            return (so.Uspeh);
         }
 
         public List<Film> VratiFilmove()
@@ -81,7 +88,10 @@ namespace Logika
 
         public bool KreirajFilm(Film film)
         {
-            return broker.KreirajFilm(film);
+            var so = new SOKreirajFilm(film);
+            so.ExecuteTemplate();
+
+            return so.Uspeh;
         }
 
         public List<Distributer> VratiDistributere(Distributer kriterijum)
@@ -194,6 +204,11 @@ namespace Logika
         public List<Bioskop> VratiSveBioskope()
         {
             return broker.VratiSveBioskope();
+        }
+
+        public int VratiSledeciRbZaRacun(int idRacun)
+        {
+            return broker.VratiSledeciRB(idRacun);
         }
     }
 }

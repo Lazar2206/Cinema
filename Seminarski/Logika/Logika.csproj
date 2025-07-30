@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DBBroker\DBBroker.csproj" />
     <ProjectReference Include="..\Domen\Domen.csproj" />
+    <ProjectReference Include="..\SistemskeOperacije\SistemskeOperacije.csproj" />
   </ItemGroup>
 
 </Project>

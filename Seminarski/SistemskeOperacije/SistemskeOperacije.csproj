@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DBBroker\DBBroker.csproj" />
+    <ProjectReference Include="..\Repozitorijumi\Repozitorijumi.csproj" />
+  </ItemGroup>
+
 </Project>

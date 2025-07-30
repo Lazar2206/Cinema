@@ -1,5 +1,6 @@
 ﻿using DBBroker;
 using Domen;
+using KlijentskaStrana.GUIKontroler;
 using Komunikacija;
 using Logika;
 using System;
@@ -16,15 +17,18 @@ namespace KlijentskaStrana
 {
     public partial class FrmBioskop : Form
     {
-        private Klijent klijent;
-        private Bioskop bioskop;
-        public FrmBioskop(Klijent klijent, Bioskop bioskop)
+        
+        private readonly BioskopKontroler kontroler;
+        public FrmBioskop()
         {
             InitializeComponent();
-            this.klijent = klijent;
-            this.bioskop = bioskop;
-            NapuniDGV();
+            kontroler = new BioskopKontroler(this);
         }
+        public TextBox TxtNaziv => txtNazivBioskopa;
+        public TextBox TxtAdresa => txtAdresaBioskopa;
+        public TextBox TxtKorisnickoIme => txtKorisničkoIme;
+        public TextBox TxtSifra => txtŠifra;
+        public DataGridView Dgv => dgvBioskopi;
 
         private void btnGlavna_Click(object sender, EventArgs e)
         {
@@ -33,45 +37,9 @@ namespace KlijentskaStrana
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(txtNazivBioskopa.Text) || string.IsNullOrWhiteSpace(txtAdresaBioskopa.Text) || 
-                string.IsNullOrWhiteSpace(txtKorisničkoIme.Text) || string.IsNullOrWhiteSpace(txtŠifra.Text))
-            {
-                MessageBox.Show("Sistem ne može da kreira bioskop.\nPopunite sva polja");
-                return;
-            }
-            Bioskop b = new Bioskop
-            {
-                NazivBioskopa = txtNazivBioskopa.Text,
-                AdresaBioskopa = txtAdresaBioskopa.Text,
-                KorisnickoIme = txtKorisničkoIme.Text,
-                Sifra = txtŠifra.Text
-            };
-            Poruka zahtev = new Poruka
-            {
-                Operacija = Operacija.DodajBioskop,
-                Object = b
-            };
-            klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = klijent.PrimiPoruku();
-            if (odgovor.Operacija == Operacija.Uspešno)
-            {
-                MessageBox.Show("Bioskop uspešno dodat!");
-                txtNazivBioskopa.Clear();
-                txtAdresaBioskopa.Clear();
-                txtKorisničkoIme.Clear();
-                txtŠifra.Clear();
-                NapuniDGV();
-            }
-            else
-            {
-                MessageBox.Show("Sistem ne može da doda bioskop.");
-            }
+            kontroler.DodajBioskop();
 
         }
-        private void NapuniDGV()
-        {
-            dgvBioskopi.DataSource = null;
-            dgvBioskopi.DataSource = Kontroler.Instance.VratiSveBioskope();
-        }
+       
     }
 }
