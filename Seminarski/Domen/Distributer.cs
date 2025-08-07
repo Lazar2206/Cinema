@@ -19,6 +19,8 @@ public class Distributer : DomenskiObjekat
 
     public string UslovZaUpdate => $"idDistributer={IdDistributer}";
 
+    public string PrimarniKljucKolona => "idDistributer";
+
     public  DomenskiObjekat ReadRow(SqlDataReader reader)
     {
         return new Distributer

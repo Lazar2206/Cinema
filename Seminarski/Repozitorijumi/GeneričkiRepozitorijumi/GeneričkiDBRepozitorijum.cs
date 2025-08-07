@@ -254,5 +254,62 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
 
             return lista;
         }
+        public List<PrikazStavkeRacuna> VratiStavkeRacuna(int idRacun)
+        {
+            List<PrikazStavkeRacuna> stavke = new List<PrikazStavkeRacuna>();
+
+            string upit = @"
+        SELECT sr.rb, sr.opis, sr.cena, f.naslov
+        FROM StavkaRacuna sr
+        JOIN Film f ON sr.idFilm = f.idFilm
+        WHERE sr.idRacun = @idRacun";
+
+            try
+            {
+                PoveziSe();
+                SqlCommand cmd = broker.CreateCommand(); 
+                cmd.CommandText = upit;
+                cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    stavke.Add(new PrikazStavkeRacuna
+                    {
+                        Rb = (int)reader["rb"],
+                        Opis = reader["opis"].ToString(),
+                        Cena = Convert.ToDouble(reader["cena"]),
+                        NaslovFilma = reader["naslov"].ToString()
+                    });
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(">> Greška u VratiStavkeRacuna: " + ex.Message);
+            }
+            finally
+            {
+                ZatvoriKonekciju();
+            }
+
+            return stavke;
+        }
+
+        public int VratiNajnovijiId(DomenskiObjekat objekat)
+        {
+            int id = 0;
+            var komanda = broker.CreateCommand();
+
+            string upit = $"SELECT MAX({objekat.PrimarniKljucKolona}) FROM {objekat.NazivTabele}";
+            komanda.CommandText = upit;
+
+            object result = komanda.ExecuteScalar();
+            if (result != DBNull.Value)
+                id = Convert.ToInt32(result);
+
+            return id;
+        }
     }
 }

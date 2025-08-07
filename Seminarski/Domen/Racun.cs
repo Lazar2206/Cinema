@@ -48,5 +48,7 @@ namespace Domen
 
         public string UslovZaUkupnuCenuUpdate =>
             $"IdRacun = {IdRacun}";
+
+        public string PrimarniKljucKolona => "idRacun";
     }
 }

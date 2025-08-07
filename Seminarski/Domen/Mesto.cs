@@ -26,6 +26,8 @@ namespace Domen
 
         public string UslovZaUpdate => $"idMesto={IdMesto}";
 
+        public string PrimarniKljucKolona => "idMesto";
+
         [Browsable(false)]
         public string UslovZaJednog() => $"idMesto = {IdMesto}";
         public DomenskiObjekat ReadRow(SqlDataReader reader)

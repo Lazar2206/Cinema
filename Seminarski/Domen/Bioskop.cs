@@ -28,6 +28,8 @@ namespace Domen
 
         public string UslovZaUpdate => $"idBioskop={IdBioskop}";
 
+        public string PrimarniKljucKolona => "idBioskop";
+
         public string UslovZaJednog()
         {
             return $"KorisnickoIme = '{KorisnickoIme}' AND Sifra = '{Sifra}'";

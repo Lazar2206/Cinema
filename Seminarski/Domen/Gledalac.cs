@@ -50,6 +50,8 @@ namespace Domen
 
         public string UslovZaUpdate => $"idGledalac = {IdGledalac}";
 
+        public string PrimarniKljucKolona => "idGledalac";
+
         public string UslovZaJednog() => $"{IdGledalac}, '{IdMesto}'," +
             $"'{Ime}', {Prezime}, '{Mejl}'  ";
 

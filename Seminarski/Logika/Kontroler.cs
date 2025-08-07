@@ -156,22 +156,37 @@ namespace Logika
 
         public int VratiIdNajnovijegRacuna()
         {
-            return broker.VratiIdNajnovijegRacuna();
+            var so = new SOVratiIdNajnovijegRacuna();
+            so.ExecuteTemplate();
+            return so.Id;
         }
 
         public List<PrikazStavkeRacuna> VratiStavkeRacuna(int idRacun)
         {
-            return broker.VratiStavkeRacuna( idRacun);
+            SOVratiStavkeRacuna so = new SOVratiStavkeRacuna(idRacun);
+            so.ExecuteTemplate();
+            List<PrikazStavkeRacuna> sveStavke = so.Rezultat;
+            return sveStavke;
         }
 
         public bool KreirajRacun(Racun racun)
         {
-            return broker.KreirajRacun(racun);
+            var so = new SOKreirajRacun(racun);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
-        public bool AzurirajUkupnuCenu(int item1, double item2)
+        public bool AzurirajUkupnuCenu(int idRacun, double novaCena)
         {
-            return broker.AzurirajUkupnuCenu(item1, item2);
+            Racun r = new Racun
+            {
+                IdRacun = idRacun,
+                UkupnaCena = novaCena
+            };
+
+            var so = new SOAzurirajCenu(r);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
         public List<PrikazRacuna> VratiRacun(Racun racun)
@@ -228,7 +243,9 @@ namespace Logika
 
         public int VratiSledeciRbZaRacun(int idRacun)
         {
-            return broker.VratiSledeciRB(idRacun);
+           var so= new SOVratiSledeciRB(idRacun);
+            so.ExecuteTemplate();
+            return so.RB;
         }
 
         public object PretražiDistributere(Distributer kriterijum)

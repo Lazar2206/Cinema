@@ -24,6 +24,8 @@ namespace Domen
 
         public string UslovZaUpdate => $"idRacun = {IdRacun} AND rb = {Rb}";
 
+        public string PrimarniKljucKolona => "rb";
+
         public DomenskiObjekat ReadRow(SqlDataReader reader)
         {
             return new StavkaRacuna

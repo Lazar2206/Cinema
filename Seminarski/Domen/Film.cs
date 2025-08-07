@@ -26,6 +26,8 @@ namespace Domen
 
         public string UslovZaUpdate => $"idFilm={IdFilm}";
 
+        public string PrimarniKljucKolona => "idFilm";
+
         public string UslovZaJednog() => $"IdFilm = {IdFilm}";
 
         public DomenskiObjekat ReadRow(SqlDataReader reader)
