@@ -1,14 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domen;
+using Microsoft.Data.SqlClient;
 
-namespace Domen
+public class Distributer : DomenskiObjekat
 {
-    public class Distributer
+    public int IdDistributer { get; set; }
+    public string NazivDistributera { get; set; }
+
+    public string NazivTabele => "Distributer";
+    public string InsertKolone => "NazivDistributera";
+    public string InsertVrednosti => $"'{NazivDistributera}'";
+
+    public string UslovZaSelect =>
+    string.IsNullOrWhiteSpace(NazivDistributera)
+        ? "1=1"
+        : $"NazivDistributera LIKE '%{NazivDistributera}%'";
+
+    public string VrednostiZaUpdate => $"nazivDistributera='{NazivDistributera}'";
+
+    public string UslovZaUpdate => $"idDistributer={IdDistributer}";
+
+    public  DomenskiObjekat ReadRow(SqlDataReader reader)
     {
-        public int IdDistributer { get; set; }
-        public string NazivDistributera { get; set; }   
+        return new Distributer
+        {
+            IdDistributer = (int)reader["idDistributer"],
+            NazivDistributera = (string)reader["nazivDistributera"]
+        };
+    }
+
+    public string UslovZaJednog()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -21,10 +21,10 @@ namespace KlijentskaStrana
         public GledalacKontroler kontrolerGledalac { get; set; }
         private Gledalac gledalac;
 
-        public UcGledalac()
+        public UcGledalac(GledalacKontroler kontroler)
         {
             InitializeComponent();
-            
+            this.kontrolerGledalac = kontroler;
         }
 
         public void PopuniPolja()
@@ -42,16 +42,18 @@ namespace KlijentskaStrana
 
         public void PopuniPoljaIzObjekta(object o) 
         {
+            gledalac = o as Gledalac;
+            if (gledalac == null) return;
+
+       
             cmbGledalac.DataSource = kontrolerGledalac.VratiMesta();
             cmbGledalac.DisplayMember = "NazivMesta";
             cmbGledalac.ValueMember = "IdMesto";
 
-            gledalac = o as Gledalac;
-            if (gledalac == null) return;
-
             txtIme.Text = gledalac.Ime;
             txtPrezime.Text = gledalac.Prezime;
             txtMejl.Text = gledalac.Mejl;
+
             cmbGledalac.SelectedValue = gledalac.IdMesto;
         }
 

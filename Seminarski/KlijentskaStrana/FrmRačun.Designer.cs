@@ -45,6 +45,7 @@
             btnGlavna = new Button();
             dgvRacuni = new DataGridView();
             btnPretraži = new Button();
+            btnDetaljiStavke = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRacunStavke).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRacuni).BeginInit();
             SuspendLayout();
@@ -200,11 +201,22 @@
             btnPretraži.UseVisualStyleBackColor = true;
             btnPretraži.Click += btnPretraži_Click;
             // 
+            // btnDetaljiStavke
+            // 
+            btnDetaljiStavke.Location = new Point(421, 225);
+            btnDetaljiStavke.Name = "btnDetaljiStavke";
+            btnDetaljiStavke.Size = new Size(115, 39);
+            btnDetaljiStavke.TabIndex = 21;
+            btnDetaljiStavke.Text = "DetaljiStavke";
+            btnDetaljiStavke.UseVisualStyleBackColor = true;
+            btnDetaljiStavke.Click += btnDetaljiStavke_Click;
+            // 
             // FrmRačun
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1557, 536);
+            Controls.Add(btnDetaljiStavke);
             Controls.Add(btnPretraži);
             Controls.Add(dgvRacuni);
             Controls.Add(btnGlavna);
@@ -249,5 +261,6 @@
         private Button btnGlavna;
         private DataGridView dgvRacuni;
         private Button btnPretraži;
+        private Button btnDetaljiStavke;
     }
 }

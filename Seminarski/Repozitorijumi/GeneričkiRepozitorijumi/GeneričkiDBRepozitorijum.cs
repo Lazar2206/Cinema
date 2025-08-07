@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -93,21 +94,68 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
             int rowsAffected = command.ExecuteNonQuery();
             return rowsAffected > 0;
         }
-        public List<DomenskiObjekat> VratiSveFilmove(DomenskiObjekat objekat)
+        public List<DomenskiObjekat> VratiPoUslovu(DomenskiObjekat kriterijum)
         {
             List<DomenskiObjekat> lista = new List<DomenskiObjekat>();
 
             SqlCommand command = broker.CreateCommand();
-            command.CommandText = $"SELECT * FROM {objekat.NazivTabele}";
+            command.CommandText = $"SELECT * FROM {kriterijum.NazivTabele} WHERE {kriterijum.UslovZaSelect}";
 
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                lista.Add(objekat.ReadRow(reader));
+                lista.Add(kriterijum.ReadRow(reader));
             }
 
             reader.Close();
             return lista;
         }
+        public bool Update(DomenskiObjekat objekat)
+        {
+            SqlCommand command = broker.CreateCommand();
+
+            string upit = $"UPDATE {objekat.NazivTabele} SET {objekat.VrednostiZaUpdate} WHERE {objekat.UslovZaUpdate}";
+            Debug.WriteLine(">> UPDATE UPIT: " + upit);
+
+            command.CommandText = upit;
+
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected > 0;
+        }
+        public bool Delete(DomenskiObjekat objekat)
+        {
+            SqlCommand command = broker.CreateCommand();
+            string upit = $"DELETE FROM {objekat.NazivTabele} WHERE {objekat.UslovZaUpdate}";
+            Debug.WriteLine(">> DELETE upit: " + upit);
+
+            command.CommandText = upit;
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected > 0;
+        }
+        public bool AzurirajUkupnuCenuRacuna(int idRacun)
+        {
+            try
+            {
+                string upit = @"
+            UPDATE Racun
+            SET ukupnaCena = (
+                SELECT SUM(cena)
+                FROM StavkaRacuna
+                WHERE idRacun = @idRacun
+            )
+            WHERE idRacun = @idRacun";
+
+                SqlCommand command = broker.CreateCommand();
+                command.CommandText = upit;
+                command.Parameters.AddWithValue("@idRacun", idRacun);
+
+                return command.ExecuteNonQuery() > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

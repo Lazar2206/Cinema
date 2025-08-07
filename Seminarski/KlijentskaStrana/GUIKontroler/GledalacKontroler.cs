@@ -21,10 +21,10 @@ namespace KlijentskaStrana.GUIKontroler
         public void NapuniCmbMesta()
         {
             List<Mesto> mesta = Kontroler.Instance.VratiMesta();
-            forma.CmbMesta.DataSource = mesta;
-            forma.CmbMesta.DisplayMember = "NazivMesta";
-            forma.CmbMesta.ValueMember = "IdMesto";
-            forma.CmbMesta.SelectedIndex = -1;
+            forma.CMBMesta.DataSource = mesta;
+            forma.CMBMesta.DisplayMember = "NazivMesta";
+            forma.CMBMesta.ValueMember = "IdMesto";
+            forma.CMBMesta.SelectedIndex = -1;
         }
 
         public void OsveziGledaoce()
@@ -52,10 +52,7 @@ namespace KlijentskaStrana.GUIKontroler
 
         public void OtvoriFormuZaUnos()
         {
-            UcGledalac uc = new UcGledalac
-            {
-                klijent = Session.Session.Instance.Klijent
-            };
+            UcGledalac uc = new UcGledalac(this); ;
             uc.PopuniPolja();
             uc.GledalacAzuriran += (s, e) => OsveziGledaoce();
 
@@ -74,10 +71,7 @@ namespace KlijentskaStrana.GUIKontroler
 
             var izabrani = forma.DGVGledaoci.SelectedRows[0].DataBoundItem;
 
-            UcGledalac uc = new UcGledalac
-            {
-                klijent = Session.Session.Instance.Klijent
-            };
+            UcGledalac uc = new UcGledalac(this);
             uc.PopuniPoljaIzObjekta(izabrani);
             uc.GledalacAzuriran += (s, e) => OsveziGledaoce();
 

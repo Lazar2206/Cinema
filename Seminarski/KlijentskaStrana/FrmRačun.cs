@@ -10,7 +10,7 @@ namespace KlijentskaStrana
     public partial class FrmRačun : Form
     {
         private RacunKontroler racunKontroler;
-      
+
         public FrmRačun()
         {
             InitializeComponent();
@@ -49,7 +49,8 @@ namespace KlijentskaStrana
 
         private void btnDetalji_Click(object sender, EventArgs e)
         {
-            racunKontroler.PrikaziDetalje();
+            racunKontroler.PrikaziDetaljeStavke();
+
 
         }
 
@@ -57,7 +58,12 @@ namespace KlijentskaStrana
         {
             racunKontroler.ObrisiRacun();
         }
-       
+
+        private void btnDetaljiStavke_Click(object sender, EventArgs e)
+        {
+            racunKontroler.PrikaziDetaljeJedneStavke();
+        }
+
         public ComboBox CmbGledalac => cmbGledalac;
         public DateTimePicker DtpDatum => dateTimePicker1;
         public TextBox TxtBioskop => txtBioskop;

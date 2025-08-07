@@ -22,7 +22,9 @@ namespace Domen
 
         public string InsertVrednosti => $"'{NazivMesta}'";
 
-     
+        public string VrednostiZaUpdate => "";
+
+        public string UslovZaUpdate => $"idMesto={IdMesto}";
 
         [Browsable(false)]
         public string UslovZaJednog() => $"idMesto = {IdMesto}";

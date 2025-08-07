@@ -12,5 +12,7 @@ namespace Domen.DTO
         public string Opis { get; set; }
         public double Cena { get; set; }
         public string NaslovFilma { get; set; }
+        public int IdFilm { get; set; }
+        public int IdRacun { get; set; }
     }
 }

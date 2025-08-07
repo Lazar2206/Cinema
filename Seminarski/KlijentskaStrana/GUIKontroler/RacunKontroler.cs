@@ -29,7 +29,7 @@ namespace KlijentskaStrana.GUIKontroler
 
         private void NapuniCmbGledalac()
         {
-            forma.CmbGledalac.DataSource = Kontroler.Instance.VratiGledaoce();
+            forma.CmbGledalac.DataSource = Kontroler.Instance.VratiSveGledaoce();
             forma.CmbGledalac.DisplayMember = "Prikaz";
             forma.CmbGledalac.ValueMember = "IdGledalac";
             forma.CmbGledalac.SelectedIndex = -1;
@@ -102,13 +102,15 @@ namespace KlijentskaStrana.GUIKontroler
                 IdBioskop = bioskop.IdBioskop
             };
 
+            forma.DgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
+
             forma.DgvRacuni.DataSource = null;
             forma.DgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
             forma.DgvRacuni.Columns["IdGledalac"].Visible = false;
             forma.DgvRacuni.Columns["IdBioskop"].Visible = false;
         }
 
-        public void PrikaziDetalje()
+        public void PrikaziDetaljeStavke()
         {
             if (forma.DgvRacuni.SelectedRows.Count == 0)
             {
@@ -124,6 +126,8 @@ namespace KlijentskaStrana.GUIKontroler
             idRacun = prikaz.IdRacun;
 
             OsvežiDGV();
+
+         
         }
 
         private void OsvežiDGV()
@@ -131,6 +135,8 @@ namespace KlijentskaStrana.GUIKontroler
             var stavke = Kontroler.Instance.VratiStavkeRacuna(idRacun);
             forma.DgvRacunStavke.DataSource = null;
             forma.DgvRacunStavke.DataSource = stavke;
+            forma.DgvRacunStavke.Columns["idRacun"].Visible = false;
+            forma.DgvRacunStavke.Columns["idFilm"].Visible = false;
 
             double ukupno = stavke.Sum(s => s.Cena);
             forma.TxtUkupnaCena.Text = ukupno.ToString("F2");
@@ -270,17 +276,17 @@ namespace KlijentskaStrana.GUIKontroler
             {
                 ukupnaCena += razlika;
                 forma.TxtUkupnaCena.Text = ukupnaCena.ToString("F2");
+            uc.UcitajFilmove();
                 OsveziStavke();
                 AzurirajUkupnuCenu();
             };
-
+           
             uc.StavkaPromenjena += () =>
             {
                 OsveziStavke();
                 PretraziRacune();
             };
 
-            uc.UcitajFilmove();
 
             forma.PnlStavka.Controls.Clear();
             uc.Dock = DockStyle.Fill;
@@ -291,8 +297,52 @@ namespace KlijentskaStrana.GUIKontroler
             var stavke = Kontroler.Instance.VratiStavkeRacuna(idRacun);
             forma.DgvRacunStavke.DataSource = null;
             forma.DgvRacunStavke.DataSource = stavke;
+            
         }
 
+        public void PrikaziDetaljeJedneStavke()
+        {
+            if (forma.DgvRacunStavke.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Izaberite stavku za prikaz detalja.");
+                return;
+            }
+
+            var prikaz = (PrikazStavkeRacuna)forma.DgvRacunStavke.SelectedRows[0].DataBoundItem;
+
+            var selektovanaStavka = new StavkaRacuna
+            {
+                IdRacun = prikaz.IdRacun,
+                Rb = prikaz.Rb,
+                Opis = prikaz.Opis,
+                Cena = prikaz.Cena,
+                IdFilm = prikaz.IdFilm
+            };
+
+            var uc = new UcStavkaRacunacs
+            {
+                IdRacun = selektovanaStavka.IdRacun,
+                Klijent = Session.Session.Instance.Klijent,
+                Bioskop = Session.Session.Instance.CurrentBioskop
+            };
+
+     
+            uc.PoveziSaKontrolerom(this); 
+
+           
+
+            uc.PostaviStavku(prikaz);
+            
+            forma.PnlStavka.Controls.Clear();
+            uc.Dock = DockStyle.Fill;
+            forma.PnlStavka.Controls.Add(uc);
+
+            uc.StavkaPromenjena += () =>
+            {
+                OsveziStavke();
+                PretraziRacune();
+            };
+        }
     }
 }
 

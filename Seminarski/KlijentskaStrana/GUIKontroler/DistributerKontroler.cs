@@ -47,12 +47,13 @@ namespace KlijentskaStrana.GUIKontroler
             poslednjiNaziv = forma.TxtNaziv.Text;
 
             var kriterijum = new Distributer { NazivDistributera = poslednjiNaziv };
-            var rezultat = Kontroler.Instance.VratiDistributere(kriterijum);
+            var rezultat = Kontroler.Instance.PretražiDistributere(kriterijum);
 
             forma.Dgv.DataSource = null;
+            
             forma.Dgv.DataSource = rezultat;
 
-            MessageBox.Show(rezultat.Count > 0 ? "Pronađeni distributeri." : "Nema rezultata.");
+            
         }
 
         public void PrikaziDetalje()

@@ -24,6 +24,10 @@ namespace Domen
         public string InsertVrednosti =>
             $"'{NazivBioskopa}', '{KorisnickoIme}', '{Sifra}', '{AdresaBioskopa}'";
 
+        public string VrednostiZaUpdate => "";
+
+        public string UslovZaUpdate => $"idBioskop={IdBioskop}";
+
         public string UslovZaJednog()
         {
             return $"KorisnickoIme = '{KorisnickoIme}' AND Sifra = '{Sifra}'";

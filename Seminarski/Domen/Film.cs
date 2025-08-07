@@ -22,6 +22,10 @@ namespace Domen
 
         public string UslovZaSelect => $"IdFilm = {IdFilm}";
 
+        public string VrednostiZaUpdate => "";
+
+        public string UslovZaUpdate => $"idFilm={IdFilm}";
+
         public string UslovZaJednog() => $"IdFilm = {IdFilm}";
 
         public DomenskiObjekat ReadRow(SqlDataReader reader)

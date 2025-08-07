@@ -15,7 +15,8 @@ namespace Domen
         string UslovZaSelect { get; }
         string InsertKolone { get; }
         string InsertVrednosti { get; }
-
+        string VrednostiZaUpdate { get; }
+        string UslovZaUpdate { get; }
         DomenskiObjekat ReadRow(SqlDataReader reader);
     }
 }

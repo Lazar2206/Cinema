@@ -4,6 +4,8 @@ using DBBroker;
 using Domen;
 using Domen.DTO;
 using SistemskeOperacije;
+
+using SistemskeOperacije.SistemskeOperacije;
 using System.ComponentModel;
 
 namespace Logika
@@ -53,17 +55,23 @@ namespace Logika
 
         public List<Gledalac> VratiGledaoce(Gledalac gledalac)
         {
-            return broker.VratiGledaoce(gledalac);
+            var so = new SOPretražiGledaoce(gledalac);
+            so.ExecuteTemplate();
+            return so.Rezultat;
+        
         }
-
-        public bool PromeniGledaoca(Gledalac gledalac)
+        public bool PromeniGledaoca(Gledalac g)
         {
-            return broker.PromeniGledaoca(gledalac);
+            var so = new SOPromeniGledaoca(g);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
         public bool ObrišiGledalac(Gledalac gledalac)
         {
-            return broker.ObrišiGledalac(gledalac);
+            var so = new SOObrisiGledaoca(gledalac);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
         public bool KreirajGledalac(Gledalac gledalac)
@@ -99,30 +107,45 @@ namespace Logika
 
         public List<Distributer> VratiDistributere(Distributer kriterijum)
         {
-          return broker.VratiDistributere(kriterijum);
+            var so = new SOVratiDistributere(kriterijum);
+            so.ExecuteTemplate();
+            List<Distributer> distributeri = so.Rezultat;
+            return distributeri;
+        }
+        public List<Distributer> VratiSveDistributere()
+        {
+            var so= new SOVratiSveDistributere();
+            so.ExecuteTemplate();
+            List<Distributer> distributeri = so.Rezultat;
+            return distributeri;
         }
 
         public bool KreirajDistributer(Distributer distributer)
         {
-            return broker.KreirajDistributera(distributer);
+
+            var so = new SOKreirajDistributera(distributer);
+            so.ExecuteTemplate();
+
+            return so.Uspeh;
         }
 
         public bool ObrišiDistributer(Distributer distributer)
         {
-            return broker.ObrisiDistributera(distributer);
+            var so = new SOObrisiDistributera(distributer);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
       
 
         public bool PromeniDistributer(Distributer distributer)
         {
-            return broker.PromeniDistributera(distributer);
+            var so = new SOPromeniDistributera(distributer);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
-        public List<Gledalac> VratiGledaoce()
-        {
-            return broker.VratiGledaoce();
-        }
+       
 
         public bool DodajStavkuRacuna(StavkaRacuna stavka)
         {
@@ -156,15 +179,10 @@ namespace Logika
 
         public bool IzmeniStavkuRacuna(StavkaRacuna izmenjenaStavka)
         {
-            if (broker.IzmeniStavkuRacuna(izmenjenaStavka))
-            {
-                broker.AzurirajUkupnuCenuRacuna(izmenjenaStavka.IdRacun);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var so = new SOPromeniStavkuRacuna(izmenjenaStavka);
+            so.ExecuteTemplate(); 
+
+            return so.Uspeh;
         }
 
         public bool IzmeniRacun(Racun izmenjenRacun)
@@ -174,20 +192,17 @@ namespace Logika
 
         public bool ObrisiRacun(Racun obrisanRacun)
         {
-            return broker.ObrisiRacun(obrisanRacun.IdRacun);
+            var so = new SOObrisiRacun(obrisanRacun);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
         public bool ObrisiStavkuRacuna(StavkaRacuna obrisanaStavka)
         {
-            if (broker.ObrisiStavkuRacuna(obrisanaStavka.IdRacun,obrisanaStavka.Rb))
-            {
-                broker.AzurirajUkupnuCenuRacuna(obrisanaStavka.IdRacun);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var so = new SOObrisiStavkuRacuna(obrisanaStavka);
+            so.ExecuteTemplate();
+
+            return so.Uspeh;
         }
 
         public bool KreirajBioskop(Bioskop bioskop)
@@ -207,6 +222,21 @@ namespace Logika
         public int VratiSledeciRbZaRacun(int idRacun)
         {
             return broker.VratiSledeciRB(idRacun);
+        }
+
+        public object PretražiDistributere(Distributer kriterijum)
+        {
+            var so = new SOPretražiDistributera(kriterijum);
+            so.ExecuteTemplate();
+            return so.Rezultat;
+        }
+
+        public List<Gledalac> VratiSveGledaoce()
+        {
+            SOVratiSveGledaoce so = new SOVratiSveGledaoce();
+            so.ExecuteTemplate();
+            List<Gledalac> sviGledaoci = so.Rezultat;
+            return sviGledaoci;
         }
     }
 }

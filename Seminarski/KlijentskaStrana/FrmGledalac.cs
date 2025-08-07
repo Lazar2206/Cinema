@@ -14,10 +14,12 @@ namespace KlijentskaStrana
         {
             InitializeComponent();
             gledalacKontroler = new GledalacKontroler(this);
+            gledalacKontroler.NapuniCmbMesta();
         }
         private void btnKreiraj_Click_1(object sender, EventArgs e)
         {
             gledalacKontroler.OtvoriFormuZaUnos();
+            
         }
 
         private void btnPretraži_Click_1(object sender, EventArgs e)

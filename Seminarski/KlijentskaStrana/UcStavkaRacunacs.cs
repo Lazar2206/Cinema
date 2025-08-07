@@ -67,20 +67,37 @@ namespace KlijentskaStrana
                 MessageBox.Show("Greška pri dodavanju stavke.");
             }
         }
-        public void UcitajFilmove()
+        public void UcitajFilmove(int? selectedFilmId = null)
         {
-            cmbFilm.DataSource = racunKontroler.VratiFilmove();
+            cmbFilm.DataSource = null;
+            var filmovi = racunKontroler.VratiFilmove();
+
             cmbFilm.DisplayMember = "Naslov";
             cmbFilm.ValueMember = "IdFilm";
-            cmbFilm.SelectedIndex = -1;
+            cmbFilm.DataSource = filmovi;
+
+            if (selectedFilmId.HasValue)
+            {
+                
+                cmbFilm.BindingContextChanged += (s, e) =>
+                {
+                    cmbFilm.SelectedValue = selectedFilmId.Value;
+                };
+            }
+            else
+            {
+                cmbFilm.SelectedIndex = -1;
+            }
         }
+
         public void PostaviStavku(PrikazStavkeRacuna stavka)
         {
+            
+            
+
             txtOpis.Text = stavka.Opis;
             txtCena.Text = stavka.Cena.ToString("F2");
-            cmbFilm.SelectedValue = stavka.NaslovFilma;
-
-         
+            cmbFilm.SelectedIndex = stavka.IdFilm;
             selektovaniRb = stavka.Rb;
             staraCena = stavka.Cena;
         }
@@ -150,6 +167,15 @@ namespace KlijentskaStrana
             {
                 MessageBox.Show("Greška prilikom brisanja stavke.");
             }
+        }
+
+        public void PopuniPodatkeStavke(StavkaRacuna stavka)
+        {
+            txtCena.Text = stavka.Cena.ToString("F2");
+            txtOpis.Text = stavka.Opis;
+
+            
+            UcitajFilmove(stavka.IdFilm);
         }
     }
 }

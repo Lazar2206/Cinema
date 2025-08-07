@@ -20,11 +20,35 @@ namespace Domen
 
         public string NazivTabele => "Gledalac";
 
-        public string UslovZaSelect => $"";
+        public string UslovZaSelect
+        {
+            get
+            {
+                List<string> uslovi = new List<string>();
 
-        public string InsertKolone => "";
+                if (!string.IsNullOrWhiteSpace(Ime))
+                    uslovi.Add($"ime LIKE '%{Ime}%'");
 
-        public string InsertVrednosti => "";
+                if (IdMesto > 0)
+                    uslovi.Add($"idMesto = {IdMesto}");
+
+                if (uslovi.Count == 0)
+                    return "1=1"; // da ne padne WHERE deo
+
+                return string.Join(" AND ", uslovi);
+            }
+        }
+
+        public string VrednostiZaUpdate => $"ime = '{Ime}', prezime = '{Prezime}', idMesto = {IdMesto}, mejl = '{Mejl}'";
+
+       
+
+        public string InsertKolone => "ime, prezime, mejl, idMesto";
+
+        public string InsertVrednosti =>
+            $"'{Ime}', '{Prezime}', '{Mejl}', {IdMesto}";
+
+        public string UslovZaUpdate => $"idGledalac = {IdGledalac}";
 
         public string UslovZaJednog() => $"{IdGledalac}, '{IdMesto}'," +
             $"'{Ime}', {Prezime}, '{Mejl}'  ";
