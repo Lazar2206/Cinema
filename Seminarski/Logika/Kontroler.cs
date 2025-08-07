@@ -145,11 +145,13 @@ namespace Logika
             return so.Uspeh;
         }
 
-       
 
-        public bool DodajStavkuRacuna(StavkaRacuna stavka)
+
+        public bool DodajStavkuRacuna(StavkaRacuna novaStavka)
         {
-            return broker.DodajStavkuRacuna(stavka);
+            var so = new SODodajStavkuRacuna(novaStavka);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
         public int VratiIdNajnovijegRacuna()
@@ -174,7 +176,10 @@ namespace Logika
 
         public List<PrikazRacuna> VratiRacun(Racun racun)
         {
-            return broker.VratiRacune(racun);
+            var so = new SOPretraziRacune(racun);
+            so.ExecuteTemplate();
+            List<PrikazRacuna> racuni = so.Rezultat;
+            return racuni;
         }
 
         public bool IzmeniStavkuRacuna(StavkaRacuna izmenjenaStavka)
@@ -185,9 +190,11 @@ namespace Logika
             return so.Uspeh;
         }
 
-        public bool IzmeniRacun(Racun izmenjenRacun)
+        public bool IzmeniRacun(Racun racun)
         {
-            return broker.IzmeniRacun(izmenjenRacun);
+            var so = new SOPromeniRacun(racun);
+            so.ExecuteTemplate();
+            return so.Uspeh;
         }
 
         public bool ObrisiRacun(Racun obrisanRacun)

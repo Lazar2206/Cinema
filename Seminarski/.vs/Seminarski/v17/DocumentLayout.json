@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\Seminarski\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|c:\\users\\pc\\source\\repos\\seminarski\\sistemskeoperacije\\sovratistavkeracuna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|solutionrelative:sistemskeoperacije\\sovratistavkeracuna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{462B3294-C363-4713-AB9F-3DAB78732F30}|Repozitorijumi\\Repozitorijumi.csproj|c:\\users\\pc\\source\\repos\\seminarski\\repozitorijumi\\generi\u010Dkirepozitorijumi\\generi\u010Dkidbrepozitorijum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{462B3294-C363-4713-AB9F-3DAB78732F30}|Repozitorijumi\\Repozitorijumi.csproj|solutionrelative:repozitorijumi\\generi\u010Dkirepozitorijumi\\generi\u010Dkidbrepozitorijum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{90D05FA5-B2B3-43D7-962B-DDE4B40F3EDE}|DBBroker\\DBBroker.csproj|c:\\users\\pc\\source\\repos\\seminarski\\dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90D05FA5-B2B3-43D7-962B-DDE4B40F3EDE}|DBBroker\\DBBroker.csproj|solutionrelative:dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,20 +19,12 @@
       "RelativeMoniker": "D:0:0:{D9C1DEC5-E25A-4B6D-9C6F-180F8F374F1D}|Logika\\Logika.csproj|solutionrelative:logika\\kontroler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|c:\\users\\pc\\source\\repos\\seminarski\\sistemskeoperacije\\soobrisistavkuracuna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|solutionrelative:sistemskeoperacije\\soobrisistavkuracuna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|c:\\users\\pc\\source\\repos\\seminarski\\sistemskeoperacije\\sopromeniracun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|solutionrelative:sistemskeoperacije\\sopromeniracun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|c:\\users\\pc\\source\\repos\\seminarski\\sistemskeoperacije\\soobrisiracun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|solutionrelative:sistemskeoperacije\\soobrisiracun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|c:\\users\\pc\\source\\repos\\seminarski\\sistemskeoperacije\\sopromenistavkuracuna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|solutionrelative:sistemskeoperacije\\sopromenistavkuracuna.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{462B3294-C363-4713-AB9F-3DAB78732F30}|Repozitorijumi\\Repozitorijumi.csproj|c:\\users\\pc\\source\\repos\\seminarski\\repozitorijumi\\generi\u010Dkirepozitorijumi\\generi\u010Dkidbrepozitorijum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{462B3294-C363-4713-AB9F-3DAB78732F30}|Repozitorijumi\\Repozitorijumi.csproj|solutionrelative:repozitorijumi\\generi\u010Dkirepozitorijumi\\generi\u010Dkidbrepozitorijum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|c:\\users\\pc\\source\\repos\\seminarski\\sistemskeoperacije\\sopretraziracune.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2185CD0C-A64A-4DCF-889C-B9E4EA358F0D}|SistemskeOperacije\\SistemskeOperacije.csproj|solutionrelative:sistemskeoperacije\\sopretraziracune.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CDD7691B-E14B-48FB-8C61-6B6265863779}|Domen\\Domen.csproj|c:\\users\\pc\\source\\repos\\seminarski\\domen\\racun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,73 +102,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SOPromeniStavkuRacuna.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOPromeniStavkuRacuna.cs",
-              "RelativeDocumentMoniker": "SistemskeOperacije\\SOPromeniStavkuRacuna.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOPromeniStavkuRacuna.cs",
-              "RelativeToolTip": "SistemskeOperacije\\SOPromeniStavkuRacuna.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T10:15:40.947Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Racun.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Racun.cs",
-              "RelativeDocumentMoniker": "Domen\\Racun.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Racun.cs",
-              "RelativeToolTip": "Domen\\Racun.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAowDQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T09:36:40.428Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SOObrisiStavkuRacuna.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOObrisiStavkuRacuna.cs",
-              "RelativeDocumentMoniker": "SistemskeOperacije\\SOObrisiStavkuRacuna.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOObrisiStavkuRacuna.cs",
-              "RelativeToolTip": "SistemskeOperacije\\SOObrisiStavkuRacuna.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T09:33:47.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Broker.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
-              "RelativeDocumentMoniker": "DBBroker\\Broker.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
-              "RelativeToolTip": "DBBroker\\Broker.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAD8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T09:14:43.301Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SOObrisiRacun.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOObrisiRacun.cs",
-              "RelativeDocumentMoniker": "SistemskeOperacije\\SOObrisiRacun.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOObrisiRacun.cs",
-              "RelativeToolTip": "SistemskeOperacije\\SOObrisiRacun.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T09:17:34.5Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -179,28 +114,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Generi\u010DkiDBRepozitorijum.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
-              "RelativeDocumentMoniker": "Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
-              "RelativeToolTip": "Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAAAI8AAAAoAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "SOVratiStavkeRacuna.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOVratiStavkeRacuna.cs",
+              "RelativeDocumentMoniker": "SistemskeOperacije\\SOVratiStavkeRacuna.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOVratiStavkeRacuna.cs",
+              "RelativeToolTip": "SistemskeOperacije\\SOVratiStavkeRacuna.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T23:28:44.791Z",
+              "WhenOpened": "2025-08-07T16:25:19.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SOPromeniRacun.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOPromeniRacun.cs",
+              "RelativeDocumentMoniker": "SistemskeOperacije\\SOPromeniRacun.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOPromeniRacun.cs",
+              "RelativeToolTip": "SistemskeOperacije\\SOPromeniRacun.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T16:19:27.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SOPretraziRacune.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOPretraziRacune.cs",
+              "RelativeDocumentMoniker": "SistemskeOperacije\\SOPretraziRacune.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\SistemskeOperacije\\SOPretraziRacune.cs",
+              "RelativeToolTip": "SistemskeOperacije\\SOPretraziRacune.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T15:57:44.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Generi\u010DkiDBRepozitorijum.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
+              "RelativeDocumentMoniker": "Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
+              "RelativeToolTip": "Repozitorijumi\\Generi\u010DkiRepozitorijumi\\Generi\u010DkiDBRepozitorijum.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAAAAAAIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T15:40:32.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Racun.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Racun.cs",
+              "RelativeDocumentMoniker": "Domen\\Racun.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Domen\\Racun.cs",
+              "RelativeToolTip": "Domen\\Racun.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAswDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T09:36:40.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Kontroler.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\Logika\\Kontroler.cs",
               "RelativeDocumentMoniker": "Logika\\Kontroler.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\Logika\\Kontroler.cs",
               "RelativeToolTip": "Logika\\Kontroler.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAApwKsAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAALwAAAAAAAAAAAAAAMIAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-07T08:52:38.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Broker.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
+              "RelativeDocumentMoniker": "DBBroker\\Broker.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\Seminarski\\DBBroker\\Broker.cs",
+              "RelativeToolTip": "DBBroker\\Broker.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAAAGQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T09:14:43.301Z",
               "EditorCaption": ""
             },
             {
@@ -213,8 +213,7 @@
               "RelativeToolTip": "SistemskeOperacije\\SOObrisiDistributer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T00:41:21.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-31T00:41:21.028Z"
             },
             {
               "$type": "Document",
@@ -226,8 +225,7 @@
               "RelativeToolTip": "KlijentskaStrana\\GUIKontroler\\RacunKontroler.cs",
               "ViewState": "AgIAAKEAAAAAAAAAAAAAABgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T14:23:17.771Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-30T14:23:17.771Z"
             },
             {
               "$type": "Document",
@@ -252,8 +250,7 @@
               "RelativeToolTip": "SistemskeOperacije\\SOBase.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAA5wCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-30T15:50:52.799Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-30T15:50:52.799Z"
             },
             {
               "$type": "Document",

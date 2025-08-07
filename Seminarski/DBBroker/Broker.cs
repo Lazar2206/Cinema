@@ -22,6 +22,10 @@ namespace DBBroker
             }
             return command;
         }
+        public SqlConnection VratiKonekciju()
+        {
+            return con;
+        }
 
         public static Broker Instance
         {
@@ -60,44 +64,6 @@ namespace DBBroker
             tran.Rollback();
         }
        
-
-        public bool DodajStavkuRacuna(StavkaRacuna stavka)
-        {
-            try
-            {
-                PoveziSe();
-                BeginTranscation();
-
-                int noviRb = VratiSledeciRB(stavka.IdRacun); 
-
-                string upit = "INSERT INTO StavkaRacuna (idRacun, rb, cena, opis, idFilm) " +
-                              "VALUES (@idRacun, @rb, @cena, @opis, @idFilm)";
-
-                SqlCommand cmd = con.CreateCommand();
-                cmd.Transaction = tran;
-                cmd.CommandText = upit;
-
-                cmd.Parameters.AddWithValue("@idRacun", stavka.IdRacun);
-                cmd.Parameters.AddWithValue("@rb", noviRb);
-                cmd.Parameters.AddWithValue("@cena", stavka.Cena);
-                cmd.Parameters.AddWithValue("@opis", stavka.Opis);
-                cmd.Parameters.AddWithValue("@idFilm", stavka.IdFilm);
-
-                int uspešno = cmd.ExecuteNonQuery();
-                Commit();
-                return uspešno > 0;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">>>>>> Greška u brokeru (DodajStavkuRacuna): " + ex.Message);
-                Rollback();
-                return false;
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-        }
         public int VratiSledeciRB(int idRacun)
         {
             int sledeciRb = 1; // podrazumevano ako nema nijedne stavke
@@ -257,105 +223,5 @@ namespace DBBroker
                 ZatvoriKonekciju();
             }
         }
-
-        public List<PrikazRacuna> VratiRacune(Racun kriterijum)
-        {
-            List<PrikazRacuna> racuni = new List<PrikazRacuna>();
-            List<string> uslovi = new List<string>();
-            SqlCommand cmd = new SqlCommand();
-
-            if (kriterijum.IdGledalac > 0)
-            {
-                uslovi.Add("r.idGledalac = @idGledalac");
-                cmd.Parameters.AddWithValue("@idGledalac", kriterijum.IdGledalac);
-            }
-
-            if (kriterijum.IdBioskop > 0)
-            {
-                uslovi.Add("r.idBioskop = @idBioskop");
-                cmd.Parameters.AddWithValue("@idBioskop", kriterijum.IdBioskop);
-            }
-
-            if (kriterijum.Datum != DateTime.MinValue)
-            {
-                uslovi.Add("CAST(r.datum AS DATE) = @datum");
-                cmd.Parameters.AddWithValue("@datum", kriterijum.Datum.Date);
-            }
-
-            string where = uslovi.Count > 0 ? " WHERE " + string.Join(" AND ", uslovi) : "";
-
-            string upit = @" SELECT  r.idRacun, r.datum, r.ukupnaCena,  g.ime + ' ' + g.prezime AS ImeGledaoca, b.nazivBioskopa AS NazivBioskopa
-                             FROM Racun r
-                             JOIN Gledalac g ON r.idGledalac = g.idGledalac
-                             JOIN Bioskop b ON r.idBioskop = b.idBioskop  " + where;
-
-            try
-            {
-                PoveziSe();
-                cmd.Connection = con;
-                cmd.CommandText = upit;
-
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    PrikazRacuna r = new PrikazRacuna
-                    {
-                        IdRacun = (int)reader["idRacun"],
-                        Datum = (DateTime)reader["datum"],
-                        UkupnaCena = Convert.ToDouble(reader["ukupnaCena"]),
-                        ImeGledaoca = reader["ImeGledaoca"].ToString(),
-                        NazivBioskopa = reader["NazivBioskopa"].ToString()
-                    };
-                    racuni.Add(r);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Greška: " + ex.Message);
-            }
-            finally
-            {
-                ZatvoriKonekciju();
-            }
-
-            return racuni;
-        }
-
-        public bool IzmeniRacun(Racun r)
-        {
-            try
-            {
-                PoveziSe(); 
-
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = con;
-                    command.CommandText = @"UPDATE Racun 
-                                    SET Datum = @Datum, 
-                                        IdGledalac = @IdGledalac, 
-                                        IdBioskop = @IdBioskop, 
-                                        UkupnaCena = @UkupnaCena
-                                    WHERE IdRacun = @IdRacun";
-
-                    command.Parameters.AddWithValue("@Datum", r.Datum);
-                    command.Parameters.AddWithValue("@IdGledalac", r.IdGledalac);
-                    command.Parameters.AddWithValue("@IdBioskop", r.IdBioskop);
-                    command.Parameters.AddWithValue("@UkupnaCena", r.UkupnaCena);
-                    command.Parameters.AddWithValue("@IdRacun", r.IdRacun);
-
-                    return command.ExecuteNonQuery() > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Greška pri izmeni računa: " + ex.Message);
-                return false;
-            }
-            finally
-            {
-                ZatvoriKonekciju(); 
-            }
-        }
-
     }
 }

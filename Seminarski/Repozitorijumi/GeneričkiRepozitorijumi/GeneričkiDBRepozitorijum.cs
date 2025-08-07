@@ -1,5 +1,6 @@
 ﻿using DBBroker;
 using Domen;
+using Domen.DTO;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -156,6 +157,102 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
                 return false;
             }
         }
+        public int VratiSledeciRB(int idRacun)
+        {
+            try
+            {
+                broker.PoveziSe(); // otvori konekciju ako nije već otvorena
 
+                string upit = "SELECT MAX(Rb) FROM StavkaRacuna WHERE IdRacun = @idRacun";
+                using (SqlCommand cmd = new SqlCommand(upit, broker.VratiKonekciju()))
+                {
+                    cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value && result != null)
+                    {
+                        return Convert.ToInt32(result) + 1;
+                    }
+
+                    return 1; // ako nema nijedne stavke
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Greška prilikom određivanja sledećeg RB stavke računa.", ex);
+            }
+            finally
+            {
+                broker.ZatvoriKonekciju();
+            }
+        }
+        public List<PrikazRacuna> VratiRacune(Racun kriterijum)
+        {
+            List<PrikazRacuna> lista = new List<PrikazRacuna>();
+
+            try
+            {
+                SqlCommand command = broker.CreateCommand();
+
+                List<string> uslovi = new List<string>();
+
+                if (kriterijum.IdGledalac > 0)
+                {
+                    uslovi.Add("r.idGledalac = @idGledalac");
+                    command.Parameters.AddWithValue("@idGledalac", kriterijum.IdGledalac);
+                }
+
+                if (kriterijum.IdBioskop > 0)
+                {
+                    uslovi.Add("r.idBioskop = @idBioskop");
+                    command.Parameters.AddWithValue("@idBioskop", kriterijum.IdBioskop);
+                }
+
+                if (kriterijum.Datum != DateTime.MinValue)
+                {
+                    uslovi.Add("CAST(r.datum AS DATE) = @datum");
+                    command.Parameters.AddWithValue("@datum", kriterijum.Datum.Date);
+                }
+
+                string whereClause = uslovi.Count > 0 ? " WHERE " + string.Join(" AND ", uslovi) : "";
+
+                string upit = $@"
+            SELECT 
+                r.idRacun,
+                r.datum,
+                r.ukupnaCena,
+                g.ime + ' ' + g.prezime AS ImeGledaoca,
+                b.nazivBioskopa AS NazivBioskopa
+            FROM Racun r
+            JOIN Gledalac g ON r.idGledalac = g.idGledalac
+            JOIN Bioskop b ON r.idBioskop = b.idBioskop
+            {whereClause}";
+
+                command.CommandText = upit;
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PrikazRacuna pr = new PrikazRacuna
+                        {
+                            IdRacun = (int)reader["idRacun"],
+                            Datum = (DateTime)reader["datum"],
+                            UkupnaCena = Convert.ToDouble(reader["ukupnaCena"]),
+                            ImeGledaoca = reader["ImeGledaoca"].ToString(),
+                            NazivBioskopa = reader["NazivBioskopa"].ToString()
+                        };
+
+                        lista.Add(pr);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Greška u VratiRacune: " + ex.Message);
+            }
+
+            return lista;
+        }
     }
 }
