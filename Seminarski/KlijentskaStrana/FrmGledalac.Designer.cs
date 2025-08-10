@@ -34,14 +34,14 @@
             txtPrezime = new TextBox();
             txtKorisničkoIme = new Label();
             txtMejl = new TextBox();
-            btnDetalji = new Button();
             dgvGledaoci = new DataGridView();
             btnPretraži = new Button();
             label1 = new Label();
             txtIme = new TextBox();
             cmbMesta = new ComboBox();
-            pnlGledalac = new Panel();
             btnGlavna = new Button();
+            btnAžuriraj = new Button();
+            btnObriši = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvGledaoci).BeginInit();
             SuspendLayout();
             // 
@@ -96,16 +96,6 @@
             txtMejl.Size = new Size(125, 27);
             txtMejl.TabIndex = 27;
             // 
-            // btnDetalji
-            // 
-            btnDetalji.Location = new Point(715, 201);
-            btnDetalji.Name = "btnDetalji";
-            btnDetalji.Size = new Size(94, 29);
-            btnDetalji.TabIndex = 26;
-            btnDetalji.Text = "Detalji";
-            btnDetalji.UseVisualStyleBackColor = true;
-            btnDetalji.Click += btnDetalji_Click_1;
-            // 
             // dgvGledaoci
             // 
             dgvGledaoci.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -149,13 +139,6 @@
             cmbMesta.Size = new Size(151, 28);
             cmbMesta.TabIndex = 22;
             // 
-            // pnlGledalac
-            // 
-            pnlGledalac.Location = new Point(13, 293);
-            pnlGledalac.Name = "pnlGledalac";
-            pnlGledalac.Size = new Size(471, 215);
-            pnlGledalac.TabIndex = 20;
-            // 
             // btnGlavna
             // 
             btnGlavna.Location = new Point(1341, 479);
@@ -166,11 +149,33 @@
             btnGlavna.UseVisualStyleBackColor = true;
             btnGlavna.Click += btnGlavna_Click;
             // 
+            // btnAžuriraj
+            // 
+            btnAžuriraj.Location = new Point(715, 201);
+            btnAžuriraj.Name = "btnAžuriraj";
+            btnAžuriraj.Size = new Size(94, 29);
+            btnAžuriraj.TabIndex = 34;
+            btnAžuriraj.Text = "Ažuriraj";
+            btnAžuriraj.UseVisualStyleBackColor = true;
+            btnAžuriraj.Click += btnAžuriraj_Click;
+            // 
+            // btnObriši
+            // 
+            btnObriši.Location = new Point(715, 246);
+            btnObriši.Name = "btnObriši";
+            btnObriši.Size = new Size(94, 29);
+            btnObriši.TabIndex = 35;
+            btnObriši.Text = "Obriši";
+            btnObriši.UseVisualStyleBackColor = true;
+            btnObriši.Click += btnObriši_Click;
+            // 
             // FrmGledalac
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1467, 526);
+            Controls.Add(btnObriši);
+            Controls.Add(btnAžuriraj);
             Controls.Add(btnGlavna);
             Controls.Add(btnKreiraj);
             Controls.Add(label2);
@@ -178,13 +183,11 @@
             Controls.Add(txtPrezime);
             Controls.Add(txtKorisničkoIme);
             Controls.Add(txtMejl);
-            Controls.Add(btnDetalji);
             Controls.Add(dgvGledaoci);
             Controls.Add(btnPretraži);
             Controls.Add(label1);
             Controls.Add(txtIme);
             Controls.Add(cmbMesta);
-            Controls.Add(pnlGledalac);
             Name = "FrmGledalac";
             Text = "FrmGledalac";
             ((System.ComponentModel.ISupportInitialize)dgvGledaoci).EndInit();
@@ -200,14 +203,14 @@
         private TextBox txtPrezime;
         private Label txtKorisničkoIme;
         private TextBox txtMejl;
-        private Button btnDetalji;
         private DataGridView dgvGledaoci;
         private Button btnPretraži;
         private Label label1;
         private TextBox txtIme;
         private ComboBox cmbMesta;
-        private Panel pnlGledalac;
         private Button btnGlavna;
+        private Button btnAžuriraj;
+        private Button btnObriši;
 
         public Button BtnKreiraj { get => btnKreiraj; set => btnKreiraj = value; }
         public Label Label2 { get => label2; set => label2 = value; }
@@ -215,13 +218,13 @@
         public TextBox TxtPrezime { get => txtPrezime; set => txtPrezime = value; }
         public Label TxtKorisničkoIme { get => txtKorisničkoIme; set => txtKorisničkoIme = value; }
         public TextBox TxtMejl { get => txtMejl; set => txtMejl = value; }
-        public Button BtnDetalji { get => btnDetalji; set => btnDetalji = value; }
+      
         public DataGridView DgvGledaoci { get => dgvGledaoci; set => dgvGledaoci = value; }
         public Button BtnPretraži { get => btnPretraži; set => btnPretraži = value; }
         public Label Label1 { get => label1; set => label1 = value; }
         public TextBox TxtIme { get => txtIme; set => txtIme = value; }
         public ComboBox CmbMesta { get => cmbMesta; set => cmbMesta = value; }
-        public Panel PnlGledalac { get => pnlGledalac; set => pnlGledalac = value; }
+       
         public Button BtnGlavna { get => btnGlavna; set => btnGlavna = value; }
     }
 }

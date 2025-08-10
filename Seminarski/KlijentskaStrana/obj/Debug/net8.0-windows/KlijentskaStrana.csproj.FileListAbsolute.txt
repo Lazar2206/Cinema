@@ -71,14 +71,11 @@ C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\DB
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Logika.dll
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Logika.pdb
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\DBBroker.pdb
-C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcGledalac.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmGledalac.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmDistributer.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmFilm.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmMesto.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmRačun.resources
-C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcDistributer.resources
-C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.UcStavkaRacunacs.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmBioskop.resources
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Microsoft.NET.StringTools.dll
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\System.CodeDom.dll
@@ -98,3 +95,4 @@ C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Si
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\SistemskeOperacije.pdb
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Repozitorijumi.dll
 C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\bin\Debug\net8.0-windows\Repozitorijumi.pdb
+C:\Users\PC\source\repos\Seminarski\KlijentskaStrana\obj\Debug\net8.0-windows\KlijentskaStrana.FrmStavkaRacuna.resources

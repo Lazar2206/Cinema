@@ -34,6 +34,104 @@ namespace KlijentskaStrana.GUIKontroler
             forma.DgvGledaoci.DataSource = lista;
         }
 
+        public void KreirajGledaoca()
+        {
+            Gledalac novi = new Gledalac
+            {
+                Ime = forma.TXTIme.Text.Trim(),
+                Prezime = forma.TxtPrezime.Text.Trim(),
+                Mejl = forma.TxtMejl.Text.Trim(),
+                IdMesto = (int)forma.CMBMesta.SelectedValue
+            };
+
+            Poruka zahtev = new Poruka
+            {
+                Object = novi,
+                Operacija = Operacija.KreirajGledalac
+            };
+
+            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
+            var odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Sistem je zapamtio gledaoca.");
+                OsveziGledaoce();
+                OcistiPolja();
+            }
+            else
+            {
+                MessageBox.Show("Sistem ne može da zapamti gledaoca.");
+            }
+        }
+
+        public void IzmeniGledaoca()
+        {
+            if (forma.DGVGledaoci.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Izaberite gledaoca za izmenu.");
+                return;
+            }
+
+            var izabrani = forma.DGVGledaoci.SelectedRows[0].DataBoundItem as Gledalac;
+            if (izabrani == null) return;
+
+            izabrani.Ime = forma.TXTIme.Text.Trim();
+            izabrani.Prezime = forma.TxtPrezime.Text.Trim();
+            izabrani.Mejl = forma.TxtMejl.Text.Trim();
+            izabrani.IdMesto = (int)forma.CMBMesta.SelectedValue;
+
+            Poruka zahtev = new Poruka
+            {
+                Object = izabrani,
+                Operacija = Operacija.PromeniGledaoca
+            };
+
+            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
+            var odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Sistem je izmenio gledaoca.");
+                OsveziGledaoce();
+            }
+            else
+            {
+                MessageBox.Show("Sistem ne može da izmeni gledaoca.");
+            }
+        }
+
+        public void ObrisiGledaoca()
+        {
+            if (forma.DGVGledaoci.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Izaberite gledaoca za brisanje.");
+                return;
+            }
+
+            var izabrani = forma.DGVGledaoci.SelectedRows[0].DataBoundItem as Gledalac;
+            if (izabrani == null) return;
+
+            Poruka zahtev = new Poruka
+            {
+                Object = izabrani,
+                Operacija = Operacija.ObrišiGledalac
+            };
+
+            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
+            var odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
+
+            if (odgovor.Operacija == Operacija.Uspešno)
+            {
+                MessageBox.Show("Sistem je obrisao gledaoca.");
+                OsveziGledaoce();
+                OcistiPolja();
+            }
+            else
+            {
+                MessageBox.Show("Sistem ne može da obriše gledaoca.");
+            }
+        }
         public void PretraziGledaoce()
         {
             string ime = forma.TxtIme.Text;
@@ -48,84 +146,26 @@ namespace KlijentskaStrana.GUIKontroler
             var lista = Kontroler.Instance.VratiGledaoce(kriterijum);
             forma.DgvGledaoci.DataSource = null;
             forma.DgvGledaoci.DataSource = lista;
+            forma.DgvGledaoci.Columns[5].Visible = false;
+            forma.DgvGledaoci.Columns[6].Visible = false;
+            forma.DgvGledaoci.Columns[7].Visible = false;
+            forma.DgvGledaoci.Columns[8].Visible = false;
+            forma.DgvGledaoci.Columns[9].Visible = false;
+            forma.DgvGledaoci.Columns[10].Visible = false;
+            forma.DgvGledaoci.Columns[11].Visible = false;
+            forma.DgvGledaoci.Columns[12].Visible = false;
+            forma.DgvGledaoci.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            forma.DgvGledaoci.AllowUserToAddRows = false;
+
         }
 
-        public void OtvoriFormuZaUnos()
+        private void OcistiPolja()
         {
-            UcGledalac uc = new UcGledalac(this); ;
-            uc.PopuniPolja();
-            uc.GledalacAzuriran += (s, e) => OsveziGledaoce();
-
-            forma.Panel.Controls.Clear();
-            forma.Panel.Controls.Add(uc);
-            uc.Dock = DockStyle.Fill;
+            forma.TXTIme.Clear();
+            forma.TxtPrezime.Clear();
+            forma.TxtMejl.Clear();
+            forma.CMBMesta.SelectedIndex = -1;
         }
 
-        public void OtvoriDetalje()
-        {
-            if (forma.DgvGledaoci.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Izaberite gledaoca.");
-                return;
-            }
-
-            var izabrani = forma.DGVGledaoci.SelectedRows[0].DataBoundItem;
-
-            UcGledalac uc = new UcGledalac(this);
-            uc.PopuniPoljaIzObjekta(izabrani);
-            uc.GledalacAzuriran += (s, e) => OsveziGledaoce();
-
-            forma.Panel.Controls.Clear();
-            forma.Panel.Controls.Add(uc);
-            uc.Dock = DockStyle.Fill;
-
-            MessageBox.Show("Sistem je našao gledaoca.");
-        }
-        public bool ZapamtiGledaoca(Gledalac g)
-        {
-            Poruka zahtev = new Poruka
-            {
-                Object = g,
-                Operacija = Operacija.KreirajGledalac
-            };
-
-            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
-            return odgovor.Operacija == Operacija.Uspešno;
-        }
-
-        public bool IzmeniGledaoca()
-        {
-            Poruka zahtev = new Poruka
-            {
-                Object = this.gledalac,
-                Operacija = Operacija.PromeniGledaoca
-            };
-
-            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
-            return odgovor.Operacija == Operacija.Uspešno;
-        }
-
-        public bool ObrisiGledaoca()
-        {
-            Poruka zahtev = new Poruka
-            {
-                Object = this.gledalac,
-                Operacija = Operacija.ObrišiGledalac
-            };
-
-            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
-            Poruka odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
-            return odgovor.Operacija == Operacija.Uspešno;
-        }
-        public void PostaviGledaoca(Gledalac g)
-        {
-            this.gledalac = g;
-        }
-        public List<Mesto> VratiMesta()
-        {
-            return Kontroler.Instance.VratiMesta();
-        }
     }
 }

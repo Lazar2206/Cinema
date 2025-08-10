@@ -30,12 +30,12 @@
         {
             btnGlavna = new Button();
             btnKreiraj = new Button();
-            btnDetalji = new Button();
             dgvDistributeri = new DataGridView();
             btnPretraži = new Button();
             label1 = new Label();
             txtNazivDistributera = new TextBox();
-            pnlDistributer = new Panel();
+            btnAžuriraj = new Button();
+            btnObriši = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvDistributeri).BeginInit();
             SuspendLayout();
             // 
@@ -51,23 +51,13 @@
             // 
             // btnKreiraj
             // 
-            btnKreiraj.Location = new Point(725, 104);
+            btnKreiraj.Location = new Point(735, 104);
             btnKreiraj.Name = "btnKreiraj";
             btnKreiraj.Size = new Size(94, 29);
             btnKreiraj.TabIndex = 46;
             btnKreiraj.Text = "Kreiraj";
             btnKreiraj.UseVisualStyleBackColor = true;
             btnKreiraj.Click += btnKreiraj_Click;
-            // 
-            // btnDetalji
-            // 
-            btnDetalji.Location = new Point(725, 195);
-            btnDetalji.Name = "btnDetalji";
-            btnDetalji.Size = new Size(94, 29);
-            btnDetalji.TabIndex = 40;
-            btnDetalji.Text = "Detalji";
-            btnDetalji.UseVisualStyleBackColor = true;
-            btnDetalji.Click += btnDetalji_Click;
             // 
             // dgvDistributeri
             // 
@@ -80,7 +70,7 @@
             // 
             // btnPretraži
             // 
-            btnPretraži.Location = new Point(725, 148);
+            btnPretraži.Location = new Point(735, 152);
             btnPretraži.Name = "btnPretraži";
             btnPretraži.Size = new Size(94, 31);
             btnPretraži.TabIndex = 39;
@@ -91,7 +81,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(22, 62);
+            label1.Location = new Point(22, 55);
             label1.Name = "label1";
             label1.Size = new Size(34, 20);
             label1.TabIndex = 38;
@@ -104,26 +94,39 @@
             txtNazivDistributera.Size = new Size(125, 27);
             txtNazivDistributera.TabIndex = 37;
             // 
-            // pnlDistributer
+            // btnAžuriraj
             // 
-            pnlDistributer.Location = new Point(22, 297);
-            pnlDistributer.Name = "pnlDistributer";
-            pnlDistributer.Size = new Size(471, 215);
-            pnlDistributer.TabIndex = 34;
+            btnAžuriraj.Location = new Point(735, 200);
+            btnAžuriraj.Name = "btnAžuriraj";
+            btnAžuriraj.Size = new Size(94, 29);
+            btnAžuriraj.TabIndex = 48;
+            btnAžuriraj.Text = "Ažuriraj";
+            btnAžuriraj.UseVisualStyleBackColor = true;
+            btnAžuriraj.Click += btnAžuriraj_Click;
+            // 
+            // btnObriši
+            // 
+            btnObriši.Location = new Point(735, 252);
+            btnObriši.Name = "btnObriši";
+            btnObriši.Size = new Size(94, 29);
+            btnObriši.TabIndex = 49;
+            btnObriši.Text = "Obriši";
+            btnObriši.UseVisualStyleBackColor = true;
+            btnObriši.Click += btnObriši_Click;
             // 
             // FrmDistributer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1542, 542);
+            Controls.Add(btnObriši);
+            Controls.Add(btnAžuriraj);
             Controls.Add(btnGlavna);
             Controls.Add(btnKreiraj);
-            Controls.Add(btnDetalji);
             Controls.Add(dgvDistributeri);
             Controls.Add(btnPretraži);
             Controls.Add(label1);
             Controls.Add(txtNazivDistributera);
-            Controls.Add(pnlDistributer);
             Name = "FrmDistributer";
             Text = "FrmDistributer";
             ((System.ComponentModel.ISupportInitialize)dgvDistributeri).EndInit();
@@ -135,11 +138,11 @@
 
         private Button btnGlavna;
         private Button btnKreiraj;
-        private Button btnDetalji;
         private DataGridView dgvDistributeri;
         private Button btnPretraži;
         private Label label1;
         private TextBox txtNazivDistributera;
-        private Panel pnlDistributer;
+        private Button btnAžuriraj;
+        private Button btnObriši;
     }
 }

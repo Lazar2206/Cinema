@@ -15,7 +15,6 @@ public class SOVratiStavkeRacuna : SOBase
 
     protected override void Execute()
     {
-        GeneričkiRepozitorijum repo = new GeneričkiRepozitorijum();
-        Rezultat = repo.VratiStavkeRacuna(idRacun);
+        Rezultat = generičkiRepozitorijum.VratiStavkeRacuna(idRacun);
     }
 }

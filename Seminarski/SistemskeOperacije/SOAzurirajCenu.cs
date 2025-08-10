@@ -15,7 +15,7 @@ namespace SistemskeOperacije
 
         protected override void Execute()
         {
-            Uspeh = generičkiRepozitorijum.Update(racun);
+            Uspeh = generičkiRepozitorijum.AzurirajUkupnuCenuRacuna(racun.IdRacun);
         }
     }
 }

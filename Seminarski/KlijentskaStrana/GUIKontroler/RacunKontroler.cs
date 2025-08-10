@@ -65,25 +65,6 @@ namespace KlijentskaStrana.GUIKontroler
                 MessageBox.Show("Sistem je kreirao račun.");
                 idRacun = Kontroler.Instance.VratiIdNajnovijegRacuna();
 
-                var uc = new UcStavkaRacunacs
-                {
-                  
-                    Dock = DockStyle.Fill
-                };
-                uc.StavkaDodata += (razlikaUCeni) =>
-                {
-                    OsvežiDGV();
-                    AzurirajUkupnuCenu();
-                };
-                uc.StavkaPromenjena += () =>
-                {
-                    OsvežiDGV();
-                    OsveziTabeluRacuna();
-                };
-                uc.UcitajFilmove();
-
-                forma.PnlStavka.Controls.Clear();
-                forma.PnlStavka.Controls.Add(uc);
             }
             else
             {
@@ -226,34 +207,11 @@ namespace KlijentskaStrana.GUIKontroler
             forma.DgvRacuni.Columns["IdGledalac"].Visible = false;
             forma.DgvRacuni.Columns["IdBioskop"].Visible = false;
         }
-        public List<Film> VratiFilmove()
-        {
-            return Kontroler.Instance.VratiFilmove();
-        }
+        
 
-      public bool DodajStavku(StavkaRacuna stavka)
-{
-    stavka.IdRacun = idRacun;
-    stavka.Rb = Kontroler.Instance.VratiSledeciRbZaRacun(idRacun); 
+    
 
-    Poruka zahtev = new Poruka
-    {
-        Operacija = Operacija.DodajStavkuRacuna,
-        Object = stavka
-    };
-    klijent.PošaljiPoruku(zahtev);
-    Poruka odgovor = klijent.PrimiPoruku();
-
-    return odgovor.Operacija == Operacija.Uspešno;
-}
-
-        public bool IzmeniStavku(StavkaRacuna stavka)
-        {
-            Poruka zahtev = new Poruka { Operacija = Operacija.IzmeniStavkuRacuna, Object = stavka };
-            Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
-            var odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
-            return odgovor.Operacija == Operacija.Uspešno;
-        }
+       
         public void DodajStavku()
         {
             if (idRacun == 0)
@@ -261,88 +219,26 @@ namespace KlijentskaStrana.GUIKontroler
                 MessageBox.Show("Prvo kreirajte račun.");
                 return;
             }
-            PrikaziUserControlZaStavke();
-        }
-        private void PrikaziUserControlZaStavke()
-        {
-            var uc = new UcStavkaRacunacs
-            {
-                IdRacun = idRacun,
-                Klijent = Session.Session.Instance.Klijent,
-                Bioskop = Session.Session.Instance.CurrentBioskop
-            };
-
-            uc.StavkaDodata += (razlika) =>
-            {
-                ukupnaCena += razlika;
-                forma.TxtUkupnaCena.Text = ukupnaCena.ToString("F2");
-            uc.UcitajFilmove();
-                OsveziStavke();
-                AzurirajUkupnuCenu();
-            };
-           
-            uc.StavkaPromenjena += () =>
-            {
-                OsveziStavke();
-                PretraziRacune();
-            };
-
-
-            forma.PnlStavka.Controls.Clear();
-            uc.Dock = DockStyle.Fill;
-            forma.PnlStavka.Controls.Add(uc);
-        }
-        private void OsveziStavke()
-        {
-            var stavke = Kontroler.Instance.VratiStavkeRacuna(idRacun);
-            forma.DgvRacunStavke.DataSource = null;
-            forma.DgvRacunStavke.DataSource = stavke;
             
         }
+
+
 
         public void PrikaziDetaljeJedneStavke()
         {
-            if (forma.DgvRacunStavke.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Izaberite stavku za prikaz detalja.");
-                return;
-            }
 
-            var prikaz = (PrikazStavkeRacuna)forma.DgvRacunStavke.SelectedRows[0].DataBoundItem;
+            var izabranaStavka = (PrikazStavkeRacuna)forma.DgvRacunStavke.CurrentRow.DataBoundItem;
+            Session.Session.Instance.TrenutnaStavkaRacuna = izabranaStavka;
 
-            var selektovanaStavka = new StavkaRacuna
-            {
-                IdRacun = prikaz.IdRacun,
-                Rb = prikaz.Rb,
-                Opis = prikaz.Opis,
-                Cena = prikaz.Cena,
-                IdFilm = prikaz.IdFilm
-            };
+            var frm = new FrmStavkaRacuna();
+            frm.TxtOpis.Text = izabranaStavka.Opis;
+            frm.TxtCena.Text = izabranaStavka.Cena.ToString("F2");
+            frm.CmbFilm.SelectedValue = izabranaStavka.IdFilm;
+          
 
-            var uc = new UcStavkaRacunacs
-            {
-                IdRacun = selektovanaStavka.IdRacun,
-                Klijent = Session.Session.Instance.Klijent,
-                Bioskop = Session.Session.Instance.CurrentBioskop
-            };
-
-     
-            uc.PoveziSaKontrolerom(this); 
-
-           
-
-            uc.PostaviStavku(prikaz);
-            
-            forma.PnlStavka.Controls.Clear();
-            uc.Dock = DockStyle.Fill;
-            forma.PnlStavka.Controls.Add(uc);
-
-            uc.StavkaPromenjena += () =>
-            {
-                OsveziStavke();
-                PretraziRacune();
-            };
+            frm.ShowDialog();
         }
+
     }
 }
 

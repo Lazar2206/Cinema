@@ -150,10 +150,17 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
                 command.CommandText = upit;
                 command.Parameters.AddWithValue("@idRacun", idRacun);
 
-                return command.ExecuteNonQuery() > 0;
+                Debug.WriteLine(">>> AzurirajUkupnuCenuRacuna - idRacun: " + idRacun);
+                Debug.WriteLine(">>> SQL: " + command.CommandText);
+
+                int affected = command.ExecuteNonQuery();
+                Debug.WriteLine(">>> Broj ažuriranih redova: " + affected);
+
+                return affected > 0;
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine("Greška u AzurirajUkupnuCenuRacuna: " + ex.Message);
                 return false;
             }
         }
@@ -161,29 +168,24 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
         {
             try
             {
-                broker.PoveziSe(); // otvori konekciju ako nije već otvorena
-
                 string upit = "SELECT MAX(Rb) FROM StavkaRacuna WHERE IdRacun = @idRacun";
-                using (SqlCommand cmd = new SqlCommand(upit, broker.VratiKonekciju()))
+
+                SqlCommand cmd = broker.CreateCommand();
+                cmd.CommandText = upit;
+                cmd.Parameters.AddWithValue("@idRacun", idRacun);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != DBNull.Value && result != null)
                 {
-                    cmd.Parameters.AddWithValue("@idRacun", idRacun);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result != DBNull.Value && result != null)
-                    {
-                        return Convert.ToInt32(result) + 1;
-                    }
-
-                    return 1; // ako nema nijedne stavke
+                    return Convert.ToInt32(result) + 1;
                 }
+
+                return 1; // Ako ne postoji nijedna stavka za dati račun
             }
             catch (Exception ex)
             {
                 throw new Exception("Greška prilikom određivanja sledećeg RB stavke računa.", ex);
-            }
-            finally
-            {
-                broker.ZatvoriKonekciju();
             }
         }
         public List<PrikazRacuna> VratiRacune(Racun kriterijum)
@@ -258,40 +260,29 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
         {
             List<PrikazStavkeRacuna> stavke = new List<PrikazStavkeRacuna>();
 
-            string upit = @"
-        SELECT sr.rb, sr.opis, sr.cena, f.naslov
-        FROM StavkaRacuna sr
-        JOIN Film f ON sr.idFilm = f.idFilm
-        WHERE sr.idRacun = @idRacun";
-
-            try
+            using (SqlCommand cmd = broker.CreateCommand())
             {
-                PoveziSe();
-                SqlCommand cmd = broker.CreateCommand(); 
-                cmd.CommandText = upit;
+                cmd.CommandText = @"SELECT sr.idRacun, sr.rb, sr.opis, sr.cena, sr.idFilm, f.naslov
+                            FROM StavkaRacuna sr
+                            JOIN Film f ON sr.idFilm = f.idFilm
+                            WHERE sr.idRacun = @idRacun";
                 cmd.Parameters.AddWithValue("@idRacun", idRacun);
 
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    stavke.Add(new PrikazStavkeRacuna
+                    while (reader.Read())
                     {
-                        Rb = (int)reader["rb"],
-                        Opis = reader["opis"].ToString(),
-                        Cena = Convert.ToDouble(reader["cena"]),
-                        NaslovFilma = reader["naslov"].ToString()
-                    });
+                        stavke.Add(new PrikazStavkeRacuna
+                        {
+                            IdRacun = (int)reader["idRacun"],
+                            Rb = (int)reader["rb"],
+                            Opis = reader["opis"].ToString(),
+                            Cena = Convert.ToDouble(reader["cena"]),
+                            IdFilm = (int)reader["idFilm"],
+                            NaslovFilma = reader["naslov"].ToString()
+                        });
+                    }
                 }
-
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(">> Greška u VratiStavkeRacuna: " + ex.Message);
-            }
-            finally
-            {
-                ZatvoriKonekciju();
             }
 
             return stavke;
@@ -303,6 +294,7 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
             var komanda = broker.CreateCommand();
 
             string upit = $"SELECT MAX({objekat.PrimarniKljucKolona}) FROM {objekat.NazivTabele}";
+            Debug.WriteLine(upit);
             komanda.CommandText = upit;
 
             object result = komanda.ExecuteScalar();
@@ -310,6 +302,16 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
                 id = Convert.ToInt32(result);
 
             return id;
+        }
+        public bool DeleteWhere(DomenskiObjekat objekat)
+        {
+            SqlCommand command = broker.CreateCommand();
+            string upit = $"DELETE FROM {objekat.NazivTabele} WHERE {objekat.UslovZaSelect}";
+            Debug.WriteLine(">> DELETE WHERE upit: " + upit);
+
+            command.CommandText = upit;
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected > 0;
         }
     }
 }

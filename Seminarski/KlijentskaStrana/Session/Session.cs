@@ -1,4 +1,5 @@
 ﻿using Domen;
+using Domen.DTO;
 using Microsoft.Build.Tasks.Deployment.Bootstrapper;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
@@ -26,5 +27,6 @@ namespace KlijentskaStrana.Session
 
         public Klijent Klijent { get; set; }
         public Bioskop CurrentBioskop { get; set; }
+        public PrikazStavkeRacuna TrenutnaStavkaRacuna { get; set; }
     }
 }

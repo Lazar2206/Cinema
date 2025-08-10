@@ -19,6 +19,8 @@ namespace SistemskeOperacije
 
         protected override void Execute()
         {
+            var stavkaTemplate = new StavkaRacuna { IdRacun = racun.IdRacun };
+            generičkiRepozitorijum.DeleteWhere(stavkaTemplate);
             Uspeh = generičkiRepozitorijum.Delete(racun);
         }
     }

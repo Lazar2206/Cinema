@@ -7,7 +7,7 @@ namespace KlijentskaStrana
 {
     public partial class FrmGledalac : Form
     {
-        private  GledalacKontroler gledalacKontroler;
+        private GledalacKontroler gledalacKontroler;
 
 
         public FrmGledalac()
@@ -18,8 +18,8 @@ namespace KlijentskaStrana
         }
         private void btnKreiraj_Click_1(object sender, EventArgs e)
         {
-            gledalacKontroler.OtvoriFormuZaUnos();
-            
+            gledalacKontroler.KreirajGledaoca();
+
         }
 
         private void btnPretraži_Click_1(object sender, EventArgs e)
@@ -27,20 +27,24 @@ namespace KlijentskaStrana
             gledalacKontroler.PretraziGledaoce();
         }
 
-        private void btnDetalji_Click_1(object sender, EventArgs e)
-        {
-            gledalacKontroler.OtvoriDetalje();
-
-        }
         public ComboBox CMBMesta => cmbMesta;
         public TextBox TXTIme => txtIme;
         public DataGridView DGVGledaoci => dgvGledaoci;
-        public Panel Panel => pnlGledalac;
+
 
         private void btnGlavna_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        private void btnAžuriraj_Click(object sender, EventArgs e)
+        {
+            gledalacKontroler.IzmeniGledaoca();
+        }
+
+        private void btnObriši_Click(object sender, EventArgs e)
+        {
+             gledalacKontroler.ObrisiGledaoca();
+        }
     }
 }

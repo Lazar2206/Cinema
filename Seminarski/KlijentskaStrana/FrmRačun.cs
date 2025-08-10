@@ -1,4 +1,6 @@
 ﻿
+using Domen;
+using Domen.DTO;
 using KlijentskaStrana.GUIKontroler;
 
 using System;

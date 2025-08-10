@@ -25,14 +25,8 @@
     <Compile Update="FrmRačun.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UcDistributer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="UcGledalac.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="UcStavkaRacunacs.cs">
-      <SubType>UserControl</SubType>
+    <Compile Update="FrmStavkaRacuna.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 </Project>
