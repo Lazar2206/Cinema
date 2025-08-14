@@ -114,22 +114,21 @@ namespace KlijentskaStrana.GUIKontroler
 
             Poruka zahtev = new Poruka
             {
-                Object = izabrani,
+                Object = izabrani,              
                 Operacija = Operacija.ObrišiGledalac
             };
 
             Session.Session.Instance.Klijent.PošaljiPoruku(zahtev);
             var odgovor = Session.Session.Instance.Klijent.PrimiPoruku();
 
+            
+            string serverPoruka = odgovor.Object as string ?? odgovor.Obavestenje as string ?? "Sistem ne može da obriše gledaoca";
+            MessageBox.Show(serverPoruka);
+
             if (odgovor.Operacija == Operacija.Uspešno)
             {
-                MessageBox.Show("Sistem je obrisao gledaoca.");
                 OsveziGledaoce();
                 OcistiPolja();
-            }
-            else
-            {
-                MessageBox.Show("Sistem ne može da obriše gledaoca.");
             }
         }
         public void PretraziGledaoce()

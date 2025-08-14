@@ -19,11 +19,12 @@ namespace KlijentskaStrana
 
         private Bioskop bioskop;
         private Klijent klijent;
+        private KontrolerGlavna KontrolerGlavna;
 
         public FrmGlavna()
         {
             InitializeComponent();
-            
+
 
         }
 
@@ -69,6 +70,10 @@ namespace KlijentskaStrana
             frm.ShowDialog();
         }
 
-      
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KontrolerGlavna= new KontrolerGlavna(this);
+            KontrolerGlavna.Logout();
+        }
     }
 }

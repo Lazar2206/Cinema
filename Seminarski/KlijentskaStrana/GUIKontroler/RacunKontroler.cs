@@ -234,7 +234,8 @@ namespace KlijentskaStrana.GUIKontroler
             frm.TxtOpis.Text = izabranaStavka.Opis;
             frm.TxtCena.Text = izabranaStavka.Cena.ToString("F2");
             frm.CmbFilm.SelectedValue = izabranaStavka.IdFilm;
-          
+            frm.CmbFilm.DisplayMember = "NaslovFilma";
+            frm.CmbFilm.ValueMember = "IdFilm";
 
             frm.ShowDialog();
         }

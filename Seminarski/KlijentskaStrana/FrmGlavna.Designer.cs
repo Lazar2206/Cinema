@@ -43,14 +43,15 @@ namespace KlijentskaStrana
             filmToolStripMenuItem = new ToolStripMenuItem();
             podešavanjaSoftverskogSistemaToolStripMenuItem = new ToolStripMenuItem();
             oProgramuToolStripMenuItem = new ToolStripMenuItem();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            sqlCommand1 = new SqlCommand();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dokumentiToolStripMenuItem, pružalacUslugeToolStripMenuItem, primalacUslugeToolStripMenuItem, šToolStripMenuItem, podešavanjaSoftverskogSistemaToolStripMenuItem, oProgramuToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { dokumentiToolStripMenuItem, pružalacUslugeToolStripMenuItem, primalacUslugeToolStripMenuItem, šToolStripMenuItem, podešavanjaSoftverskogSistemaToolStripMenuItem, oProgramuToolStripMenuItem, logoutToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1461, 28);
@@ -144,6 +145,13 @@ namespace KlijentskaStrana
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(70, 24);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            // 
             // FrmGlavna
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -175,6 +183,7 @@ namespace KlijentskaStrana
         private ToolStripMenuItem filmToolStripMenuItem;
         private ToolStripMenuItem podešavanjaSoftverskogSistemaToolStripMenuItem;
         private ToolStripMenuItem oProgramuToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
 
         public MenuStrip MenuStrip1 { get => menuStrip1; set => menuStrip1 = value; }
         public SqlCommand SqlCommand1 { get => sqlCommand1; set => sqlCommand1 = value; }

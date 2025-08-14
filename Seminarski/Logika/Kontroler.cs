@@ -15,7 +15,7 @@ namespace Logika
         private static Kontroler instance;
         private Broker broker = new Broker();
         private BindingList<Bioskop> prijavljeniBioskopi = new BindingList<Bioskop>();
-        public static Kontroler Instance//telefon do šefa
+        public static Kontroler Instance
         {
             get
             {
@@ -29,10 +29,13 @@ namespace Logika
 
         public Bioskop Login(Bioskop bioskop)
         {
-            SOBase operacija = new SOLogin(bioskop.KorisnickoIme, bioskop.Sifra);
+            SOBase operacija = new SOLogin(bioskop.KorisnickoIme, bioskop.Sifra, prijavljeniBioskopi);
             operacija.ExecuteTemplate();
-            return ((SOLogin)operacija).Result;
-         
+            Bioskop ulogovani = ((SOLogin)operacija).Result;
+
+
+            return ulogovani;
+
         }
         public List<Mesto> VratiMesta(Gledalac kriterijum)
         {
@@ -50,7 +53,8 @@ namespace Logika
         }
         public void Logout(Bioskop prijavljeniBioskop)
         {
-            
+            SOLogout operacija = new SOLogout(prijavljeniBioskop, prijavljeniBioskopi);
+            operacija.ExecuteTemplate();
         }
 
         public List<Gledalac> VratiGledaoce(Gledalac gledalac)
@@ -261,6 +265,11 @@ namespace Logika
             so.ExecuteTemplate();
             List<Gledalac> sviGledaoci = so.Rezultat;
             return sviGledaoci;
+        }
+
+        public BindingList<Bioskop> VratiPrijavljeneKorisnike()
+        {
+            return new BindingList<Bioskop>(prijavljeniBioskopi);
         }
     }
 }

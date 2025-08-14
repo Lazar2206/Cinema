@@ -1,4 +1,5 @@
 ﻿using KlijentskaStrana.Forme;
+using Logika;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,13 +42,17 @@ namespace KlijentskaStrana
 
         private void FrmStavkaRacuna_Load(object sender, EventArgs e)
         {
-            kontroler.UcitajFilmove();
+            var filmovi = Kontroler.Instance.VratiFilmove(); 
+            cmbFilm.DataSource = filmovi;
+            cmbFilm.DisplayMember = "Naslov";
+            cmbFilm.ValueMember = "IdFilm";
 
+          
             var stavka = Session.Session.Instance.TrenutnaStavkaRacuna;
             if (stavka != null)
             {
-                txtCena.Text = stavka.Cena.ToString();
                 txtOpis.Text = stavka.Opis;
+                txtCena.Text = stavka.Cena.ToString("F2");
                 cmbFilm.SelectedValue = stavka.IdFilm;
             }
         }

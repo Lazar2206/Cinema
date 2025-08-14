@@ -23,6 +23,7 @@ namespace ServerskaStrana
         private Racun racun;
         private bool kraj;
         private Socket socket;
+
         public Bioskop prijavljeniBioskop { get; set; }
         private List<ClientHandler> prijavljeniKorisnici = new List<ClientHandler>();
         public ClientHandler(Socket socket, List<ClientHandler> prijavljeniKorisnici)
@@ -261,6 +262,13 @@ namespace ServerskaStrana
                             }
                             PošaljiPoruku(odgovor);
                             break;
+                        case Operacija.Logout:
+                           Kontroler.Instance.Logout(prijavljeniBioskop);
+                            prijavljeniKorisnici.Remove(this);
+                            socket.Close();
+                            socket = null;
+                            kraj = true;
+                            break;
                     }
                 }
             }
@@ -272,6 +280,11 @@ namespace ServerskaStrana
          
         }
 
-     
+        public void Logout()
+        {
+            kraj = true;
+            Kontroler.Instance.Logout(prijavljeniBioskop);
+            klijent.Close();
+        }
     }
 }

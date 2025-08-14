@@ -6,15 +6,17 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Domen;
 
 namespace ServerskaStrana
 {
     public class Server
     {
         private Socket socket; 
-        private List<ClientHandler> clientHandlers = new List<ClientHandler>();
+     
         private bool kraj;
         private List<ClientHandler> korisnici = new List<ClientHandler>();
+     
         public void start()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -35,7 +37,7 @@ namespace ServerskaStrana
                     //obrada zahteva 
 
                     ClientHandler ch = new ClientHandler(klijent,korisnici);
-                    clientHandlers.Add(ch);
+                    korisnici.Add(ch);
                     Thread nit = new Thread(ch.HandleClient);
                     nit.Start();
 
@@ -48,6 +50,18 @@ namespace ServerskaStrana
             }
         }
 
-    
+        public void Logout(Bioskop b)
+        {
+            foreach (ClientHandler ch in korisnici)
+            {
+                if (b.KorisnickoIme.Equals(ch.prijavljeniBioskop.KorisnickoIme) && b.Sifra.Equals(ch.prijavljeniBioskop.Sifra))
+                {
+                    ch.Logout();
+                    korisnici.Remove(ch);
+                    return;
+                }
+            }
+        }
+
     }
 }

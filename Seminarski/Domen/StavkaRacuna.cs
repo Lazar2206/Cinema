@@ -9,6 +9,7 @@ namespace Domen
         public double Cena { get; set; }
         public string Opis { get; set; }
         public int IdFilm { get; set; }
+       
 
         public string NazivTabele => "StavkaRacuna";
 

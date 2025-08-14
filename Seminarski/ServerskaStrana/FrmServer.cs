@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domen;
+using Logika;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,7 @@ namespace ServerskaStrana
 {
     public partial class FrmServer : Form
     {
+        private BindingList<Bioskop> korisnici = new BindingList<Bioskop>();
         private Server server;
         private bool kraj;
         public FrmServer()
@@ -26,9 +29,29 @@ namespace ServerskaStrana
             Thread nit = new Thread(server.Accept);
             nit.Start();
             btnPokreni.Enabled = false;
-           
+            Thread nit1 = new Thread(NapuniDGV);
+            nit1.Start();
+
         }
 
-     
+        private void NapuniDGV()
+        {
+            kraj = false;
+            while (!kraj)
+            {
+                Thread.Sleep(4000);
+                Invoke(new Action(() =>
+                {
+                    var noviPodaci = Kontroler.Instance.VratiPrijavljeneKorisnike();
+                    korisnici.Clear();
+                    foreach (var k in noviPodaci)
+                    {
+                        korisnici.Add(k);
+                    }
+                    dgvKorisnici.DataSource = null;
+                    dgvKorisnici.DataSource = korisnici;
+                }));
+            }
+        }
     }
 }

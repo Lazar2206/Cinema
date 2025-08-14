@@ -313,5 +313,42 @@ namespace Repozitorijumi.GeneričkiRepozitorijumi
             int rowsAffected = command.ExecuteNonQuery();
             return rowsAffected > 0;
         }
+        public List<T> GetByColumnValue<T>(string columnName, object value) where T : DomenskiObjekat, new()
+        {
+            var rezultati = new List<T>();
+            T probe = new T();
+            var cmd = broker.CreateCommand();
+            cmd.CommandText = $"SELECT * FROM {probe.NazivTabele} WHERE {columnName} = @val";
+            cmd.Parameters.AddWithValue("@val", value ?? DBNull.Value);
+
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                rezultati.Add((T)probe.ReadRow(reader));
+            }
+            reader.Close();
+            return rezultati;
+        }
+        public List<Racun> VratiRacunePoGledalcu(int idGledalac)
+        {
+            var lista = new List<Racun>();
+            var cmd = broker.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Racun WHERE idGledalac = @idGledalac";
+            cmd.Parameters.AddWithValue("@idGledalac", idGledalac);
+
+            var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                // koristimo ReadRow na primeru Racun-a (postavi mapiranje u ReadRow klase Racun)
+                lista.Add((Racun)new Racun().ReadRow(reader));
+            }
+            reader.Close();
+            return lista;
+        }
+        public List<T> GetAll<T>() where T : DomenskiObjekat, new()
+        {
+            var domLista = VratiSve(new T()); 
+            return domLista.Cast<T>().ToList();
+        }
     }
 }

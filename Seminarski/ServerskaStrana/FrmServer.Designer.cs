@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             btnPokreni = new Button();
+            dgvKorisnici = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvKorisnici).BeginInit();
             SuspendLayout();
             // 
             // btnPokreni
@@ -41,19 +43,31 @@
             btnPokreni.UseVisualStyleBackColor = true;
             btnPokreni.Click += btnPokreni_Click;
             // 
+            // dgvKorisnici
+            // 
+            dgvKorisnici.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvKorisnici.Location = new Point(49, 153);
+            dgvKorisnici.Name = "dgvKorisnici";
+            dgvKorisnici.RowHeadersWidth = 51;
+            dgvKorisnici.Size = new Size(300, 188);
+            dgvKorisnici.TabIndex = 1;
+            // 
             // FrmServer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dgvKorisnici);
             Controls.Add(btnPokreni);
             Name = "FrmServer";
             Text = "FrmServer";
+            ((System.ComponentModel.ISupportInitialize)dgvKorisnici).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnPokreni;
+        private DataGridView dgvKorisnici;
     }
 }
