@@ -68,6 +68,13 @@ namespace KlijentskaStrana.GUIKontroler
             var lista = Kontroler.Instance.VratiSveBioskope();
             forma.Dgv.DataSource = null;
             forma.Dgv.DataSource = lista;
+            forma.Dgv.Columns[5].Visible = false;
+            forma.Dgv.Columns[6].Visible = false;
+            forma.Dgv.Columns[7].Visible = false;
+            forma.Dgv.Columns[8].Visible = false;
+            forma.Dgv.Columns[9].Visible = false;
+            forma.Dgv.Columns[10].Visible = false;
+        
         }
     }
 }

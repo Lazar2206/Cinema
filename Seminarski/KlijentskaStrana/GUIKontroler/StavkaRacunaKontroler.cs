@@ -1,5 +1,6 @@
 ﻿using Domen;
 using Domen.DTO;
+using KlijentskaStrana.GUIKontroler;
 using Komunikacija;
 using Logika;
 using System;
@@ -15,14 +16,16 @@ namespace KlijentskaStrana.Forme
 
         // Možeš čuvati trenutno izabranu stavku
         private StavkaRacuna trenutnaStavka;
+        private readonly RacunKontroler racunKontroler;
 
-        public StavkaRacunaKontroler(FrmStavkaRacuna frm)
+        public StavkaRacunaKontroler(FrmStavkaRacuna frm, RacunKontroler racunKontroler)
         {
             forma = frm;
-            // Event handleri mogu biti i ovde, npr.:
-            forma.BtnDodaj.Click += (s, e) => DodajStavku();
-            forma.BtnIzmeni.Click += (s, e) => IzmeniStavku();
-            forma.BtnObrisi.Click += (s, e) => ObrisiStavku();
+            this.racunKontroler = racunKontroler;
+
+            forma.BtnDodaj.Click += (s, e) => { DodajStavku(); racunKontroler.OsveziStavke(); };
+            forma.BtnIzmeni.Click += (s, e) => { IzmeniStavku(); racunKontroler.OsveziStavke(); };
+            forma.BtnObrisi.Click += (s, e) => { ObrisiStavku(); racunKontroler.OsveziStavke(); };
         }
 
         public void UcitajFilmove()

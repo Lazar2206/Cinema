@@ -1,4 +1,5 @@
 ﻿using KlijentskaStrana.Forme;
+using KlijentskaStrana.GUIKontroler;
 using Logika;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,12 @@ namespace KlijentskaStrana
     public partial class FrmStavkaRacuna : Form
     {
         private readonly StavkaRacunaKontroler kontroler;
+
         
-        public FrmStavkaRacuna()
+        public FrmStavkaRacuna(RacunKontroler racunKontroler)
         {
             InitializeComponent();
-            kontroler = new StavkaRacunaKontroler(this);
+            kontroler = new StavkaRacunaKontroler(this,racunKontroler);
             this.Load += FrmStavkaRacuna_Load;
             
             

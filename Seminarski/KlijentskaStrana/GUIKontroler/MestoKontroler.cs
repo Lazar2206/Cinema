@@ -22,6 +22,13 @@ namespace KlijentskaStrana.GUIKontroler
             List<Mesto> mesta = Kontroler.Instance.VratiMesta();
             forma.DgvMesta.DataSource = null;
             forma.DgvMesta.DataSource = mesta;
+            forma.DgvMesta.Columns[2].Visible = false;
+            forma.DgvMesta.Columns[3].Visible = false;
+            forma.DgvMesta.Columns[4].Visible = false;
+            forma.DgvMesta.Columns[5].Visible = false;
+            forma.DgvMesta.Columns[6].Visible = false;
+            forma.DgvMesta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            forma.DgvMesta.AllowUserToAddRows = false;
         }
 
         public void KreirajMesto(string nazivMesta)

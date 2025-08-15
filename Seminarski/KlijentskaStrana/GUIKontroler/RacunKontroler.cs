@@ -1,4 +1,5 @@
-﻿using Domen;
+﻿using DBBroker;
+using Domen;
 using Domen.DTO;
 using KlijentskaStrana.Session;
 using Komunikacija;
@@ -65,6 +66,14 @@ namespace KlijentskaStrana.GUIKontroler
                 MessageBox.Show("Sistem je kreirao račun.");
                 idRacun = Kontroler.Instance.VratiIdNajnovijegRacuna();
 
+                Session.Session.Instance.TrenutniRacun = new Racun
+                {
+                    IdRacun = idRacun,
+                    Datum = forma.DtpDatum.Value.Date,
+                    UkupnaCena = 0,
+                    IdGledalac = (int)forma.CmbGledalac.SelectedValue,
+                    IdBioskop = bioskop.IdBioskop
+                };
             }
             else
             {
@@ -100,15 +109,19 @@ namespace KlijentskaStrana.GUIKontroler
             }
 
             var prikaz = (PrikazRacuna)forma.DgvRacuni.SelectedRows[0].DataBoundItem;
-
-            forma.CmbGledalac.SelectedValue = prikaz.IdGledalac;
-            forma.DtpDatum.Value = prikaz.Datum;
-            forma.TxtUkupnaCena.Text = prikaz.UkupnaCena.ToString("F2");
             idRacun = prikaz.IdRacun;
+
+            Session.Session.Instance.TrenutniRacun = new Racun
+            {
+                IdRacun = prikaz.IdRacun,
+                Datum = prikaz.Datum,
+                UkupnaCena = prikaz.UkupnaCena,
+                IdGledalac = prikaz.IdGledalac,
+                IdBioskop = bioskop.IdBioskop
+            };
 
             OsvežiDGV();
 
-         
         }
 
         private void OsvežiDGV()
@@ -230,7 +243,7 @@ namespace KlijentskaStrana.GUIKontroler
             var izabranaStavka = (PrikazStavkeRacuna)forma.DgvRacunStavke.CurrentRow.DataBoundItem;
             Session.Session.Instance.TrenutnaStavkaRacuna = izabranaStavka;
 
-            var frm = new FrmStavkaRacuna();
+            var frm = new FrmStavkaRacuna(this);
             frm.TxtOpis.Text = izabranaStavka.Opis;
             frm.TxtCena.Text = izabranaStavka.Cena.ToString("F2");
             frm.CmbFilm.SelectedValue = izabranaStavka.IdFilm;
@@ -239,7 +252,31 @@ namespace KlijentskaStrana.GUIKontroler
 
             frm.ShowDialog();
         }
+        public void OsveziStavke()
+        {
+            
+            var racun = Session.Session.Instance.TrenutniRacun;
+            if (racun != null)
+            {
+                
+                var stavke = Kontroler.Instance.VratiStavkeRacuna(racun.IdRacun);
+                
 
+                var racuni=Kontroler.Instance.VratiRacun(racun);
+                forma.DgvRacuni.DataSource = null;
+                forma.DgvRacuni.DataSource = racuni;
+                forma.DgvRacuni.Columns["IdGledalac"].Visible = false;
+                forma.DgvRacuni.Columns["IdBioskop"].Visible = false;
+                forma.DgvRacunStavke.DataSource = null;
+                forma.DgvRacunStavke.DataSource = stavke;
+                forma.DgvRacunStavke.Columns["IdRacun"].Visible = false;
+                forma.DgvRacunStavke.Columns["IdFilm"].Visible = false;
+           
+
+
+                forma.TxtUkupnaCena.Text = stavke.Sum(s => s.Cena).ToString("F2");
+            }
+        }
     }
 }
 
