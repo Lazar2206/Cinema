@@ -24,6 +24,8 @@ namespace KlijentskaStrana.GUIKontroler
         public RacunKontroler(FrmRačun forma)
         {
             this.forma = forma;
+           forma.BtnDetalji.Enabled = false;
+            forma.BtnDetaljiStavke.Enabled = false;
             forma.TxtBioskop.Text = bioskop.NazivBioskopa;
             NapuniCmbGledalac();
         }
@@ -98,6 +100,7 @@ namespace KlijentskaStrana.GUIKontroler
             forma.DgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
             forma.DgvRacuni.Columns["IdGledalac"].Visible = false;
             forma.DgvRacuni.Columns["IdBioskop"].Visible = false;
+            forma.BtnDetalji.Enabled = true;
         }
 
         public void PrikaziDetaljeStavke()
@@ -121,6 +124,7 @@ namespace KlijentskaStrana.GUIKontroler
             };
 
             OsvežiDGV();
+            forma.BtnDetaljiStavke.Enabled = true;
 
         }
 
@@ -182,7 +186,7 @@ namespace KlijentskaStrana.GUIKontroler
                 OsveziTabeluRacuna();
                 forma.DgvRacunStavke.DataSource = null;
                 forma.TxtUkupnaCena.Clear();
-                forma.PnlStavka.Controls.Clear();
+             
             }
             else
             {
@@ -190,27 +194,6 @@ namespace KlijentskaStrana.GUIKontroler
             }
         }
 
-        private void AzurirajUkupnuCenu()
-        {
-            var stavke = Kontroler.Instance.VratiStavkeRacuna(idRacun);
-            double ukupno = stavke.Sum(s => s.Cena);
-
-            Poruka azuriraj = new Poruka
-            {
-                Operacija = Operacija.AzurirajUkupnuCenu,
-                Object = Tuple.Create(idRacun, ukupno)
-            };
-
-            klijent.PošaljiPoruku(azuriraj);
-            Poruka odgovor = klijent.PrimiPoruku();
-
-            if (odgovor.Operacija != Operacija.Uspešno)
-            {
-                MessageBox.Show("Greška pri ažuriranju ukupne cene.");
-            }
-
-            forma.TxtUkupnaCena.Text = ukupno.ToString("F2");
-        }
 
         private void OsveziTabeluRacuna()
         {
@@ -246,9 +229,10 @@ namespace KlijentskaStrana.GUIKontroler
             var frm = new FrmStavkaRacuna(this);
             frm.TxtOpis.Text = izabranaStavka.Opis;
             frm.TxtCena.Text = izabranaStavka.Cena.ToString("F2");
-            frm.CmbFilm.SelectedValue = izabranaStavka.IdFilm;
-            frm.CmbFilm.DisplayMember = "NaslovFilma";
+            frm.CmbFilm.DataSource = Kontroler.Instance.VratiFilmove();
+            frm.CmbFilm.DisplayMember = "Naslov";
             frm.CmbFilm.ValueMember = "IdFilm";
+            frm.CmbFilm.SelectedValue = izabranaStavka.IdFilm;
 
             frm.ShowDialog();
         }

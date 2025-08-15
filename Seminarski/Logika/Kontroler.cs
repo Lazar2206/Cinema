@@ -116,13 +116,7 @@ namespace Logika
             List<Distributer> distributeri = so.Rezultat;
             return distributeri;
         }
-        public List<Distributer> VratiSveDistributere()
-        {
-            var so= new SOVratiSveDistributere();
-            so.ExecuteTemplate();
-            List<Distributer> distributeri = so.Rezultat;
-            return distributeri;
-        }
+        
 
         public bool KreirajDistributer(Distributer distributer)
         {

@@ -1,10 +1,5 @@
-﻿
-using Domen;
-using Domen.DTO;
-using KlijentskaStrana.GUIKontroler;
-
+﻿using KlijentskaStrana.GUIKontroler;
 using System;
-
 using System.Windows.Forms;
 
 namespace KlijentskaStrana
@@ -70,8 +65,11 @@ namespace KlijentskaStrana
         public DateTimePicker DtpDatum => dateTimePicker1;
         public TextBox TxtBioskop => txtBioskop;
         public TextBox TxtUkupnaCena => txtUkupnaCena;
-        public Panel PnlStavka => pnlStavka;
+  
         public DataGridView DgvRacuni => dgvRacuni;
         public DataGridView DgvRacunStavke => dgvRacunStavke;
+        public Button BtnDetalji => btnDetalji;
+        public Button BtnDetaljiStavke => btnDetaljiStavke;
+        public Button BtnKreirajRacun => btnKreirajRačun;
     }
 }

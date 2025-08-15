@@ -1,14 +1,8 @@
 ﻿using KlijentskaStrana.Forme;
 using KlijentskaStrana.GUIKontroler;
-using Logika;
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace KlijentskaStrana
@@ -22,7 +16,7 @@ namespace KlijentskaStrana
         {
             InitializeComponent();
             kontroler = new StavkaRacunaKontroler(this,racunKontroler);
-            this.Load += FrmStavkaRacuna_Load;
+            
             
             
         }
@@ -42,22 +36,7 @@ namespace KlijentskaStrana
             kontroler.IzmeniStavku();
         }
 
-        private void FrmStavkaRacuna_Load(object sender, EventArgs e)
-        {
-            var filmovi = Kontroler.Instance.VratiFilmove(); 
-            cmbFilm.DataSource = filmovi;
-            cmbFilm.DisplayMember = "Naslov";
-            cmbFilm.ValueMember = "IdFilm";
-
-          
-            var stavka = Session.Session.Instance.TrenutnaStavkaRacuna;
-            if (stavka != null)
-            {
-                txtOpis.Text = stavka.Opis;
-                txtCena.Text = stavka.Cena.ToString("F2");
-                cmbFilm.SelectedValue = stavka.IdFilm;
-            }
-        }
+       
 
         public TextBox TxtOpis => txtOpis;
         public TextBox TxtCena => txtCena;

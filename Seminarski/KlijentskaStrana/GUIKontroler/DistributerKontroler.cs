@@ -54,12 +54,26 @@ namespace KlijentskaStrana.GUIKontroler
 
         public void PretraziDistributere()
         {
+            if (string.IsNullOrWhiteSpace(forma.TxtNaziv.Text))
+            {
+                MessageBox.Show("Sistem ne može da nađe distributera");
+                return;
+            }
             poslednjiNaziv = forma.TxtNaziv.Text;
             var kriterijum = new Distributer { NazivDistributera = poslednjiNaziv };
             var rezultat = Kontroler.Instance.PretražiDistributere(kriterijum);
 
             forma.Dgv.DataSource = null;
             forma.Dgv.DataSource = rezultat;
+            forma.Dgv.Columns[2].Visible = false;
+            forma.Dgv.Columns[3].Visible = false;
+            forma.Dgv.Columns[4].Visible = false;
+            forma.Dgv.Columns[5].Visible = false;
+            forma.Dgv.Columns[6].Visible = false;
+            forma.Dgv.Columns[7].Visible = false;
+            forma.Dgv.Columns[8].Visible = false;
+            forma.Dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            forma.Dgv.AllowUserToAddRows = false;
         }
 
         public void PopuniFormuIzabranim()

@@ -28,37 +28,6 @@ namespace KlijentskaStrana.Forme
             forma.BtnObrisi.Click += (s, e) => { ObrisiStavku(); racunKontroler.OsveziStavke(); };
         }
 
-        public void UcitajFilmove()
-        {
-            try
-            {
-                List<Film> filmovi = Kontroler.Instance.VratiFilmove();
-
-                forma.CmbFilm.DataSource = filmovi;
-                forma.CmbFilm.DisplayMember = "NaslovFilma";
-                forma.CmbFilm.ValueMember = "IdFilm";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Greška pri učitavanju filmova: {ex.Message}");
-            }
-        }
-
-        public void PostaviStavkuZaPrikaz(StavkaRacuna stavka)
-        {
-            trenutnaStavka = stavka;
-
-            if (stavka == null)
-            {
-                OcistiPolja();
-                return;
-            }
-
-            forma.TxtOpis.Text = stavka.Opis;
-            forma.TxtCena.Text = stavka.Cena.ToString("F2");
-            forma.CmbFilm.SelectedValue = stavka.IdFilm;
-        }
-
         public void DodajStavku()
         {
             var prikaz = Session.Session.Instance.TrenutnaStavkaRacuna as PrikazStavkeRacuna;
@@ -91,7 +60,7 @@ namespace KlijentskaStrana.Forme
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Greška pri dodavanju stavke: {ex.Message}");
+                MessageBox.Show($"Greška pri dodavanju stavke");
             }
         }
 
@@ -185,17 +154,18 @@ namespace KlijentskaStrana.Forme
                     Object = stavka
                 };
 
+
                 klijent.PošaljiPoruku(zahtev);
                 Poruka odgovor = klijent.PrimiPoruku();
 
                 if (odgovor.Operacija == Operacija.Uspešno)
                 {
-                    MessageBox.Show($"Stavka uspešno {operacija.ToString().ToLower()}.");
+                    MessageBox.Show($"Uspešno izvršeno {OpisOperacije(operacija)}.");
                     OcistiPolja();
                 }
                 else
                 {
-                    MessageBox.Show($"Greška pri {operacija.ToString().ToLower()} stavke.");
+                    MessageBox.Show($"Greška pri {OpisOperacije(operacija)}.");
                 }
             }
             catch (Exception ex)
@@ -213,6 +183,15 @@ namespace KlijentskaStrana.Forme
 
             trenutnaStavka = null;
         }
-
+        private string OpisOperacije(Operacija operacija)
+        {
+            switch (operacija)
+            {
+                case Operacija.DodajStavkuRacuna: return "dodavanje stavke";
+                case Operacija.IzmeniStavkuRacuna: return "izmena stavke";
+                case Operacija.ObrisiStavkuRacuna: return "brisanje stavke";
+                default: return operacija.ToString().ToLower();
+            }
+        }
     }
 }

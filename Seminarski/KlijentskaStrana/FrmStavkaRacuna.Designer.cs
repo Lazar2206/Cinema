@@ -134,7 +134,7 @@
             Controls.Add(label5);
             Name = "FrmStavkaRacuna";
             Text = "FrmStavkaRacuna";
-            Load += FrmStavkaRacuna_Load;
+            
             ResumeLayout(false);
             PerformLayout();
         }

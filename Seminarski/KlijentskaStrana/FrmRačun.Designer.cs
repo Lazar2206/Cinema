@@ -41,7 +41,6 @@
             btnIzmeni = new Button();
             btnObriši = new Button();
             txtBioskop = new TextBox();
-            pnlStavka = new Panel();
             btnGlavna = new Button();
             dgvRacuni = new DataGridView();
             btnPretraži = new Button();
@@ -164,14 +163,6 @@
             txtBioskop.Size = new Size(274, 27);
             txtBioskop.TabIndex = 17;
             // 
-            // pnlStavka
-            // 
-            pnlStavka.BorderStyle = BorderStyle.FixedSingle;
-            pnlStavka.Location = new Point(3, 356);
-            pnlStavka.Name = "pnlStavka";
-            pnlStavka.Size = new Size(638, 179);
-            pnlStavka.TabIndex = 0;
-            // 
             // btnGlavna
             // 
             btnGlavna.Location = new Point(1407, 495);
@@ -220,7 +211,6 @@
             Controls.Add(btnPretraži);
             Controls.Add(dgvRacuni);
             Controls.Add(btnGlavna);
-            Controls.Add(pnlStavka);
             Controls.Add(txtBioskop);
             Controls.Add(btnObriši);
             Controls.Add(btnIzmeni);
@@ -257,7 +247,6 @@
         private Button btnIzmeni;
         private Button btnObriši;
         private TextBox txtBioskop;
-        private Panel pnlStavka;
         private Button btnGlavna;
         private DataGridView dgvRacuni;
         private Button btnPretraži;
