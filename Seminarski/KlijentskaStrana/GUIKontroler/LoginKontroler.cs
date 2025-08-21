@@ -35,9 +35,9 @@ namespace KlijentskaStrana.GUIKontroler
             Poruka zahtev = new Poruka();
             zahtev.Object = bioskop;
             zahtev.Operacija = Operacija.Login;
-            //slanje zahteva
+     
             klijent.PošaljiPoruku(zahtev);
-            //primanje odgovora
+          
             Poruka odgovor = klijent.PrimiPoruku();
             if (odgovor.Operacija.Equals(Operacija.Uspešno))
             {
@@ -46,7 +46,7 @@ namespace KlijentskaStrana.GUIKontroler
                 bioskop.NazivBioskopa = prijavljeniBioskop.NazivBioskopa;
                 bioskop.KorisnickoIme = prijavljeniBioskop.KorisnickoIme;
 
-                MessageBox.Show("Dobrodošli, " + prijavljeniBioskop.NazivBioskopa + "!");
+                MessageBox.Show("Uspešno ste se prijavili na sistem");
 
                 FrmGlavna frm = new FrmGlavna();
                 Session.Session.Instance.Klijent = klijent;
@@ -56,8 +56,9 @@ namespace KlijentskaStrana.GUIKontroler
             }
             else
             {
-                //ako podaci nisu ispravni
-                MessageBox.Show("Nepostojeci korisnik");
+               
+                MessageBox.Show("Korisničko ime i šifra nisu ispravni");
+                MessageBox.Show("Ne može da se otvori glavna forma i meni");
             }
         }
        

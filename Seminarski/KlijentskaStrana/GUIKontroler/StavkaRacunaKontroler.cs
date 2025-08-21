@@ -14,7 +14,7 @@ namespace KlijentskaStrana.Forme
         private readonly FrmStavkaRacuna forma;
         private Klijent klijent => Session.Session.Instance.Klijent;
 
-        // Možeš čuvati trenutno izabranu stavku
+       
         private StavkaRacuna trenutnaStavka;
         private readonly RacunKontroler racunKontroler;
 
@@ -23,53 +23,50 @@ namespace KlijentskaStrana.Forme
             forma = frm;
             this.racunKontroler = racunKontroler;
 
-            forma.BtnDodaj.Click += (s, e) => { DodajStavku(); racunKontroler.OsveziStavke(); };
-            forma.BtnIzmeni.Click += (s, e) => { IzmeniStavku(); racunKontroler.OsveziStavke(); };
-            forma.BtnObrisi.Click += (s, e) => { ObrisiStavku(); racunKontroler.OsveziStavke(); };
         }
 
-        public void DodajStavku()
+       public void DodajStavku()
+{
+    if (!ValidirajUnos(out string opis, out double cena, out int idFilma))
+    {
+        
+        return;
+    }
+
+    var racun = Session.Session.Instance.TrenutniRacun;
+    if (racun == null || racun.IdRacun == 0)
+    {
+        MessageBox.Show("Sistem ne može da zapamti račun");
+        return;
+    }
+
+    try
+    {
+        int sledeciRb = Kontroler.Instance.VratiSledeciRbZaRacun(racun.IdRacun);
+
+        var stavka = new StavkaRacuna
         {
-            var prikaz = Session.Session.Instance.TrenutnaStavkaRacuna as PrikazStavkeRacuna;
-            int idRacun= prikaz.IdRacun;
-            if (idRacun == 0)
-            {
-                MessageBox.Show("Prvo izaberite račun.");
-                return;
-            }
+            Rb = sledeciRb,
+            Opis = opis,
+            Cena = cena,
+            IdFilm = idFilma,
+            IdRacun = racun.IdRacun
+        };
 
-            if (!ValidirajUnos(out string opis, out double cena, out int idFilma))
-                return;
-
-            try
-            {
-                int sledeciRb = Kontroler.Instance.VratiSledeciRbZaRacun(idRacun);
-
-                var stavka = new StavkaRacuna
-                {
-                    Rb = sledeciRb,
-                    Opis = opis,
-                    Cena = cena,
-                    IdFilm = idFilma,
-                    IdRacun = idRacun
-                };
-
-                PosaljiPoruku(Operacija.DodajStavkuRacuna, stavka);
-
-            
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Greška pri dodavanju stavke");
-            }
-        }
+        PosaljiPoruku(Operacija.DodajStavkuRacuna, stavka);
+    }
+    catch
+    {
+        MessageBox.Show("Sistem ne može da zapamti račun");
+    }
+}
 
         public void IzmeniStavku()
         {
             var prikaz = Session.Session.Instance.TrenutnaStavkaRacuna as PrikazStavkeRacuna;
             if (prikaz == null)
             {
-                MessageBox.Show("Niste selektovali nijednu stavku.");
+                MessageBox.Show("Sistem ne može da izmeni račun");
                 return;
             }
 
@@ -93,7 +90,7 @@ namespace KlijentskaStrana.Forme
             var prikaz = Session.Session.Instance.TrenutnaStavkaRacuna as PrikazStavkeRacuna;
             if (prikaz == null)
             {
-                MessageBox.Show("Niste selektovali nijednu stavku.");
+                MessageBox.Show("Sistem ne može da obriše račun");
                 return;
             }
 
@@ -122,23 +119,12 @@ namespace KlijentskaStrana.Forme
             bool filmValid = forma.CmbFilm.SelectedValue != null &&
                              int.TryParse(forma.CmbFilm.SelectedValue.ToString(), out idFilma);
 
-            if (string.IsNullOrWhiteSpace(opis))
+            if (string.IsNullOrWhiteSpace(opis) || !cenaValid || !filmValid)
             {
-                MessageBox.Show("Unesite opis stavke.");
+                MessageBox.Show("Sistem ne može da zapamti racun");
                 return false;
             }
 
-            if (!cenaValid)
-            {
-                MessageBox.Show("Cena mora biti broj.");
-                return false;
-            }
-
-            if (!filmValid)
-            {
-                MessageBox.Show("Izaberite film.");
-                return false;
-            }
 
             return true;
         }
@@ -160,12 +146,12 @@ namespace KlijentskaStrana.Forme
 
                 if (odgovor.Operacija == Operacija.Uspešno)
                 {
-                    MessageBox.Show($"Uspešno izvršeno {OpisOperacije(operacija)}.");
+                    MessageBox.Show($"Sistem je {OpisOperacije(operacija)}.");
                     OcistiPolja();
                 }
                 else
                 {
-                    MessageBox.Show($"Greška pri {OpisOperacije(operacija)}.");
+                    MessageBox.Show($"Sistem nije {OpisOperacije(operacija)}.");
                 }
             }
             catch (Exception ex)
@@ -187,9 +173,9 @@ namespace KlijentskaStrana.Forme
         {
             switch (operacija)
             {
-                case Operacija.DodajStavkuRacuna: return "dodavanje stavke";
-                case Operacija.IzmeniStavkuRacuna: return "izmena stavke";
-                case Operacija.ObrisiStavkuRacuna: return "brisanje stavke";
+                case Operacija.DodajStavkuRacuna: return "zapamtio račun";
+                case Operacija.IzmeniStavkuRacuna: return "izmenio račun";
+                case Operacija.ObrisiStavkuRacuna: return "obrisao račun";
                 default: return operacija.ToString().ToLower();
             }
         }

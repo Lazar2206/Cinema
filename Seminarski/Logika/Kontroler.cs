@@ -37,13 +37,7 @@ namespace Logika
             return ulogovani;
 
         }
-        public List<Mesto> VratiMesta(Gledalac kriterijum)
-        {
-            SOVratiSvaMesta so = new SOVratiSvaMesta();
-            so.ExecuteTemplate();
-            List<Mesto> svaMesta = so.Rezultat;
-            return svaMesta;
-        }
+        
         public List<Mesto> VratiMesta()
         {
             SOVratiSvaMesta so = new SOVratiSvaMesta();

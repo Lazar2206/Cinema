@@ -42,12 +42,13 @@
             btnGlavna = new Button();
             btnAžuriraj = new Button();
             btnObriši = new Button();
+            btnDetalji = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvGledaoci).BeginInit();
             SuspendLayout();
             // 
             // btnKreiraj
             // 
-            btnKreiraj.Location = new Point(715, 110);
+            btnKreiraj.Location = new Point(981, 142);
             btnKreiraj.Name = "btnKreiraj";
             btnKreiraj.Size = new Size(94, 29);
             btnKreiraj.TabIndex = 32;
@@ -58,16 +59,17 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(561, 39);
+            label2.Location = new Point(754, 71);
             label2.Name = "label2";
             label2.Size = new Size(50, 20);
             label2.TabIndex = 31;
             label2.Text = "Mesto";
+            label2.Click += label2_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(216, 40);
+            label4.Location = new Point(409, 72);
             label4.Name = "label4";
             label4.Size = new Size(62, 20);
             label4.TabIndex = 30;
@@ -75,15 +77,15 @@
             // 
             // txtPrezime
             // 
-            txtPrezime.Location = new Point(204, 63);
+            txtPrezime.Location = new Point(368, 95);
             txtPrezime.Name = "txtPrezime";
-            txtPrezime.Size = new Size(125, 27);
+            txtPrezime.Size = new Size(154, 27);
             txtPrezime.TabIndex = 29;
             // 
             // txtKorisničkoIme
             // 
             txtKorisničkoIme.AutoSize = true;
-            txtKorisničkoIme.Location = new Point(378, 40);
+            txtKorisničkoIme.Location = new Point(571, 72);
             txtKorisničkoIme.Name = "txtKorisničkoIme";
             txtKorisničkoIme.Size = new Size(42, 20);
             txtKorisničkoIme.TabIndex = 28;
@@ -91,23 +93,23 @@
             // 
             // txtMejl
             // 
-            txtMejl.Location = new Point(371, 63);
+            txtMejl.Location = new Point(535, 95);
             txtMejl.Name = "txtMejl";
-            txtMejl.Size = new Size(125, 27);
+            txtMejl.Size = new Size(154, 27);
             txtMejl.TabIndex = 27;
             // 
             // dgvGledaoci
             // 
             dgvGledaoci.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvGledaoci.Location = new Point(12, 110);
+            dgvGledaoci.Location = new Point(127, 142);
             dgvGledaoci.Name = "dgvGledaoci";
             dgvGledaoci.RowHeadersWidth = 51;
-            dgvGledaoci.Size = new Size(681, 177);
+            dgvGledaoci.Size = new Size(828, 274);
             dgvGledaoci.TabIndex = 21;
             // 
             // btnPretraži
             // 
-            btnPretraži.Location = new Point(715, 154);
+            btnPretraži.Location = new Point(981, 186);
             btnPretraži.Name = "btnPretraži";
             btnPretraži.Size = new Size(94, 31);
             btnPretraži.TabIndex = 25;
@@ -118,7 +120,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(40, 40);
+            label1.Location = new Point(233, 72);
             label1.Name = "label1";
             label1.Size = new Size(34, 20);
             label1.TabIndex = 24;
@@ -126,17 +128,17 @@
             // 
             // txtIme
             // 
-            txtIme.Location = new Point(28, 63);
+            txtIme.Location = new Point(192, 95);
             txtIme.Name = "txtIme";
-            txtIme.Size = new Size(125, 27);
+            txtIme.Size = new Size(154, 27);
             txtIme.TabIndex = 23;
             // 
             // cmbMesta
             // 
             cmbMesta.FormattingEnabled = true;
-            cmbMesta.Location = new Point(529, 62);
+            cmbMesta.Location = new Point(693, 94);
             cmbMesta.Name = "cmbMesta";
-            cmbMesta.Size = new Size(151, 28);
+            cmbMesta.Size = new Size(180, 28);
             cmbMesta.TabIndex = 22;
             // 
             // btnGlavna
@@ -151,7 +153,7 @@
             // 
             // btnAžuriraj
             // 
-            btnAžuriraj.Location = new Point(715, 201);
+            btnAžuriraj.Location = new Point(981, 258);
             btnAžuriraj.Name = "btnAžuriraj";
             btnAžuriraj.Size = new Size(94, 29);
             btnAžuriraj.TabIndex = 34;
@@ -161,7 +163,7 @@
             // 
             // btnObriši
             // 
-            btnObriši.Location = new Point(715, 246);
+            btnObriši.Location = new Point(981, 303);
             btnObriši.Name = "btnObriši";
             btnObriši.Size = new Size(94, 29);
             btnObriši.TabIndex = 35;
@@ -169,11 +171,22 @@
             btnObriši.UseVisualStyleBackColor = true;
             btnObriši.Click += btnObriši_Click;
             // 
+            // btnDetalji
+            // 
+            btnDetalji.Location = new Point(981, 223);
+            btnDetalji.Name = "btnDetalji";
+            btnDetalji.Size = new Size(94, 29);
+            btnDetalji.TabIndex = 36;
+            btnDetalji.Text = "Detalji";
+            btnDetalji.UseVisualStyleBackColor = true;
+            btnDetalji.Click += btnDetalji_Click;
+            // 
             // FrmGledalac
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1467, 526);
+            Controls.Add(btnDetalji);
             Controls.Add(btnObriši);
             Controls.Add(btnAžuriraj);
             Controls.Add(btnGlavna);
@@ -211,6 +224,7 @@
         private Button btnGlavna;
         private Button btnAžuriraj;
         private Button btnObriši;
+        private Button btnDetalji;
 
         public Button BtnKreiraj { get => btnKreiraj; set => btnKreiraj = value; }
         public Label Label2 { get => label2; set => label2 = value; }

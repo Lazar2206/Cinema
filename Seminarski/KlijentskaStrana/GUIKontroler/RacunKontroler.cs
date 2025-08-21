@@ -42,12 +42,12 @@ namespace KlijentskaStrana.GUIKontroler
         {
             if (forma.DtpDatum.Value.Date < DateTime.Today)
             {
-                MessageBox.Show("Datum ne može biti u prošlosti.");
+                MessageBox.Show("Sistem ne može da kreira račun");
                 return;
             }
             if (forma.CmbGledalac.SelectedIndex == -1)
             {
-                MessageBox.Show("Izaberite gledaoca.");
+                MessageBox.Show("Sistem ne može da kreira račun");
                 return;
             }
 
@@ -65,7 +65,6 @@ namespace KlijentskaStrana.GUIKontroler
             Poruka odgovor = klijent.PrimiPoruku();
             if (odgovor.Operacija == Operacija.Uspešno)
             {
-                MessageBox.Show("Sistem je kreirao račun.");
                 idRacun = Kontroler.Instance.VratiIdNajnovijegRacuna();
 
                 Session.Session.Instance.TrenutniRacun = new Racun
@@ -76,10 +75,20 @@ namespace KlijentskaStrana.GUIKontroler
                     IdGledalac = (int)forma.CmbGledalac.SelectedValue,
                     IdBioskop = bioskop.IdBioskop
                 };
+                var frm = new FrmStavkaRacuna(this);
+                frm.CmbFilm.DataSource = Kontroler.Instance.VratiFilmove();
+                frm.CmbFilm.DisplayMember = "Naslov";
+                frm.CmbFilm.ValueMember = "IdFilm";
+                forma.DgvRacuni.DataSource = null;
+                forma.DgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
+                MessageBox.Show("Sistem je kreirao račun.");
+                frm.ShowDialog();
+                forma.BtnDetalji.Enabled = true;
+                forma.BtnDetaljiStavke.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Greška pri kreiranju računa.");
+                MessageBox.Show("Sistem ne može da kreira račun.");
             }
         }
 
@@ -93,27 +102,35 @@ namespace KlijentskaStrana.GUIKontroler
                 IdGledalac = forma.CmbGledalac.SelectedIndex != -1 ? (int)forma.CmbGledalac.SelectedValue : 0,
                 IdBioskop = bioskop.IdBioskop
             };
+            
 
             forma.DgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
 
             forma.DgvRacuni.DataSource = null;
             forma.DgvRacuni.DataSource = Kontroler.Instance.VratiRacun(r);
+            
+
             forma.DgvRacuni.Columns["IdGledalac"].Visible = false;
             forma.DgvRacuni.Columns["IdBioskop"].Visible = false;
             forma.BtnDetalji.Enabled = true;
+            if(Kontroler.Instance.VratiRacun(r).Count == 0)
+            {
+                MessageBox.Show("Sistem ne može da nađe račun za zadate kriterijume");
+                return;
+            }
         }
 
         public void PrikaziDetaljeStavke()
         {
             if (forma.DgvRacuni.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Izaberite račun.");
+                MessageBox.Show("Sistem ne može da nađe račun");
                 return;
             }
 
             var prikaz = (PrikazRacuna)forma.DgvRacuni.SelectedRows[0].DataBoundItem;
             idRacun = prikaz.IdRacun;
-
+         
             Session.Session.Instance.TrenutniRacun = new Racun
             {
                 IdRacun = prikaz.IdRacun,
@@ -125,6 +142,7 @@ namespace KlijentskaStrana.GUIKontroler
 
             OsvežiDGV();
             forma.BtnDetaljiStavke.Enabled = true;
+            MessageBox.Show("Sistem je našao račun");
 
         }
 
@@ -142,6 +160,11 @@ namespace KlijentskaStrana.GUIKontroler
 
         public void IzmeniRacun()
         {
+            if(forma.DgvRacuni.SelectedRows.Count == 0 || forma.CmbGledalac.SelectedValue==null|| forma.TxtBioskop.Text==null || forma.TxtUkupnaCena.Text==null || idRacun==0 )
+            {
+                MessageBox.Show("Sistem ne može da zapamti račun");
+                return;
+            }
             var r = new Racun
             {
                 IdRacun = idRacun,
@@ -156,16 +179,18 @@ namespace KlijentskaStrana.GUIKontroler
             Poruka odgovor = klijent.PrimiPoruku();
 
             if (odgovor.Operacija == Operacija.Uspešno)
-                MessageBox.Show("Račun uspešno izmenjen.");
-            else
-                MessageBox.Show("Greška pri izmeni računa.");
+            {
+                PretraziRacune();
+                MessageBox.Show("Sistem je zapamtio racun");
+            }
+          
         }
 
         public void ObrisiRacun()
         {
             if (forma.DgvRacuni.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Izaberite račun za brisanje.");
+                MessageBox.Show("Sistem ne može da obriše račun");
                 return;
             }
 
@@ -182,7 +207,7 @@ namespace KlijentskaStrana.GUIKontroler
 
             if (odgovor.Operacija == Operacija.Uspešno)
             {
-                MessageBox.Show("Račun obrisan.");
+                MessageBox.Show("Sistem je obrisao račun");
                 OsveziTabeluRacuna();
                 forma.DgvRacunStavke.DataSource = null;
                 forma.TxtUkupnaCena.Clear();
@@ -190,7 +215,7 @@ namespace KlijentskaStrana.GUIKontroler
             }
             else
             {
-                MessageBox.Show("Greška pri brisanju računa.");
+                MessageBox.Show("Sistem ne može da obriše račun");
             }
         }
 
@@ -212,7 +237,7 @@ namespace KlijentskaStrana.GUIKontroler
         {
             if (idRacun == 0)
             {
-                MessageBox.Show("Prvo kreirajte račun.");
+                MessageBox.Show("Sistem ne može da zapamti račun");
                 return;
             }
             
@@ -225,7 +250,7 @@ namespace KlijentskaStrana.GUIKontroler
 
             var izabranaStavka = (PrikazStavkeRacuna)forma.DgvRacunStavke.CurrentRow.DataBoundItem;
             Session.Session.Instance.TrenutnaStavkaRacuna = izabranaStavka;
-
+            MessageBox.Show("Sistem je našao račun");
             var frm = new FrmStavkaRacuna(this);
             frm.TxtOpis.Text = izabranaStavka.Opis;
             frm.TxtCena.Text = izabranaStavka.Cena.ToString("F2");

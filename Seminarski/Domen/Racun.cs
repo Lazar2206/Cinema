@@ -38,7 +38,6 @@ namespace Domen
                 IdGledalac = (int)reader["idGledalac"]
             };
         }
-
         public string UslovZaJednog()
         {
             return $"idRacun = {IdRacun}";

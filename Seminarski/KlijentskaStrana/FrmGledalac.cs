@@ -44,7 +44,17 @@ namespace KlijentskaStrana
 
         private void btnObriši_Click(object sender, EventArgs e)
         {
-             gledalacKontroler.ObrisiGledaoca();
+            gledalacKontroler.ObrisiGledaoca();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDetalji_Click(object sender, EventArgs e)
+        {
+            gledalacKontroler.DetaljiGledaoca();
         }
     }
 }

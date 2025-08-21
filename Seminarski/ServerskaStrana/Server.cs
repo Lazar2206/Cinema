@@ -13,7 +13,6 @@ namespace ServerskaStrana
     public class Server
     {
         private Socket socket; 
-     
         private bool kraj;
         private List<ClientHandler> korisnici = new List<ClientHandler>();
      
@@ -29,12 +28,12 @@ namespace ServerskaStrana
             try
             {
                 kraj = false;
-                while (!kraj) //beskonačna petlja -problemčić
+                while (!kraj) 
                 {
                     Debug.WriteLine("Čekam klijenta da se poveže");
-                    Socket klijent = socket.Accept(); //prihvatili smo klijenta
+                    Socket klijent = socket.Accept(); 
                     Debug.WriteLine("Uspešno povezivanje sa klijetom");
-                    //obrada zahteva 
+               
 
                     ClientHandler ch = new ClientHandler(klijent,korisnici);
                     korisnici.Add(ch);
@@ -50,17 +49,18 @@ namespace ServerskaStrana
             }
         }
 
-        public void Logout(Bioskop b)
+      
+        public void Stop()
         {
+            
             foreach (ClientHandler ch in korisnici)
             {
-                if (b.KorisnickoIme.Equals(ch.prijavljeniBioskop.KorisnickoIme) && b.Sifra.Equals(ch.prijavljeniBioskop.Sifra))
-                {
-                    ch.Logout();
-                    korisnici.Remove(ch);
-                    return;
-                }
+                ch.Logout();
             }
+            korisnici = new List<ClientHandler>();
+            kraj = true;
+            socket.Close();
+
         }
 
     }

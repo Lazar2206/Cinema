@@ -284,7 +284,7 @@ namespace ServerskaStrana
         {
             kraj = true;
             Kontroler.Instance.Logout(prijavljeniBioskop);
-            klijent.Close();
+            
         }
     }
 }

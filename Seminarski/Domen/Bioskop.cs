@@ -39,8 +39,6 @@ namespace Domen
             return $"KorisnickoIme = '{KorisnickoIme}' AND Sifra = '{Sifra}'";
         }
          
-
-
         public DomenskiObjekat ReadRow(SqlDataReader reader)
         {
             return new Bioskop

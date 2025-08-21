@@ -52,7 +52,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 27);
+            label1.Location = new Point(32, 98);
             label1.Name = "label1";
             label1.Size = new Size(67, 20);
             label1.TabIndex = 0;
@@ -61,15 +61,15 @@
             // cmbGledalac
             // 
             cmbGledalac.FormattingEnabled = true;
-            cmbGledalac.Location = new Point(103, 24);
+            cmbGledalac.Location = new Point(132, 95);
             cmbGledalac.Name = "cmbGledalac";
-            cmbGledalac.Size = new Size(274, 28);
+            cmbGledalac.Size = new Size(440, 28);
             cmbGledalac.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 78);
+            label2.Location = new Point(32, 149);
             label2.Name = "label2";
             label2.Size = new Size(62, 20);
             label2.TabIndex = 2;
@@ -78,7 +78,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 125);
+            label3.Location = new Point(32, 196);
             label3.Name = "label3";
             label3.Size = new Size(54, 20);
             label3.TabIndex = 4;
@@ -86,22 +86,22 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(103, 120);
+            dateTimePicker1.Location = new Point(132, 191);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(274, 27);
+            dateTimePicker1.Size = new Size(440, 27);
             dateTimePicker1.TabIndex = 5;
             // 
             // txtUkupnaCena
             // 
-            txtUkupnaCena.Location = new Point(103, 165);
+            txtUkupnaCena.Location = new Point(132, 236);
             txtUkupnaCena.Name = "txtUkupnaCena";
-            txtUkupnaCena.Size = new Size(274, 27);
+            txtUkupnaCena.Size = new Size(440, 27);
             txtUkupnaCena.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 168);
+            label4.Location = new Point(32, 239);
             label4.Name = "label4";
             label4.Size = new Size(94, 20);
             label4.TabIndex = 7;
@@ -110,15 +110,15 @@
             // dgvRacunStavke
             // 
             dgvRacunStavke.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRacunStavke.Location = new Point(3, 198);
+            dgvRacunStavke.Location = new Point(32, 269);
             dgvRacunStavke.Name = "dgvRacunStavke";
             dgvRacunStavke.RowHeadersWidth = 51;
-            dgvRacunStavke.Size = new Size(366, 138);
+            dgvRacunStavke.Size = new Size(532, 138);
             dgvRacunStavke.TabIndex = 8;
             // 
             // btnDetalji
             // 
-            btnDetalji.Location = new Point(950, 118);
+            btnDetalji.Location = new Point(1264, 190);
             btnDetalji.Name = "btnDetalji";
             btnDetalji.Size = new Size(111, 29);
             btnDetalji.TabIndex = 11;
@@ -128,7 +128,7 @@
             // 
             // btnKreirajRačun
             // 
-            btnKreirajRačun.Location = new Point(950, 73);
+            btnKreirajRačun.Location = new Point(1264, 145);
             btnKreirajRačun.Name = "btnKreirajRačun";
             btnKreirajRačun.Size = new Size(111, 29);
             btnKreirajRačun.TabIndex = 14;
@@ -138,7 +138,7 @@
             // 
             // btnIzmeni
             // 
-            btnIzmeni.Location = new Point(950, 164);
+            btnIzmeni.Location = new Point(1264, 236);
             btnIzmeni.Name = "btnIzmeni";
             btnIzmeni.Size = new Size(111, 29);
             btnIzmeni.TabIndex = 15;
@@ -148,7 +148,7 @@
             // 
             // btnObriši
             // 
-            btnObriši.Location = new Point(950, 215);
+            btnObriši.Location = new Point(1264, 287);
             btnObriši.Name = "btnObriši";
             btnObriši.Size = new Size(111, 29);
             btnObriši.TabIndex = 16;
@@ -158,9 +158,9 @@
             // 
             // txtBioskop
             // 
-            txtBioskop.Location = new Point(103, 75);
+            txtBioskop.Location = new Point(132, 146);
             txtBioskop.Name = "txtBioskop";
-            txtBioskop.Size = new Size(274, 27);
+            txtBioskop.Size = new Size(440, 27);
             txtBioskop.TabIndex = 17;
             // 
             // btnGlavna
@@ -176,15 +176,15 @@
             // dgvRacuni
             // 
             dgvRacuni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRacuni.Location = new Point(611, 24);
+            dgvRacuni.Location = new Point(698, 95);
             dgvRacuni.Name = "dgvRacuni";
             dgvRacuni.RowHeadersWidth = 51;
-            dgvRacuni.Size = new Size(300, 312);
+            dgvRacuni.Size = new Size(532, 312);
             dgvRacuni.TabIndex = 19;
             // 
             // btnPretraži
             // 
-            btnPretraži.Location = new Point(950, 27);
+            btnPretraži.Location = new Point(1264, 99);
             btnPretraži.Name = "btnPretraži";
             btnPretraži.Size = new Size(111, 29);
             btnPretraži.TabIndex = 20;
@@ -194,7 +194,7 @@
             // 
             // btnDetaljiStavke
             // 
-            btnDetaljiStavke.Location = new Point(421, 225);
+            btnDetaljiStavke.Location = new Point(449, 428);
             btnDetaljiStavke.Name = "btnDetaljiStavke";
             btnDetaljiStavke.Size = new Size(115, 39);
             btnDetaljiStavke.TabIndex = 21;

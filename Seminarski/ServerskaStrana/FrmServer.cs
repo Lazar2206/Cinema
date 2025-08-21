@@ -31,6 +31,7 @@ namespace ServerskaStrana
             btnPokreni.Enabled = false;
             Thread nit1 = new Thread(NapuniDGV);
             nit1.Start();
+            btnZaustavi.Enabled = true;
 
         }
 
@@ -50,8 +51,24 @@ namespace ServerskaStrana
                     }
                     dgvKorisnici.DataSource = null;
                     dgvKorisnici.DataSource = korisnici;
+                    dgvKorisnici.Columns[5].Visible = false;
+                    dgvKorisnici.Columns[6].Visible = false;
+                    dgvKorisnici.Columns[7].Visible = false;
+                    dgvKorisnici.Columns[8].Visible = false;
+                    dgvKorisnici.Columns[9].Visible = false;
+                    dgvKorisnici.Columns[10].Visible = false;
                 }));
             }
+        }
+
+        private void btnZaustavi_Click(object sender, EventArgs e)
+        {
+            kraj = true;
+            dgvKorisnici.DataSource = null;
+            server.Stop();
+            btnZaustavi.Enabled = false;
+            btnPokreni.Enabled = true;
+            server = null;
         }
     }
 }
